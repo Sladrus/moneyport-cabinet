@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import './Header.css';
 import { ReactComponent as ToogleMenuIcon } from '../../assets/icons/menu/toogle.svg';
 import { ReactComponent as QuestionCircleIcon } from '../../assets/icons/header/question-circle.svg';
 import { ReactComponent as BellIcon } from '../../assets/icons/header/bell.svg';
 import { ReactComponent as UserIcon } from '../../assets/icons/header/user.svg';
+import { AuthContext } from '../../context/context';
 
 const Header = ({ toogleMenu }) => {
+  const { user } = useContext(AuthContext);
   return (
     <div className="header">
       <div className="header-toogle" onClick={toogleMenu}>
@@ -20,7 +22,7 @@ const Header = ({ toogleMenu }) => {
         <BellIcon className="header-content-bell-icon" />
         <div className="header-content-profile">
           <UserIcon className="header-content-bell-icon" />
-          <span>Диана Пургина</span>
+          <span>{user?.name}</span>
         </div>
       </div>
     </div>

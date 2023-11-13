@@ -3,6 +3,7 @@ import './LargeButton.css';
 import { ReactComponent as Loader } from '../../../assets/icons/menu/spinner.svg';
 
 const LargeButton = ({
+  type,
   text,
   onClick,
   disabled,
@@ -11,6 +12,7 @@ const LargeButton = ({
 }) => {
   return (
     <div
+      type={type}
       className={`large-button ${variant} ${disabled && 'disabled'}`}
       onClick={onClick}
     >

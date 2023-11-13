@@ -13,8 +13,8 @@ import { REG_ROUTE } from '../../../utils/consts';
 const AuthForm = ({ className }) => {
   const { loading, onLogin } = useContext(AuthContext);
 
-  const [email, setEmail] = useState('');
-  const [pass, setPass] = useState('');
+  const [email, setEmail] = useState('auth_tester@yandex.ru');
+  const [password, setPassword] = useState('183CxL3c');
 
   const navigate = useNavigate();
 
@@ -39,10 +39,10 @@ const AuthForm = ({ className }) => {
           }}
         >
           <TextInput
-            value={pass}
+            value={password}
             placeholder={'Пароль'}
             type="password"
-            onChange={(e) => setPass(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
             disabled={loading}
           />
 
@@ -61,7 +61,7 @@ const AuthForm = ({ className }) => {
           <LargeButton
             text={'Авторизация'}
             variant="standart"
-            onClick={onLogin}
+            onClick={() => onLogin({ email, password })}
             // disabled={loading}
             loading={loading}
           />

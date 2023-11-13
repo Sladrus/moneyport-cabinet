@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/context';
 import { AUTH_ROUTE, HOME_ROUTE } from '../utils/consts';
+import AuthApi from '../http/AuthApi';
 
 const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
@@ -10,40 +11,45 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const fakeAuth = () =>
-    new Promise((resolve) => {
-      setTimeout(() => resolve('2342f2f1d131rf12'), 250);
-    });
+  useEffect(() => {
+    if (!user) handleCheckAuth();
+  }, []);
 
-  const registerUser = () =>
-    new Promise((resolve) => {
-      setTimeout(() => resolve('2342f2f1d131rf12'), 250);
-    });
-
-  const handleLogin = async () => {
+  const handleLogin = async ({ email, password }) => {
     setLoading(true);
-    const user = await fakeAuth();
-    setUser(user);
+    const data = await AuthApi.login({ email, password });
+    if (!data) return setLoading(false);
+    sessionStorage.setItem('token', data?.access_token);
+    sessionStorage.setItem('refresh', data?.refresh_token);
 
+    setUser(data?.user);
     setLoading(false);
-    // console.log(location.state?.from?.pathname);
-    const origin = location.state?.from?.pathname || HOME_ROUTE;
     navigate(HOME_ROUTE);
   };
 
-  const handleRegistration = async () => {
+  const handleRegistration = async ({ name, email, phone, password }) => {
     setLoading(true);
-    const user = await registerUser();
-    // setUser(user);
+    const data = await AuthApi.register({ name, email, phone, password });
+    if (!data) return setLoading(false);
+    sessionStorage.setItem('token', data?.access_token);
 
+    setUser(data?.user);
     setLoading(false);
-    // console.log(location.state?.from?.pathname);
-    const origin = location.state?.from?.pathname || HOME_ROUTE;
-    navigate(AUTH_ROUTE);
+    navigate(HOME_ROUTE);
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     setLoading(null);
+  };
+
+  const handleCheckAuth = async () => {
+    setLoading(true);
+    const user = await AuthApi.checkAuth();
+    if (!user) return setLoading(false);
+
+    setUser(user);
+    setLoading(false);
+    navigate(HOME_ROUTE);
   };
 
   const value = {
@@ -52,6 +58,7 @@ const AuthProvider = ({ children }) => {
     onLogin: handleLogin,
     onLogout: handleLogout,
     onReg: handleRegistration,
+    onCheck: handleCheckAuth,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

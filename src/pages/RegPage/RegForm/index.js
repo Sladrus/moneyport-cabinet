@@ -17,17 +17,25 @@ const RegForm = ({ className }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const [pass, setPass] = useState('');
+  const [password, setPassword] = useState('');
   const [finalPass, setFinallPass] = useState('');
 
   const [checked, setChecked] = useState(false);
 
+  const [errorMessage, setErrorMessage] = useState('');
+
   const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(name, email, phone, password);
+    // onReg({ name, email, phone, password });
+  };
 
   return (
     <div className={className}>
       <MoneyportLogo />
-      <form>
+      <form onSubmit={handleSubmit}>
         <TextInput
           value={name}
           placeholder={'ФИО'}
@@ -50,10 +58,10 @@ const RegForm = ({ className }) => {
           disabled={loading}
         />
         <TextInput
-          value={pass}
+          value={password}
           placeholder={'Пароль'}
           type="password"
-          onChange={(e) => setPass(e.target.value)}
+          onChange={(e) => setPassword(e.target.value)}
           disabled={loading}
         />
         <div
@@ -90,9 +98,9 @@ const RegForm = ({ className }) => {
           }}
         >
           <LargeButton
+            type="submit"
             text={'Регистрация'}
             variant="standart"
-            onClick={onReg}
             loading={loading}
           />
 

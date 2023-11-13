@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { authRoutes, publicRoutes } from '../routes';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import AuthProvider from '../providers/AuthProvider';
 import ProtectedRoute from './ProtectedRoute';
 import Header from '../components/Header';
@@ -8,6 +8,8 @@ import AppBar from './HomePage/AppBar';
 import TabBar from './HomePage/TabBar';
 import HomeMenu from './HomePage/HomeMenu';
 import NotAuthRoute from './NotAuthRoute';
+import AuthPage from './AuthPage';
+import { AUTH_ROUTE } from '../utils/consts';
 
 const AppRoutes = () => {
   const [open, setOpen] = useState(true);
@@ -56,9 +58,11 @@ const AppRoutes = () => {
                       <Component path={path} nestedRoutes={nestedRoutes} />
                     </ProtectedRoute>
                   }
+                  exact
                 />
               );
             })}
+            <Route path="*" element={<Navigate to={AUTH_ROUTE} replace />} />
           </Routes>
           <NotAuthRoute>
             <TabBar />

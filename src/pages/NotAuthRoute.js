@@ -5,6 +5,7 @@ import { AUTH_ROUTE, REG_ROUTE } from '../utils/consts';
 
 const NotAuthRoute = ({ children }) => {
   const location = useLocation();
+  console.log(location);
 
   if (location.pathname === AUTH_ROUTE) {
     return;
@@ -13,7 +14,7 @@ const NotAuthRoute = ({ children }) => {
   if (location.pathname === REG_ROUTE) {
     return;
   }
-
+  console.log('Clear');
   return children;
 };
 

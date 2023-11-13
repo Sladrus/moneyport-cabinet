@@ -1,0 +1,59 @@
+.home-menu-item-button.open {
+  width: 100%;
+  display: flex;
+  padding: 6px 16px 6px 8px;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+  align-self: stretch;
+  user-select: none;
+  cursor: pointer;
+}
+
+.home-menu-item-button.open .home-menu-item-logo {
+  display: flex;
+  padding: 8px;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.home-menu-item-button {
+  /* display: flex; */
+  padding: 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.home-menu-item-icon:hover {
+  cursor: pointer;
+}
+
+.home-menu-item-button .home-menu-item-logo {
+  display: flex;
+  padding: 6px 8px;
+  align-items: center;
+  gap: 10px;
+}
+
+.home-menu-item-button span {
+  color: var(--tech-grey-hard, #647081);
+
+  font-family: 'Mulish';
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: -0.32px;
+}
+
+.home-menu-item-button.selected span {
+  color: var(--primary-primary, #408ef6);
+}
+
+.home-menu-item-button.selected .home-menu-item-icon path {
+  fill: var(--primary-primary, #408ef6);
+}

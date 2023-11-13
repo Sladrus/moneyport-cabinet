@@ -1,0 +1,40 @@
+.submenu-list {
+}
+
+.submenu-list-item {
+  display: flex;
+  padding: 10px 64px;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+}
+
+.submenu-list-item span {
+  color: var(--tech-grey-hard, #647081);
+
+  font-family: 'Mulish';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.28px;
+
+  white-space: nowrap;
+}
+
+.submenu-list-item span:hover {
+  color: var(--primary-primary, #408ef6);
+
+  font-family: 'Mulish';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.28px;
+
+  cursor: pointer;
+}
+
+.submenu-list-item.selected span {
+  color: var(--primary-primary, #408ef6);
+}

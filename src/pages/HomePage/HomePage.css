@@ -1,0 +1,12 @@
+.home-page {
+  /* width: 1200px; */
+  /* height: 100%; */
+  display: inline-flex;
+}
+
+.home-page-elements {
+  display: inline-flex;
+  padding: 0px 24px 24px 24px;
+  flex-direction: column;
+  overflow: auto;
+}

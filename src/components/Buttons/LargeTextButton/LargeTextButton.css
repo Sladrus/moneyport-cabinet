@@ -1,0 +1,19 @@
+.large-text-button {
+}
+
+.large-text-button span {
+  color: var(--primary-primary, #408ef6);
+
+  font-family: 'Mulish', sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 22px;
+  letter-spacing: -0.32px;
+}
+
+.large-text-button:hover span {
+  color: var(--primary-hover, #2a74d7);
+
+  cursor: pointer;
+}

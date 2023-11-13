@@ -1,0 +1,39 @@
+.balances {
+  width: 100%;
+}
+
+.balances-title {
+  width: 100%;
+  display: flex;
+  padding: 12px 0px;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+}
+
+.balances-title-arrow {
+  width: 24px;
+  height: 24px;
+}
+
+.balances-title-arrow:hover {
+  cursor: pointer;
+}
+
+.balances-title span {
+  color: var(--tech-black, #031022);
+
+  font-family: 'Mulish';
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: -0.4px;
+}
+
+.balances-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}

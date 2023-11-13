@@ -1,0 +1,16 @@
+.auth-page {
+  display: inline-flex;
+  padding: 42px 42px 42px 137px;
+  justify-content: space-between;
+  align-items: center;
+  gap: 115px;
+  margin: auto;
+}
+
+@media (max-width: 820px) {
+  .auth-page {
+    width: calc(100% - 44px);
+    padding: 44px 22px;
+    margin: 0 auto;
+  }
+}

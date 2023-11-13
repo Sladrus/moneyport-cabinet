@@ -1,0 +1,138 @@
+.history-item {
+  display: flex;
+  width: calc(100% - 32px);
+
+  padding: 12px 16px;
+  justify-content: space-between;
+  align-items: center;
+
+  border-bottom: 1px solid var(--tech-grey-border, #f3f4f6);
+  white-space: nowrap;
+}
+
+.history-item:hover {
+  display: flex;
+  width: calc(100% - 32px);
+
+  padding: 12px 16px;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--tech-grey-border, #f3f4f6);
+  background: var(--tech-grey-border, #f3f4f6);
+}
+
+.history-item-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+
+  background-color: #f3f4f6;
+  border-radius: 50px;
+}
+
+.history-item-currency {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.history-item-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.history-item-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.history-item-code {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.history-item-type {
+  color: var(--tech-black, #031022);
+
+  font-family: 'Mulish';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: -0.28px;
+}
+.history-item-date {
+  color: var(--tech-grey-hard, #647081);
+
+  font-family: 'Mulish';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.28px;
+}
+
+.history-item-code-title {
+  color: var(--tech-black, #031022);
+
+  font-family: 'Mulish';
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 22px;
+  letter-spacing: -0.32px;
+}
+
+.history-item-code-subtitle {
+  color: var(--tech-grey-hard, #647081);
+
+  font-family: 'Mulish';
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: -0.32px;
+}
+
+.history-item-amount {
+  color: var(--tech-black, #031022);
+
+  font-family: 'Mulish';
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 22px;
+  letter-spacing: -0.32px;
+}
+
+.history-item-amount.in {
+  color: var(--green-hard, #34b450);
+
+  font-family: 'Mulish';
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: -0.32px;
+}
+
+.history-item-amount.out {
+  color: var(--red-hard, #e40034);
+
+  font-family: 'Mulish';
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: -0.32px;
+}

@@ -1,0 +1,17 @@
+.small-text-button {
+  color: var(--primary-primary, #408ef6);
+  /* text-align: center; */
+
+  font-family: 'Mulish';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: -0.28px;
+}
+
+.small-text-button:hover {
+  color: var(--primary-hover, #2a74d7);
+
+  cursor: pointer;
+}

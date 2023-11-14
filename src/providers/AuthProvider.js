@@ -39,7 +39,14 @@ const AuthProvider = ({ children }) => {
   };
 
   const handleLogout = async () => {
-    setLoading(null);
+    setLoading(true);
+
+    await AuthApi.logout();
+    sessionStorage.setItem('token', '');
+    sessionStorage.setItem('refresh', '');
+    setUser(null);
+    setLoading(false);
+    navigate(AUTH_ROUTE);
   };
 
   const handleCheckAuth = async () => {

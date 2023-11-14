@@ -3,12 +3,14 @@ import React from 'react';
 import './BalanceItem.css';
 import { formatCurrency } from '../../../utils/formatCurrency';
 import { ReactComponent as DotsIcon } from '../../../assets/icons/menu/menu-dots.svg';
+import { getCurrencyTitle } from '../../../utils/getCurrencyTitle';
 
 const BalanceItem = ({ title, amount, icon, code }) => {
+  const currency = getCurrencyTitle(code);
   return (
     <div className="balance-item">
       <div className="balance-item-left">
-        <div className="balance-item-logo">{icon}</div>
+        <div className="balance-item-logo">{currency?.icon}</div>
         <div className="balance-item-code">
           <span className="balance-item-code-title">
             {title} ({code})

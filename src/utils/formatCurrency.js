@@ -1,4 +1,5 @@
 export const formatCurrency = (amount, code) => {
+  // console.log(amount, code);
   const currencies = [
     { code: 'RUB', value: '₽' },
     { code: 'USD', value: '$' },
@@ -10,7 +11,7 @@ export const formatCurrency = (amount, code) => {
   ];
 
   const currency = currencies.find((currency) => currency.code === code);
-  const formatedAmount = amount.toLocaleString('ru-RU', {
+  const formatedAmount = amount?.toLocaleString('ru-RU', {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   });

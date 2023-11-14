@@ -1,11 +1,37 @@
 .submenu-list {
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  justify-content: end;
+}
+
+.submenu-list-content {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 24px 8px 24px;
 }
 
 .submenu-list-item {
   display: flex;
-  padding: 10px 64px;
+  padding: 8px 8px;
   align-items: center;
+  justify-content: start;
+
   gap: 10px;
+  align-self: stretch;
+}
+
+.popup-content .submenu-list-content {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 12px 8px 12px;
+}
+
+.popup-content .submenu-list-item {
+  display: flex;
+  padding: 8px 16px;
+  align-items: center;
+  gap: 12px;
   align-self: stretch;
 }
 

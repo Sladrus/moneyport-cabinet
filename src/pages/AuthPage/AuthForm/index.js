@@ -13,7 +13,7 @@ import { REG_ROUTE } from '../../../utils/consts';
 const AuthForm = ({ className }) => {
   const { loading, onLogin } = useContext(AuthContext);
 
-  const [email, setEmail] = useState('auth_tester@yandex.ru');
+  const [email, setEmail] = useState('neizbejno@yandex.ru');
   const [password, setPassword] = useState('183CxL3c');
 
   const navigate = useNavigate();
@@ -62,7 +62,6 @@ const AuthForm = ({ className }) => {
             text={'Авторизация'}
             variant="standart"
             onClick={() => onLogin({ email, password })}
-            // disabled={loading}
             loading={loading}
           />
 

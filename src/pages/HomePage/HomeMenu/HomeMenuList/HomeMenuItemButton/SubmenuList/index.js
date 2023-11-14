@@ -14,25 +14,27 @@ const SubmenuList = ({
 
   const navigateToPage = (id, path) => {
     setSelectedSubItem(id);
-    setSelectedItem(menuId)
+    setSelectedItem(menuId);
     navigate(path);
   };
 
   return (
     <div className="submenu-list">
-      {submenuList.map(({ id, title, path }) => {
-        return (
-          <div
-            key={id}
-            onClick={() => navigateToPage(id, path)}
-            className={`submenu-list-item ${
-              selectedSubItem === id ? 'selected' : ''
-            }`}
-          >
-            <span>{title}</span>
-          </div>
-        );
-      })}
+      <div className="submenu-list-content">
+        {submenuList?.map(({ id, title, path }) => {
+          return (
+            <div
+              key={id}
+              onClick={() => navigateToPage(id, path)}
+              className={`submenu-list-item ${
+                selectedSubItem === id ? 'selected' : ''
+              }`}
+            >
+              <span>{title}</span>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

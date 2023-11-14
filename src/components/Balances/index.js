@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import './Balances.css';
 import BalanceItem from './BalanceItem';
@@ -12,52 +12,60 @@ import { ReactComponent as TryIcon } from '../../assets/icons/currency/TRY.svg';
 
 import { ReactComponent as ArrowUpIcon } from '../../assets/icons/arrows/arrow-up.svg';
 import { ReactComponent as ArrowDownIcon } from '../../assets/icons/arrows/arrow-down.svg';
+import { DataContext } from '../../context/context';
 
-const balances = [
-  {
-    id: 1,
-    title: 'Рубли',
-    code: 'RUB',
-    balanceId: 'R39023',
-    amount: 10000,
-    icon: <RubIcon className="balance-item-currency" />,
-  },
-  {
-    id: 2,
-    title: 'Доллары',
-    code: 'USD',
-    balanceId: 'R39023',
-    amount: 10000,
-    icon: <UsdIcon className="balance-item-currency" />,
-  },
-  {
-    id: 3,
-    title: 'Евро',
-    code: 'EUR',
-    balanceId: 'R39023',
-    amount: 10000,
-    icon: <EurIcon className="balance-item-currency" />,
-  },
-  {
-    id: 4,
-    title: 'Tether',
-    code: 'USDT',
-    balanceId: 'R39023',
-    amount: 10000,
-    icon: <UsdtIcon className="balance-item-currency" />,
-  },
-  {
-    id: 5,
-    title: 'Дирхамы',
-    code: 'AED',
-    balanceId: 'R39023',
-    amount: 10000,
-    icon: <AedIcon className="balance-item-currency" />,
-  },
-];
+// const balances = [
+//   {
+//     id: 1,
+//     title: 'Рубли',
+//     code: 'RUB',
+//     balanceId: 'R39023',
+//     amount: 10000,
+//     icon: <RubIcon className="balance-item-currency" />,
+//   },
+//   {
+//     id: 2,
+//     title: 'Доллары',
+//     code: 'USD',
+//     balanceId: 'R39023',
+//     amount: 10000,
+//     icon: <UsdIcon className="balance-item-currency" />,
+//   },
+//   {
+//     id: 3,
+//     title: 'Евро',
+//     code: 'EUR',
+//     balanceId: 'R39023',
+//     amount: 10000,
+//     icon: <EurIcon className="balance-item-currency" />,
+//   },
+//   {
+//     id: 4,
+//     title: 'Tether',
+//     code: 'USDT',
+//     balanceId: 'R39023',
+//     amount: 10000,
+//     icon: <UsdtIcon className="balance-item-currency" />,
+//   },
+//   {
+//     id: 5,
+//     title: 'Дирхамы',
+//     code: 'AED',
+//     balanceId: 'R39023',
+//     amount: 10000,
+//     icon: <AedIcon className="balance-item-currency" />,
+//   },
+// ];
 
 const Balances = () => {
   const [open, setOpen] = useState(true);
+  const { balances, loading, getBalances } = useContext(DataContext);
+
+  useEffect(() => {
+    getBalances();
+  }, []);
+
+  console.log(balances);
 
   return (
     <div className="balances">
@@ -71,15 +79,15 @@ const Balances = () => {
           )}
         </div>
       </div>
-      {open && (
+      {open && balances && (
         <div className="balances-list">
-          {balances.map(({ id, title, amount, icon, code }) => {
+          {balances?.map(({ id, title, amount, icon, code }, index) => {
             return (
               <BalanceItem
-                key={id}
+                key={index}
                 title={title}
                 amount={amount}
-                icon={icon}
+                // icon={icon}
                 code={code}
               />
             );

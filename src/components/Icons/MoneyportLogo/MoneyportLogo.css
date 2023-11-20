@@ -1,5 +1,57 @@
+.moneyport-logo-small {
+  position: relative;
+  width: 34px;
+}
+
+.moneyport-logo-big {
+  position: relative;
+  width: 161px;
+}
+
 .moneyport-logo {
   display: flex;
   cursor: pointer;
   align-items: center;
+}
+
+.moneyport-logo.expanded .moneyport-logo-small {
+  animation: fadeOutOpacity 0.8s ease-out forwards;
+  opacity: 0;
+  animation-fill-mode: forwards;
+  display: none;
+}
+
+.moneyport-logo.closed .moneyport-logo-small {
+  animation: fadeInOpacity 0.8s ease-out forwards;
+  opacity: 1;
+}
+
+.moneyport-logo.expanded .moneyport-logo-big {
+  animation: fadeInOpacity 0.8s ease-out forwards;
+  opacity: 1;
+}
+
+.moneyport-logo.closed .moneyport-logo-big {
+  animation: fadeOutOpacity 0.8s ease-out forwards;
+  opacity: 0;
+  animation-fill-mode: forwards;
+  display: none;
+}
+
+@keyframes fadeInOpacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOutOpacity {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }

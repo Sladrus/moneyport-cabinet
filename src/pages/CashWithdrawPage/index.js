@@ -7,10 +7,7 @@ const CashWithdrawPage = () => {
   return (
     <div className="cash-page">
       <div className="cash-page-content">
-        <div className="cash-page-content-title">
-          <span className="cash-page-content-hello">/ Выдача наличных</span>
-          <span className="cash-page-content-head">Выдача наличных</span>
-        </div>
+
         <div className="cash-page-content-body">
           <div
             style={{

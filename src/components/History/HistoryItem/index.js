@@ -4,6 +4,7 @@ import { formatCurrency } from '../../../utils/formatCurrency';
 import './HistoryItem.css';
 import { getCurrencyTitle } from '../../../utils/getCurrencyTitle';
 import { getType } from '../../../utils/getType';
+import { formatDate } from '../../../utils/formatDate';
 
 const HistoryItem = ({ amount, code, type, date }) => {
   const currency = getCurrencyTitle(code);
@@ -16,34 +17,37 @@ const HistoryItem = ({ amount, code, type, date }) => {
       : Number(amount) * -1;
   return (
     <div className="history-item">
-      <div className="history-item-left">
-        <div className="history-item-logo">{currency?.icon}</div>
-        <div className="history-item-code">
-          <span className="history-item-code-title">
-            {currency?.title} ({code})
-          </span>
-          <span className="history-item-code-subtitle"></span>
-        </div>
-      </div>
-      <div className="history-item-right">
-        <div className={`history-item-amount ${type}`}>
-          <div>
-            {Number(amount) >= 0
-              ? '+' + formatCurrency(Number(amount), code)
-              : formatCurrency(Number(amount), code)}
+      <div className="history-item-logo">{currency?.icon}</div>
+      <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
+        <div className="history-item-top">
+          <div className="history-item-code">
+            <span className="history-item-code-title">
+              {currency?.title} ({code})
+            </span>
           </div>
-          <b>{code}</b>
+          <div className={`history-item-amount ${type}`}>
+            <div>
+              {Number(amount) >= 0
+                ? '+' + formatCurrency(Number(amount), code)
+                : formatCurrency(Number(amount), code)}
+            </div>
+            <b>{code}</b>
+          </div>
         </div>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'flex-end',
-            alignItems: 'center',
-            gap: '6px',
-          }}
-        >
-          <span className="history-item-type">{getType(type)}</span>
-          <span className="history-item-date">{date}</span>
+        <div className="history-item-bottom">
+          <span className="history-item-code-subtitle">00000</span>
+
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'flex-end',
+              alignItems: 'center',
+              gap: '6px',
+            }}
+          >
+            <span className="history-item-type">{getType(type)}</span>
+            <span className="history-item-date">{formatDate(date)}</span>
+          </div>
         </div>
       </div>
     </div>

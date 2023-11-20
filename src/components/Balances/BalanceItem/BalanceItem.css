@@ -1,7 +1,8 @@
 .balance-item {
   display: flex;
-  width: calc(100% - 32px);
-  padding: 12px 16px;
+  /* width: calc(100% - 72px); */
+  padding: 12px;
+  /* margin: 0 24px; */
   justify-content: space-between;
   align-items: center;
 
@@ -9,7 +10,7 @@
   background: var(--tech-white, #fff);
 
   box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.08);
-  white-space: nowrap;
+  /* white-space: nowrap; */
 }
 
 .balance-item-logo {
@@ -56,6 +57,8 @@
 
 .balance-item-code-title {
   color: var(--tech-black, #031022);
+
+  max-width: 170px;
 
   font-family: 'Mulish';
   font-size: 16px;

@@ -11,9 +11,11 @@
     "mobx": "^6.10.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-loading-skeleton": "^3.3.1",
     "react-router-dom": "^6.18.0",
     "react-scripts": "5.0.1",
     "reactjs-popup": "^2.0.6",
+    "styled-components": "^6.1.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

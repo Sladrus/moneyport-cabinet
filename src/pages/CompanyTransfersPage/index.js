@@ -7,10 +7,7 @@ const CompanyTransfersPage = () => {
   return (
     <div className="company-page">
       <div className="company-page-content">
-        <div className="company-page-content-title">
-          <span className="company-page-content-hello">/ Перевод юр. лицу</span>
-          <span className="company-page-content-head">Перевод юр. лицу</span>
-        </div>
+     
         <div className="company-page-content-body">
           <div
             style={{

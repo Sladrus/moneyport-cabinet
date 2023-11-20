@@ -13,6 +13,8 @@ const DataProvider = ({ children }) => {
   const [history, setHistory] = useState(null);
   const [historyLoading, setHistoryLoading] = useState(false);
 
+  useEffect(() => {}, []);
+
   const getBalances = async () => {
     setBalancesLoading(true);
     const data = await DataApi.getBalances();

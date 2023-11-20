@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import './HomeContent.css';
 import SendTypeButton from '../../../components/Buttons/SendTypeButton';
@@ -17,6 +17,7 @@ import {
   PHYS_TRANS_ROUTE,
 } from '../../../utils/consts';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../context/context';
 
 const items = [
   {
@@ -57,12 +58,15 @@ const items = [
 ];
 
 const HomeContent = () => {
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
   return (
     <div className="home-page-content">
       <div className="home-page-content-title">
-        <span className="home-page-content-hello">Приветствуем, Диана</span>
+        <span className="home-page-content-hello">
+          Приветствуем, {user?.name}
+        </span>
         <span className="home-page-content-head">Главная</span>
       </div>
       <div className="home-page-content-send-list">
@@ -78,18 +82,8 @@ const HomeContent = () => {
           );
         })}
       </div>
-      <div
-        style={{
-          width: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-start',
-          gap: '32px',
-        }}
-      >
-        <Balances />
-        <History />
-      </div>
+      <Balances />
+      <History />
     </div>
   );
 };

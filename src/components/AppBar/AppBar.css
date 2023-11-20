@@ -1,6 +1,6 @@
 @media (max-width: 820px) {
   .home-appbar {
-    height: 80px;
+    /* height: 80px; */
     display: flex;
     padding: 24px;
     justify-content: space-between;

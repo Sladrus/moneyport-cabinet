@@ -31,9 +31,7 @@ class AuthApi {
     });
   }
 
-  async logout() {
-    
-  }
+  async logout() {}
 }
 
 export default new AuthApi();

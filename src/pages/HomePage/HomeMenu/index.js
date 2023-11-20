@@ -8,24 +8,15 @@ const HomeMenu = ({ open }) => {
   return (
     <div className={`home-menu ${open === true ? 'open' : ''}`}>
       <div
-        style={
-          open
-            ? {
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'flex-start',
-                gap: '48px',
-                alignSelf: 'stretch',
-              }
-            : {
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                gap: '48px',
-              }
-        }
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'start',
+          justifyContent: 'start',
+          gap: '48px',
+        }}
       >
-        <div style={open ? { padding: '0.001px 0px 0.001px 16px' } : {}}>
+        <div style={open ? { padding: '0 10px' } : { padding: '0 10px' }}>
           <MoneyportLogo
             width={open ? '161px' : '34px'}
             height={'26px'}

@@ -1,0 +1,47 @@
+.breadcrumbs {
+  display: flex;
+  /* padding: 0px 24px; */
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.breadcrumbs-path {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumbs-home {
+  width: 14px;
+  height: 14px;
+}
+
+.breadcrumbs-home:hover {
+  cursor: pointer;
+}
+
+.breadcrumbs-slash {
+  padding: 0 8px;
+}
+
+.breadcrumbs-path span {
+  color: var(--tech-grey-medium, #a8b1be);
+
+  font-family: 'Mulish';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: -0.28px;
+}
+
+.breadcrumbs-title {
+  color: var(--tech-black, #031022);
+
+  font-family: 'Mulish';
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 42px;
+  letter-spacing: -0.64px;
+}

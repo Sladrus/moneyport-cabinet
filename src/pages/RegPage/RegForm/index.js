@@ -10,6 +10,7 @@ import { AuthContext } from '../../../context/context';
 import CheckBox from '../../../components/CheckBox';
 import { useNavigate } from 'react-router-dom';
 import { AUTH_ROUTE } from '../../../utils/consts';
+import { ReactComponent as Logo } from '../../../assets/logo/logo.svg';
 
 const RegForm = ({ className }) => {
   const { loading, onReg } = useContext(AuthContext);
@@ -34,7 +35,7 @@ const RegForm = ({ className }) => {
 
   return (
     <div className={className}>
-      <MoneyportLogo />
+      <Logo className="logo" />
       <form onSubmit={handleSubmit}>
         <TextInput
           value={name}

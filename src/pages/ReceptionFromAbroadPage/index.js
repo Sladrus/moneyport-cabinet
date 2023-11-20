@@ -7,14 +7,6 @@ const ReceptionFromAbroadPage = () => {
   return (
     <div className="reception-page">
       <div className="reception-page-content">
-        <div className="reception-page-content-title">
-          <span className="reception-page-content-hello">
-            / Прием из-за рубежа
-          </span>
-          <span className="reception-page-content-head">
-            Прием из-за рубежа
-          </span>
-        </div>
         <div className="reception-page-content-body">
           <div
             style={{

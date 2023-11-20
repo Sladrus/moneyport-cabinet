@@ -5,12 +5,13 @@
     right: 0;
     bottom: 0;
     display: flex;
-    padding: 8px;
+    padding: 8px 20px;
     justify-content: space-between;
     align-items: center;
-
+    /* gap: 8px; */
     border-top: 1px solid var(--tech-grey-border, #f3f4f6);
     background: #fff;
+    z-index: 10000;
   }
 }
 

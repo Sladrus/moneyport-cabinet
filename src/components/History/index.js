@@ -2,13 +2,14 @@ import React, { useContext, useEffect, useState } from 'react';
 
 import './History.css';
 
-
 import { ReactComponent as ArrowUpIcon } from '../../assets/icons/arrows/arrow-up.svg';
 import { ReactComponent as ArrowDownIcon } from '../../assets/icons/arrows/arrow-down.svg';
 
 import HistoryItem from './HistoryItem';
 import LargeTextButton from '../Buttons/LargeTextButton';
 import { DataContext } from '../../context/context';
+import Skeleton from 'react-loading-skeleton';
+import EmptyHistory from './EmptyHistory';
 
 // const history = [
 //   {
@@ -71,42 +72,47 @@ const History = () => {
     getHistory();
   }, []);
 
-  console.log(history);
+  // console.log(history);
 
   return (
-    <div className="history">
+    <div className={`history ${open ? 'expanded' : 'closed'}`}>
       <div className="history-title">
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <span>История операций</span>
           <LargeTextButton value={'Все'} />
         </div>
         <div onClick={() => setOpen(!open)}>
-          {open ? (
-            <ArrowUpIcon className="history-title-arrow" />
-          ) : (
-            <ArrowDownIcon className="history-title-arrow" />
-          )}
+          <ArrowDownIcon
+            className={`history-title-arrow ${open ? 'expanded' : 'closed'}`}
+          />
         </div>
       </div>
-      {open && history && (
-        <div className="history-list">
-          {history.map(
-            ({ id, title, val, icon, symbol, type, create_date }) => {
-              return (
-                <HistoryItem
-                  key={id}
-                  title={title}
-                  amount={val}
-                  icon={icon}
-                  code={symbol}
-                  type={type}
-                  date={create_date}
-                />
-              );
-            }
-          )}
-        </div>
-      )}
+      <div className={`history-list ${open ? 'expanded' : 'closed'}`}>
+        {historyLoading ? (
+          <Skeleton
+            style={{ marginBottom: '16px' }}
+            count={12}
+            height={76}
+            borderRadius={16}
+          />
+        ) : history ? (
+          history.map(({ id, title, val, icon, symbol, type, create_date }) => {
+            return (
+              <HistoryItem
+                key={id}
+                title={title}
+                amount={val}
+                icon={icon}
+                code={symbol}
+                type={type}
+                date={create_date}
+              />
+            );
+          })
+        ) : (
+          <EmptyHistory />
+        )}
+      </div>
     </div>
   );
 };

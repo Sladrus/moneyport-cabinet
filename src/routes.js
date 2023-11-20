@@ -3,6 +3,7 @@ import CashWithdrawPage from './pages/CashWithdrawPage';
 import CompanyTransfersPage from './pages/CompanyTransfersPage';
 import ExchangePage from './pages/ExchangePage';
 import HomePage from './pages/HomePage';
+import HistoryPage from './pages/HistoryPage';
 import PhysicalTransfersPage from './pages/PhysicalTransfersPage';
 import ReceptionFromAbroadPage from './pages/ReceptionFromAbroadPage';
 import RegPage from './pages/RegPage';
@@ -16,7 +17,12 @@ import {
   EXCHANGE_ROUTE,
   REG_ROUTE,
   CASH_ROUTE,
+  HISTORY_ROUTE,
+  BALANCES_ROUTE,
+  TRANSFERS_ROUTE,
 } from './utils/consts';
+import BalancesPage from './pages/BalancesPage';
+import TransfersPage from './pages/TransfersPage';
 
 export const authRoutes = [
   {
@@ -41,6 +47,11 @@ export const authRoutes = [
     Component: ReceptionFromAbroadPage,
   },
   {
+    title: 'Переводы',
+    path: TRANSFERS_ROUTE,
+    Component: TransfersPage,
+  },
+  {
     title: 'Обмен криптовалют',
     path: EXCHANGE_ROUTE,
     Component: ExchangePage,
@@ -50,6 +61,17 @@ export const authRoutes = [
     path: CASH_ROUTE,
     Component: CashWithdrawPage,
   },
+  {
+    title: 'История операций',
+    path: HISTORY_ROUTE,
+    Component: HistoryPage,
+  },
+  {
+    title: 'Мои счета',
+    path: BALANCES_ROUTE,
+    Component: BalancesPage,
+  },
+
 ];
 
 export const publicRoutes = [

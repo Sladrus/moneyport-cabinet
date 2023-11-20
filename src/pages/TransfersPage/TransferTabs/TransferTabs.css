@@ -1,0 +1,12 @@
+.transfer-tabs {
+  position: relative;
+  border-bottom: 1px solid var(--tech-grey-border, #f3f4f6);
+}
+
+.transfer-tabs-nav {
+  display: flex;
+  align-items: flex-end;
+  gap: 32px;
+  margin: 0;
+  padding: 0px 24px;
+}

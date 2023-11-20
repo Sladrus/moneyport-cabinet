@@ -1,0 +1,33 @@
+.transfer-tab-item {
+  display: flex;
+  padding: 16px 0;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.transfer-tab-item.selected span {
+  color: var(--primary-primary, #408ef6);
+
+  font-family: 'Mulish';
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 22px;
+  letter-spacing: -0.32px;
+}
+
+.transfer-tab-item span {
+  color: var(--tech-grey-medium, #a8b1be);
+
+  font-family: 'Mulish';
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 22px;
+  letter-spacing: -0.32px;
+}
+
+.transfer-tab-item:hover {
+  cursor: pointer;
+}

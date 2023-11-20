@@ -1,11 +1,11 @@
 import React from 'react';
 
 import './AppBar.css';
-import { ReactComponent as QuestionCircleIcon } from '../../../assets/icons/header/question-circle.svg';
-import { ReactComponent as BellIcon } from '../../../assets/icons/header/bell.svg';
-import { ReactComponent as UserIcon } from '../../../assets/icons/header/user.svg';
+import { ReactComponent as QuestionCircleIcon } from '../../assets/icons/header/question-circle.svg';
+import { ReactComponent as BellIcon } from '../../assets/icons/header/bell.svg';
+import { ReactComponent as UserIcon } from '../../assets/icons/header/user.svg';
 
-import MoneyportLogo from '../../../components/Icons/MoneyportLogo';
+import MoneyportLogo from '../Icons/MoneyportLogo';
 
 const AppBar = ({}) => {
   return (

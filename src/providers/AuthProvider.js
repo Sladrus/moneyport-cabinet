@@ -52,7 +52,10 @@ const AuthProvider = ({ children }) => {
   const handleCheckAuth = async () => {
     setLoading(true);
     const user = await AuthApi.checkAuth();
-    if (!user) return setLoading(false);
+    if (!user) {
+      setLoading(false);
+      return navigate(AUTH_ROUTE);
+    }
 
     setUser(user);
     setLoading(false);

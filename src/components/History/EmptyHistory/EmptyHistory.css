@@ -1,0 +1,19 @@
+.empty-history {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin: auto;
+}
+
+.empty-history-title {
+  color: var(--tech-grey-medium, #a8b1be);
+
+  font-family: 'Mulish';
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: -0.32px;
+}

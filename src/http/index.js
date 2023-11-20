@@ -4,27 +4,42 @@ const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 export const authBase = axios.create({
   baseURL: BASE_URL,
-  headers: {
-    Authorization: `Bearer ${sessionStorage.getItem('token') || ''}`,
-  },
 });
+
+authBase.interceptors.request.use(
+  (config) => {
+    const token = sessionStorage.getItem('token'); // Assuming you store the token in localStorage
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
 authBase.interceptors.response.use(
   (response) => response,
   async (error) => {
-    if (error.response && error.response.status === 401) {
+    const originalRequest = error.config;
+
+    if (error.response.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true;
+
       try {
+        const refreshToken = sessionStorage.getItem('refresh');
         const response = await axios.post(`${BASE_URL}/refresh`, {
-          refresh_token: sessionStorage.getItem('refresh') || '',
+          refresh_token: refreshToken,
         });
         const { access_token, refresh_token } = response.data;
+
         sessionStorage.setItem('token', access_token);
         sessionStorage.setItem('refresh', refresh_token);
 
-        error.response.config.headers.Authorization = `Bearer ${access_token}`;
-        return axios(error.response.config);
-      } catch (refreshError) {
-      }
+        originalRequest.headers.Authorization = `Bearer ${access_token}`;
+        return axios(originalRequest);
+      } catch (error) {}
     }
 
     return Promise.reject(error);

@@ -16,7 +16,7 @@ export const formatCurrency = (amount, code) => {
     maximumFractionDigits: 2,
   });
   if (currency) {
-    return `${formatedAmount} ${currency.value}`;
+    return `${formatedAmount}`;
   } else {
     return formatedAmount;
   }

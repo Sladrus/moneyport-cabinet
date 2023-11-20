@@ -9,6 +9,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../../../context/context';
 import { useNavigate } from 'react-router-dom';
 import { REG_ROUTE } from '../../../utils/consts';
+import { ReactComponent as Logo } from '../../../assets/logo/logo.svg';
 
 const AuthForm = ({ className }) => {
   const { loading, onLogin } = useContext(AuthContext);
@@ -20,7 +21,7 @@ const AuthForm = ({ className }) => {
 
   return (
     <div className={className}>
-      <MoneyportLogo />
+      <Logo className="logo" />
       <form>
         <TextInput
           value={email}

@@ -1,7 +1,7 @@
 .home-menu-item-button.open {
   width: 100%;
   display: flex;
-  padding: 6px 16px 6px 8px;
+  padding: 6px 8px;
   align-items: center;
   justify-content: space-between;
 
@@ -23,9 +23,24 @@
   padding: 8px;
   justify-content: center;
   align-items: center;
-  gap: 16px;
+  gap: 8px;
   cursor: pointer;
   user-select: none;
+}
+
+.home-menu-item-icon {
+  display: flex;
+  align-items: center;
+}
+
+.home-menu-item-icon.expanded {
+  transform: rotate(180deg);
+  transition: 0.8s ease;
+}
+
+.home-menu-item-icon.closed {
+  transform: rotate(0deg);
+  transition: 0.8s ease;
 }
 
 .home-menu-item-icon:hover {
@@ -39,8 +54,10 @@
   gap: 10px;
 }
 
-.home-menu-item-button span {
+.home-menu-item-button.open span {
   color: var(--tech-grey-hard, #647081);
+
+  white-space: nowrap;
 
   font-family: 'Mulish';
   font-size: 16px;
@@ -48,6 +65,43 @@
   font-weight: 600;
   line-height: 22px;
   letter-spacing: -0.32px;
+  animation: 0.8s fadeInOpacity ease-out;
+
+  opacity: 1;
+}
+
+.home-menu-item-button span {
+  color: var(--tech-grey-hard, #647081);
+
+  white-space: nowrap;
+
+  font-family: 'Mulish';
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: -0.32px;
+
+  animation: 0.8s fadeOutOpacity ease-out;
+  opacity: 0;
+}
+
+@keyframes fadeInOpacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOutOpacity {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 .home-menu-item-button.selected span {

@@ -5,7 +5,7 @@ import { formatCurrency } from '../../../utils/formatCurrency';
 import { ReactComponent as DotsIcon } from '../../../assets/icons/menu/menu-dots.svg';
 import { getCurrencyTitle } from '../../../utils/getCurrencyTitle';
 
-const BalanceItem = ({ title, amount, icon, code }) => {
+const BalanceItem = ({ title, amount, icon, code, sign }) => {
   const currency = getCurrencyTitle(code);
   return (
     <div className="balance-item">
@@ -20,7 +20,7 @@ const BalanceItem = ({ title, amount, icon, code }) => {
       </div>
       <div className="balance-item-right">
         <div className="balance-item-amount">
-          {formatCurrency(amount, code)}
+          {formatCurrency(amount, code)} {sign}
         </div>
         {/* <div className="balance-item-menu">
           <DotsIcon className="balance-item-menu-icon" />

@@ -13,6 +13,7 @@ import { ReactComponent as TryIcon } from '../../assets/icons/currency/TRY.svg';
 import { ReactComponent as ArrowUpIcon } from '../../assets/icons/arrows/arrow-up.svg';
 import { ReactComponent as ArrowDownIcon } from '../../assets/icons/arrows/arrow-down.svg';
 import { DataContext } from '../../context/context';
+import Skeleton from 'react-loading-skeleton';
 
 // const balances = [
 //   {
@@ -59,40 +60,42 @@ import { DataContext } from '../../context/context';
 
 const Balances = () => {
   const [open, setOpen] = useState(true);
-  const { balances, loading, getBalances } = useContext(DataContext);
+  const { balances, balancesLoading, getBalances } = useContext(DataContext);
 
   useEffect(() => {
     getBalances();
   }, []);
-
-  console.log(balances);
-
+  // console.log(balances);
   return (
-    <div className="balances">
+    <div className={`balances ${open ? 'expanded' : 'closed'}`}>
       <div className="balances-title">
         <span>Мои счета</span>
         <div onClick={() => setOpen(!open)}>
-          {open ? (
-            <ArrowUpIcon className="balances-title-arrow" />
-          ) : (
-            <ArrowDownIcon className="balances-title-arrow" />
-          )}
+          <ArrowDownIcon
+            className={`balances-title-arrow ${open ? 'expanded' : 'closed'}`}
+          />
         </div>
       </div>
-      {open && balances && (
-        <div className="balances-list">
-          {balances?.map(({ id, title, amount, icon, code }, index) => {
-            return (
-              <BalanceItem
-                key={index}
-                title={title}
-                amount={amount}
-                // icon={icon}
-                code={code}
-              />
-            );
-          })}
-        </div>
+      {balancesLoading ? (
+        <Skeleton
+          style={{ marginBottom: '16px' }}
+          count={3}
+          height={76}
+          borderRadius={16}
+        />
+      ) : (
+        balances?.map(({ id, title, amount, icon, code, sign }, index) => {
+          return (
+            <BalanceItem
+              key={index}
+              title={title}
+              amount={amount}
+              sign={sign}
+              // icon={icon}
+              code={code}
+            />
+          );
+        })
       )}
     </div>
   );

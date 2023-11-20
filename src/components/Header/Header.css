@@ -27,7 +27,7 @@
 }
 
 .header-content-questions span {
-  color: var(--tech-grey-medium, #a8b1be);
+  color: var(--primary-primary, #408ef6);
   text-align: center;
 
   font-family: 'Mulish';
@@ -37,6 +37,30 @@
   line-height: 22px;
   letter-spacing: -0.32px;
 }
+
+.header-content-questions span {
+  color: var(--primary-primary, #408ef6);
+  text-align: center;
+
+  font-family: 'Mulish';
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 22px;
+  letter-spacing: -0.32px;
+}
+
+.header-content-questions .header-content-bell-icon path {
+  fill: var(--primary-primary, #408ef6);
+}
+
+/* .header-content-questions:hover span {
+  color: var(---tech-grey-medium, #a8b1be);
+}
+
+.header-content-questions:hover .header-content-bell-icon path {
+  fill: var(---tech-grey-medium, #a8b1be);
+} */
 
 .header-content-profile span {
   color: #000;
@@ -90,5 +114,70 @@
 }
 
 .header-content-bell-icon:hover circle {
+  fill: var(--primary-primary, #408ef6);
+}
+
+.header-content-profile-arrow.expanded {
+  transform: rotate(180deg);
+  transition: 0.5s ease;
+}
+
+.header-content-profile-arrow.closed {
+  transform: rotate(0);
+  transition: 0.5s ease;
+}
+
+.header-content-profile:hover {
+  cursor: pointer;
+}
+
+.header-content-profile .header-content-bell-icon path {
+  fill: var(--primary-primary, #408ef6);
+}
+
+.header-content-profile .header-content-bell-icon circle {
+  fill: var(--primary-primary, #408ef6);
+}
+
+/* .header-content-profile:hover .header-content-bell-icon path {
+  fill: var(---tech-grey-medium, #a8b1be);
+}
+
+.header-content-profile:hover .header-content-bell-icon circle {
+  fill: var(---tech-grey-medium, #a8b1be);
+} */
+
+.header-content-profile-popup {
+  display: flex;
+  padding: 8px 16px;
+  align-items: center;
+  gap: 12px;
+  align-self: stretch;
+}
+
+.header-content-profile-popup span {
+  color: var(--Black, #26292d);
+
+  font-family: 'Mulish';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.28px;
+}
+
+.header-content-profile-popup:hover {
+  cursor: pointer;
+}
+
+.header-content-profile-popup:hover span {
+  cursor: pointer;
+}
+
+.header-content-profile-popup:hover path {
+  fill: var(--primary-primary, #408ef6);
+}
+
+.header-content-profile-popup:hover circle {
   fill: var(--primary-primary, #408ef6);
 }

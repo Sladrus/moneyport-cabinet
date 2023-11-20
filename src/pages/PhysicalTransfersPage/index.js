@@ -7,12 +7,6 @@ const PhysicalTransfersPage = () => {
   return (
     <div className="physical-page">
       <div className="physical-page-content">
-        <div className="physical-page-content-title">
-          <span className="physical-page-content-hello">
-            / Перевод физ. лицу
-          </span>
-          <span className="physical-page-content-head">Перевод физ. лицу</span>
-        </div>
         <div className="physical-page-content-body">
           <div
             style={{

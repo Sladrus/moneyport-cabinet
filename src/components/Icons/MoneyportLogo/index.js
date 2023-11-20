@@ -4,15 +4,13 @@ import closedLogo from '../../../assets/logo/closedLogo.svg';
 
 import './MoneyportLogo.css';
 
-const MoneyportLogo = ({ width, height, open = true }) => {
+const MoneyportLogo = ({ open = true }) => {
+  const logoSrc = open ? openLogo : closedLogo;
+
   return (
-    <div className="moneyport-logo">
-      <img
-        src={open ? openLogo : closedLogo}
-        alt="Логотип"
-        width={width}
-        height={height}
-      />
+    <div className={`moneyport-logo ${open ? 'expanded' : 'closed'}`}>
+      <img className="moneyport-logo-small" src={closedLogo} alt="Логотип" />
+      <img className="moneyport-logo-big" src={openLogo} alt="Логотип" />
     </div>
   );
 };

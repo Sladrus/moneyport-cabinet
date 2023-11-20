@@ -2,17 +2,13 @@ import React from 'react';
 
 import './ExchangePage.css';
 import LargeButton from '../../components/Buttons/LargeButton';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 const ExchangePage = () => {
   return (
     <div className="exchange-page">
       <div className="exchange-page-content">
-        <div className="exchange-page-content-title">
-          <span className="exchange-page-content-hello">
-            / Обмен криптовалют
-          </span>
-          <span className="exchange-page-content-head">Обмен криптовалют</span>
-        </div>
+        <Breadcrumbs />
         <div className="exchange-page-content-body">
           <div
             style={{

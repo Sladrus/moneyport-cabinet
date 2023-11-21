@@ -16,7 +16,7 @@ const HistoryList = () => {
 
   return (
     <>
-      <div className={`balances-page-list`}>
+      <div className={`history-page-list`}>
         {historyLoading ? (
           <Skeleton
             style={{ marginBottom: '16px' }}

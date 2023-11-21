@@ -115,7 +115,9 @@
   .history-page-content-body-qr {
     display: none;
   }
-  .history-page {
+  .history-page-list {
+    padding-bottom: 40px;
+
     /* max-width: 100%; */
   }
   .history-page-content {
@@ -123,7 +125,6 @@
     /* min-width: unset; */
     width: calc(100% - 96px);
     height: calc(100% - 95px);
-    padding-bottom: 95px;
   }
   .history-page-content-button .large-button {
     width: 100%;

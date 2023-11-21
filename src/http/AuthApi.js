@@ -7,6 +7,7 @@ class AuthApi {
       return response.data;
     } catch (e) {
       console.log(e);
+      return e?.response?.data;
     }
   }
 
@@ -19,16 +20,61 @@ class AuthApi {
     }
   }
 
-  async register() {
-    new Promise((resolve) => {
-      setTimeout(() => resolve('2342f2f1d131rf12'), 250);
-    });
+  async register({ name, email, phone, password }) {
+    try {
+      const response = await authBase.post('/register', {
+        name,
+        email,
+        phone,
+        password,
+      });
+      return response.data;
+    } catch (e) {
+      console.log(e);
+      return e?.response?.data;
+    }
+  }
+
+  async checkReset({ token }) {
+    try {
+      const response = await authBase.post('/check-reset-token', {
+        token,
+      });
+      return response.data;
+    } catch (e) {
+      console.log(e);
+      return e?.response?.data;
+    }
+  }
+
+  async updatePassword({ token, email, password }) {
+    try {
+      const response = await authBase.post('/new-password ', {
+        token,
+        email,
+        password,
+      });
+      return response.data;
+    } catch (e) {
+      console.log(e);
+      return e?.response?.data;
+    }
   }
 
   async refresh() {
     new Promise((resolve) => {
       setTimeout(() => resolve('2342f2f1d131rf12'), 250);
     });
+  }
+
+  async recoveryPass({ email }) {
+    try {
+      const response = await authBase.post('/reset-password', { email });
+      return response.data;
+    } catch (e) {
+      console.log(e);
+      return e?.response?.data;
+    }
   }
 
   async logout() {}

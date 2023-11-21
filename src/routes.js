@@ -20,58 +20,69 @@ import {
   HISTORY_ROUTE,
   BALANCES_ROUTE,
   TRANSFERS_ROUTE,
+  RECOVERY_ROUTE,
+  RESET_ROUTE,
 } from './utils/consts';
 import BalancesPage from './pages/BalancesPage';
 import TransfersPage from './pages/TransfersPage';
+import RecoveryPage from './pages/RecoveryPage';
+import ResetPasswordPage from './pages/ResetPasswordPage';
 
 export const authRoutes = [
   {
     title: 'Главная',
     path: HOME_ROUTE,
     Component: HomePage,
-    nestedRoutes: [],
+    type: 'auth',
   },
   {
     title: 'Переводы физ. лицу',
     path: PHYS_TRANS_ROUTE,
     Component: PhysicalTransfersPage,
+    type: 'auth',
   },
   {
     title: 'Переводы юр. лицу',
     path: COMPANY_TRANS_ROUTE,
     Component: CompanyTransfersPage,
+    type: 'auth',
   },
   {
     title: 'Прием из-за рубежа',
     path: RECEPTION_ROUTE,
     Component: ReceptionFromAbroadPage,
+    type: 'auth',
   },
   {
     title: 'Переводы',
     path: TRANSFERS_ROUTE,
     Component: TransfersPage,
+    type: 'auth',
   },
   {
     title: 'Обмен криптовалют',
     path: EXCHANGE_ROUTE,
     Component: ExchangePage,
+    type: 'auth',
   },
   {
     title: 'Выдача наличных',
     path: CASH_ROUTE,
     Component: CashWithdrawPage,
+    type: 'auth',
   },
   {
     title: 'История операций',
     path: HISTORY_ROUTE,
     Component: HistoryPage,
+    type: 'auth',
   },
   {
     title: 'Мои счета',
     path: BALANCES_ROUTE,
     Component: BalancesPage,
+    type: 'auth',
   },
-
 ];
 
 export const publicRoutes = [
@@ -79,10 +90,24 @@ export const publicRoutes = [
     title: 'Авторизация',
     path: AUTH_ROUTE,
     Component: AuthPage,
+    type: 'public',
   },
   {
     title: 'Регистрация',
     path: REG_ROUTE,
     Component: RegPage,
+    type: 'public',
+  },
+  {
+    title: 'Восстановлние пароля',
+    path: RECOVERY_ROUTE,
+    Component: RecoveryPage,
+    type: 'public',
+  },
+  {
+    title: 'Восстановлние пароля',
+    path: RESET_ROUTE,
+    Component: ResetPasswordPage,
+    type: 'public',
   },
 ];

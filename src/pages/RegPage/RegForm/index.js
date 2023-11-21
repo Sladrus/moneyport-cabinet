@@ -12,25 +12,37 @@ import { useNavigate } from 'react-router-dom';
 import { AUTH_ROUTE } from '../../../utils/consts';
 import { ReactComponent as Logo } from '../../../assets/logo/logo.svg';
 
-const RegForm = ({ className }) => {
-  const { loading, onReg } = useContext(AuthContext);
+const randomNumberInRange = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
 
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [password, setPassword] = useState('');
-  const [finalPass, setFinallPass] = useState('');
+const RegForm = ({ className }) => {
+  const { loading, onReg, isPassEqual } = useContext(AuthContext);
+
+  const [name, setName] = useState('Имя Фамилия Отчество');
+  const [email, setEmail] = useState(
+    `name${randomNumberInRange(1, 1000)}@gmail.com`
+  );
+  const [phone, setPhone] = useState(
+    `8904183${randomNumberInRange(1000, 9999)}`
+  );
+  const [password, setPassword] = useState('1234567890');
+  const [finalPass, setFinalPass] = useState('1234567890');
 
   const [checked, setChecked] = useState(false);
 
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errors, setErrors] = useState(null);
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(name, email, phone, password);
-    // onReg({ name, email, phone, password });
+    const equal = await isPassEqual(password, finalPass);
+    if (!equal) {
+      return setErrors({ finalPass: ['Passwords do not match'] });
+    }
+    const { result, errors } = await onReg({ name, email, phone, password });
+    setErrors(errors);
   };
 
   return (
@@ -39,6 +51,8 @@ const RegForm = ({ className }) => {
       <form onSubmit={handleSubmit}>
         <TextInput
           value={name}
+          errors={errors?.name}
+          onClick={() => setErrors(null)}
           placeholder={'ФИО'}
           type="text"
           onChange={(e) => setName(e.target.value)}
@@ -46,6 +60,8 @@ const RegForm = ({ className }) => {
         />
         <TextInput
           value={email}
+          errors={errors?.email}
+          onClick={() => setErrors(null)}
           placeholder={'E-mail'}
           type="text"
           onChange={(e) => setEmail(e.target.value)}
@@ -53,6 +69,8 @@ const RegForm = ({ className }) => {
         />
         <TextInput
           value={phone}
+          errors={errors?.phone}
+          onClick={() => setErrors(null)}
           placeholder={'Мобильный телефон'}
           type="text"
           onChange={(e) => setPhone(e.target.value)}
@@ -60,28 +78,23 @@ const RegForm = ({ className }) => {
         />
         <TextInput
           value={password}
+          errors={errors?.password}
+          onClick={() => setErrors(null)}
           placeholder={'Пароль'}
           type="password"
           onChange={(e) => setPassword(e.target.value)}
           disabled={loading}
         />
-        <div
-          style={{
-            width: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'flex-start',
-            gap: '12px',
-          }}
-        >
-          <TextInput
-            value={finalPass}
-            placeholder={'Пароль еще раз'}
-            type="password"
-            onChange={(e) => setFinallPass(e.target.value)}
-            disabled={loading}
-          />
-        </div>
+
+        <TextInput
+          value={finalPass}
+          errors={errors?.finalPass}
+          onClick={() => setErrors(null)}
+          placeholder={'Пароль еще раз'}
+          type="password"
+          onChange={(e) => setFinalPass(e.target.value)}
+          disabled={loading}
+        />
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <CheckBox checked={checked} onChange={() => setChecked(!checked)} />
           <span>
@@ -101,8 +114,10 @@ const RegForm = ({ className }) => {
           <LargeButton
             type="submit"
             text={'Регистрация'}
+            onClick={handleSubmit}
             variant="standart"
             loading={loading}
+            disabled={!checked}
           />
 
           <div style={{ display: 'flex', alignItems: 'center' }}>

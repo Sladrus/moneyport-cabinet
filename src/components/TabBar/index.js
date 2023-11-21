@@ -15,7 +15,6 @@ const TabBar = () => {
     setSelectedMenuItem(id);
     navigate(path);
   };
-  console.log(menuItems);
 
   return (
     <div className="tab-bar">

@@ -8,7 +8,7 @@ import MoneyportLogo from '../../../components/Icons/MoneyportLogo';
 import { useContext } from 'react';
 import { AuthContext } from '../../../context/context';
 import { useNavigate } from 'react-router-dom';
-import { REG_ROUTE } from '../../../utils/consts';
+import { RECOVERY_ROUTE, REG_ROUTE } from '../../../utils/consts';
 import { ReactComponent as Logo } from '../../../assets/logo/logo.svg';
 
 const AuthForm = ({ className }) => {
@@ -16,6 +16,12 @@ const AuthForm = ({ className }) => {
 
   const [email, setEmail] = useState('neizbejno@yandex.ru');
   const [password, setPassword] = useState('183CxL3c');
+  const [errors, setErrors] = useState(null);
+
+  const handleLogin = async () => {
+    const { errors } = await onLogin({ email, password });
+    setErrors(errors);
+  };
 
   const navigate = useNavigate();
 
@@ -25,6 +31,8 @@ const AuthForm = ({ className }) => {
       <form>
         <TextInput
           value={email}
+          errors={errors?.email}
+          onClick={() => setErrors(null)}
           placeholder={'E-mail'}
           type="text"
           onChange={(e) => setEmail(e.target.value)}
@@ -41,13 +49,18 @@ const AuthForm = ({ className }) => {
         >
           <TextInput
             value={password}
+            errors={errors?.password || errors?.error}
+            onClick={() => setErrors(null)}
             placeholder={'Пароль'}
             type="password"
             onChange={(e) => setPassword(e.target.value)}
             disabled={loading}
           />
 
-          <SmallTextButton value={'Забыли пароль?'} />
+          <SmallTextButton
+            value={'Забыли пароль?'}
+            onClick={() => navigate(RECOVERY_ROUTE)}
+          />
         </div>
         <div
           style={{
@@ -62,7 +75,7 @@ const AuthForm = ({ className }) => {
           <LargeButton
             text={'Авторизация'}
             variant="standart"
-            onClick={() => onLogin({ email, password })}
+            onClick={() => handleLogin()}
             loading={loading}
           />
 

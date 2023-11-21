@@ -14,7 +14,7 @@ const LargeButton = ({
     <div
       type={type}
       className={`large-button ${variant} ${disabled && 'disabled'}`}
-      onClick={onClick}
+      onClick={!disabled ? onClick : () => null}
     >
       <span
         className={`large-button-text ${variant} ${disabled && 'disabled'}`}

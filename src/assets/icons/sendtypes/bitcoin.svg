@@ -1,23 +1,23 @@
 <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="vuesax/linear/bitcoin-(btc)">
-<g id="vuesax/linear/bitcoin-(btc)_2">
-<g id="bitcoin-(btc)">
-<path id="Vector" d="M15 28.3931C22.3967 28.3931 28.3929 22.3969 28.3929 15.0003C28.3929 7.60361 22.3967 1.60742 15 1.60742C7.60336 1.60742 1.60718 7.60361 1.60718 15.0003C1.60718 22.3969 7.60336 28.3931 15 28.3931Z" fill="url(#paint0_linear_321_3622)" stroke="white" stroke-width="1.5" stroke-miterlimit="10"/>
-<path id="Vector_2" d="M10.9822 10.1528H17.2562C18.647 10.1528 19.7751 11.4046 19.7751 12.6717C19.7751 14.0625 18.647 15.1906 17.2562 15.1906H10.9822V10.1528Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="Vector_3" d="M10.9822 15.1753H18.1525C19.7442 15.1753 21.0268 16.3034 21.0268 17.6942C21.0268 19.085 19.7442 20.2131 18.1525 20.2131H10.9822V15.1753Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="Vector_4" d="M15.3708 20.1978V22.7166" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="Vector_5" d="M12.2339 20.1978V22.7166" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="Vector_6" d="M15.3708 7.63428V10.1532" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="Vector_7" d="M12.2339 7.63428V10.1532" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="Vector_8" d="M13.362 10.1528H8.97327" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="Vector_9" d="M13.362 20.1978H8.97327" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-</g>
-</g>
-<defs>
-<linearGradient id="paint0_linear_321_3622" x1="15" y1="1.60742" x2="15" y2="28.3931" gradientUnits="userSpaceOnUse">
-<stop stop-color="#AED1FF"/>
-<stop offset="1" stop-color="#408EF6"/>
-</linearGradient>
-</defs>
-</svg>
+    <g id="vuesax/linear/bitcoin-(btc)">
+    <g id="vuesax/linear/bitcoin-(btc)_2">
+    <g id="bitcoin">
+    <path id="Vector" d="M15 28.3931C22.3967 28.3931 28.3929 22.3969 28.3929 15.0003C28.3929 7.60361 22.3967 1.60742 15 1.60742C7.60336 1.60742 1.60718 7.60361 1.60718 15.0003C1.60718 22.3969 7.60336 28.3931 15 28.3931Z" fill="url(#paint0_linear_321_3622)" stroke="white" stroke-width="1.5" stroke-miterlimit="10"/>
+    <path id="Vector_2" d="M10.9822 10.1528H17.2562C18.647 10.1528 19.7751 11.4046 19.7751 12.6717C19.7751 14.0625 18.647 15.1906 17.2562 15.1906H10.9822V10.1528Z" stroke="white" fill="url(#paint0_linear_321_3622)" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path id="Vector_3" d="M10.9822 15.1753H18.1525C19.7442 15.1753 21.0268 16.3034 21.0268 17.6942C21.0268 19.085 19.7442 20.2131 18.1525 20.2131H10.9822V15.1753Z" stroke="white" fill="url(#paint0_linear_321_3622)" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path id="Vector_4" d="M15.3708 20.1978V22.7166" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path id="Vector_5" d="M12.2339 20.1978V22.7166" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path id="Vector_6" d="M15.3708 7.63428V10.1532" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path id="Vector_7" d="M12.2339 7.63428V10.1532" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path id="Vector_8" d="M13.362 10.1528H8.97327" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path id="Vector_9" d="M13.362 20.1978H8.97327" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    </g>
+    </g>
+    <defs>
+    <linearGradient id="paint0_linear_321_3622" x1="15" y1="1.60742" x2="15" y2="28.3931" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#AED1FF"/>
+    <stop offset="1" stop-color="#408EF6"/>
+    </linearGradient>
+    </defs>
+    </svg>

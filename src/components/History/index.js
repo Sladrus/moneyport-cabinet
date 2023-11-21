@@ -2,14 +2,15 @@ import React, { useContext, useEffect, useState } from 'react';
 
 import './History.css';
 
-import { ReactComponent as ArrowUpIcon } from '../../assets/icons/arrows/arrow-up.svg';
 import { ReactComponent as ArrowDownIcon } from '../../assets/icons/arrows/arrow-down.svg';
 
 import HistoryItem from './HistoryItem';
 import LargeTextButton from '../Buttons/LargeTextButton';
-import { DataContext } from '../../context/context';
+import { DataContext, RouteContext } from '../../context/context';
 import Skeleton from 'react-loading-skeleton';
 import EmptyHistory from './EmptyHistory';
+import { useNavigate } from 'react-router-dom';
+import { HISTORY_ROUTE } from '../../utils/consts';
 
 // const history = [
 //   {
@@ -67,19 +68,25 @@ import EmptyHistory from './EmptyHistory';
 const History = () => {
   const [open, setOpen] = useState(true);
   const { history, historyLoading, getHistory } = useContext(DataContext);
+  const { setSelectedMenuItem } = useContext(RouteContext);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     getHistory();
   }, []);
 
-  // console.log(history);
+  const handleClick = () => {
+    setSelectedMenuItem(5);
+    navigate(HISTORY_ROUTE);
+  };
 
   return (
     <div className={`history ${open ? 'expanded' : 'closed'}`}>
       <div className="history-title">
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <span>История операций</span>
-          <LargeTextButton value={'Все'} />
+          <LargeTextButton value={'Все'} onClick={handleClick} />
         </div>
         <div onClick={() => setOpen(!open)}>
           <ArrowDownIcon

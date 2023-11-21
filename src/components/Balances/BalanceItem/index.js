@@ -15,7 +15,7 @@ const BalanceItem = ({ title, amount, icon, code, sign }) => {
           <span className="balance-item-code-title">
             {title} ({code})
           </span>
-          <span className="balance-item-code-subtitle">312412412</span>
+          {/* <span className="balance-item-code-subtitle">312412412</span> */}
         </div>
       </div>
       <div className="balance-item-right">

@@ -18,13 +18,23 @@ const HistoryItem = ({ amount, code, type, date }) => {
   return (
     <div className="history-item">
       <div className="history-item-logo">{currency?.icon}</div>
-      <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
+      <div
+        style={{
+          width: '100%',
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+        }}
+      >
         <div className="history-item-top">
           <div className="history-item-code">
             <span className="history-item-code-title">
               {currency?.title} ({code})
             </span>
           </div>
+        </div>
+        <div className="history-item-bottom">
+          {/* <span className="history-item-code-subtitle">00000</span> */}
           <div className={`history-item-amount ${type}`}>
             <div>
               {Number(amount) >= 0
@@ -33,9 +43,6 @@ const HistoryItem = ({ amount, code, type, date }) => {
             </div>
             <b>{code}</b>
           </div>
-        </div>
-        <div className="history-item-bottom">
-          <span className="history-item-code-subtitle">00000</span>
 
           <div
             style={{

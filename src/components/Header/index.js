@@ -24,7 +24,7 @@ const Header = ({ toogleMenu }) => {
           <span>Поддержка</span>
           <HelpIcon className="header-content-bell-icon" />
         </div>
-        <BellIcon className="header-content-bell-icon" />
+        {/* <BellIcon className="header-content-bell-icon" /> */}
         <Popup
           position="bottom right"
           on="click"

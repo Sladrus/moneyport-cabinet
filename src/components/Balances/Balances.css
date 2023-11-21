@@ -33,6 +33,15 @@
   justify-content: space-between;
   align-items: center;
   align-self: stretch;
+
+  color: var(--tech-black, #031022);
+
+  font-family: 'Mulish';
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: -0.4px;
 }
 
 .balances-title-arrow {
@@ -52,17 +61,6 @@
 
 .balances-title-arrow:hover {
   cursor: pointer;
-}
-
-.balances-title span {
-  color: var(--tech-black, #031022);
-
-  font-family: 'Mulish';
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 28px;
-  letter-spacing: -0.4px;
 }
 
 .balances-list {

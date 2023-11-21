@@ -34,9 +34,10 @@
 
 .history-item-bottom {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: end;
+  gap: 6px;
 }
 
 .history-item-top {

@@ -27,8 +27,10 @@ const AppRoutes = () => {
           <div
             style={{
               width: '100%',
+              maxHeight: '100%',
               display: 'flex',
               flexDirection: 'column',
+              overflow: 'auto',
             }}
           >
             <NotAuthRoute>

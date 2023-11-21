@@ -15,51 +15,62 @@ import {
   COMPANY_TRANS_ROUTE,
   EXCHANGE_ROUTE,
   PHYS_TRANS_ROUTE,
+  TRANSFERS_ROUTE,
 } from '../../../utils/consts';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../../context/context';
+import { AuthContext, RouteContext } from '../../../context/context';
 
 const items = [
   {
     id: 1,
-    title: 'Перевод юр. лицу',
-    subtitle: 'SWIFT, SEPA',
-    Icon: <BillListIcon className="send-type-button-icon" />,
-    path: COMPANY_TRANS_ROUTE,
+    title: 'Перевод физ. лицу',
+    subtitle: 'PayPal, Zelle, Wise, Revolut, Сбербанк, Тинькофф',
+    Icon: <UserIcon className="send-type-button-icon" />,
+    path: TRANSFERS_ROUTE,
   },
   {
     id: 2,
-    title: 'Прием из-за рубежа',
-    subtitle: 'Возврат валютной выручки в Россию',
-    Icon: <MoneyBagIcon className="send-type-button-icon" />,
-    path: COMPANY_TRANS_ROUTE,
+    title: 'Перевод юр. лицу',
+    subtitle: 'SWIFT, SEPA',
+    Icon: <BillListIcon className="send-type-button-icon" />,
+    path: TRANSFERS_ROUTE,
   },
   {
     id: 3,
-    title: 'Выдача наличных',
-    subtitle: 'В 35 городах мира',
-    Icon: <WalletIcon className="send-type-button-icon" />,
-    path: CASH_ROUTE,
+    title: 'Прием из-за рубежа',
+    subtitle: 'Возврат валютной выручки в Россию',
+    Icon: <MoneyBagIcon className="send-type-button-icon" />,
+    path: TRANSFERS_ROUTE,
   },
   {
     id: 4,
+    title: 'Выдача наличных',
+    subtitle: 'В 35 городах мира',
+    Icon: <WalletIcon className="send-type-button-icon" />,
+    path: TRANSFERS_ROUTE,
+  },
+  {
+    id: 5,
     title: 'Обмен криптовалют',
     subtitle: 'USDT, BTC, ETF и другие',
     Icon: <BitcoinIcon className="send-type-button-icon" />,
     path: EXCHANGE_ROUTE,
   },
-  {
-    id: 5,
-    title: 'Перевод физ. лицу',
-    subtitle: 'PayPal, Zelle, Wise, Revolut, Сбербанк, Тинькофф',
-    Icon: <UserIcon className="send-type-button-icon" />,
-    path: PHYS_TRANS_ROUTE,
-  },
 ];
 
 const HomeContent = () => {
   const { user } = useContext(AuthContext);
+  const { setSelectedSubItem, setSelectedMenuItem } = useContext(RouteContext);
+
   const navigate = useNavigate();
+
+  const handleClick = (id, path) => {
+    if (path === TRANSFERS_ROUTE) {
+      setSelectedMenuItem(3);
+      setSelectedSubItem(id);
+    } else setSelectedMenuItem(4);
+    navigate(path);
+  };
 
   return (
     <div className="home-page-content">
@@ -77,7 +88,7 @@ const HomeContent = () => {
               title={title}
               subtitle={subtitle}
               icon={Icon}
-              onClick={() => navigate(path)}
+              onClick={() => handleClick(id, path)}
             />
           );
         })}

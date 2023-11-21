@@ -69,16 +69,16 @@ export const menuItems = [
   },
   {
     id: 4,
-    title: 'История операций',
-    path: HISTORY_ROUTE,
-    Icon: <HistoryIcon className="home-menu-item-icon" />,
+    title: 'Обмен валют',
+    path: EXCHANGE_ROUTE,
+    Icon: <ExchangeIcon className="home-menu-item-icon" />,
     submenu: false,
   },
   {
     id: 5,
-    title: 'Обмен валют',
-    path: EXCHANGE_ROUTE,
-    Icon: <ExchangeIcon className="home-menu-item-icon" />,
+    title: 'История операций',
+    path: HISTORY_ROUTE,
+    Icon: <HistoryIcon className="home-menu-item-icon" />,
     submenu: false,
   },
 ];

@@ -25,7 +25,11 @@
   border-radius: 50px;
 }
 
-.balance-item:hover .balance-item-logo path {
+.balance-item:hover .balance-item-logo svg rect {
+  fill: var(--primary-primary, #408ef6);
+}
+
+.balance-item:hover .balance-item-logo svg g path {
   fill: var(--primary-primary, #408ef6);
 }
 

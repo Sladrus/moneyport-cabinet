@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import './BalancesList.css';
 import { DataContext } from '../../../context/context';
@@ -9,8 +9,11 @@ import 'react-loading-skeleton/dist/skeleton.css';
 const BalancesList = () => {
   const { balances, balancesLoading, getBalances } = useContext(DataContext);
 
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(15);
+
   useEffect(() => {
-    getBalances();
+    getBalances({ limit, page });
   }, []);
 
   console.log(balancesLoading);
@@ -19,25 +22,24 @@ const BalancesList = () => {
     <>
       <div className={`balances-page-list`}>
         {balancesLoading ? (
-          <Skeleton
-            style={{ marginBottom: '16px' }}
-            count={10}
-            height={76}
-            borderRadius={16}
-          />
+          <div className="skeleton">
+            <Skeleton inline count={11} height={68} borderRadius={16} />
+          </div>
         ) : (
-          balances?.map(({ id, title, amount, icon, code, sign }, index) => {
-            return (
-              <BalanceItem
-                key={index}
-                title={title}
-                amount={amount}
-                sign={sign}
-                // icon={icon}
-                code={code}
-              />
-            );
-          })
+          balances?.balances?.map(
+            ({ id, title, amount, icon, code, sign }, index) => {
+              return (
+                <BalanceItem
+                  key={index}
+                  title={title}
+                  amount={amount}
+                  sign={sign}
+                  // icon={icon}
+                  code={code}
+                />
+              );
+            }
+          )
         )}
       </div>
     </>

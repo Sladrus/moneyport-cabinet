@@ -10,11 +10,12 @@ import mailLogo from '../../assets/logo/mail-destination.png';
 
 import LargeTextButton from '../../components/Buttons/LargeTextButton';
 import { AUTH_ROUTE, REG_ROUTE } from '../../utils/consts';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const RecoveryPage = () => {
   const { loading, onRecovery } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [email, setEmail] = useState('yakov.ufimkin@gmail.com');
   const [isComplete, setComplete] = useState(false);
@@ -32,7 +33,7 @@ const RecoveryPage = () => {
         <div style={{ display: 'flex', alignItems: 'center', gap: '32px' }}>
           <ArrowLeft
             style={{ cursor: 'pointer' }}
-            onClick={() => navigate(AUTH_ROUTE)}
+            onClick={() => navigate({ pathname: AUTH_ROUTE, search: location.search })}
           />
           <Logo className="logo" />
         </div>
@@ -40,7 +41,7 @@ const RecoveryPage = () => {
           <span style={{ paddingRight: '5px' }}>Еще нет аккаунта?</span>
           <LargeTextButton
             value={'Зарегистрироваться'}
-            onClick={() => navigate(REG_ROUTE)}
+            onClick={() => navigate({ pathname: REG_ROUTE, search: location.search })}
           />
         </div>
       </div>
@@ -106,7 +107,7 @@ const RecoveryPage = () => {
               <span style={{ paddingRight: '5px' }}>Еще нет аккаунта?</span>
               <LargeTextButton
                 value={'Зарегистрироваться'}
-                onClick={() => navigate(REG_ROUTE)}
+                onClick={() => navigate({ pathname: REG_ROUTE, search: location.search })}
               />
             </div>
           </form>

@@ -8,7 +8,7 @@ import MoneyportLogo from '../../../components/Icons/MoneyportLogo';
 import { useContext } from 'react';
 import { AuthContext } from '../../../context/context';
 import CheckBox from '../../../components/CheckBox';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { AUTH_ROUTE } from '../../../utils/consts';
 import { ReactComponent as Logo } from '../../../assets/logo/logo.svg';
 
@@ -34,6 +34,7 @@ const RegForm = ({ className }) => {
   const [errors, setErrors] = useState(null);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -124,7 +125,7 @@ const RegForm = ({ className }) => {
             <span style={{ paddingRight: '5px' }}>Уже есть аккаунт?</span>
             <LargeTextButton
               value={'Войти'}
-              onClick={() => navigate(AUTH_ROUTE)}
+              onClick={() => navigate({ pathname: AUTH_ROUTE, search: location.search })}
             />
           </div>
         </div>

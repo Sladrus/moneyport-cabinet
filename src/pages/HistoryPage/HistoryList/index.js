@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import './HistoryList.css';
 import { DataContext } from '../../../context/context';
@@ -10,20 +10,20 @@ import LargeButton from '../../../components/Buttons/LargeButton';
 const HistoryList = () => {
   const { history, historyLoading, getHistory } = useContext(DataContext);
 
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
+
   useEffect(() => {
-    getHistory();
+    getHistory({ page, limit });
   }, []);
 
   return (
     <>
       <div className={`history-page-list`}>
         {historyLoading ? (
-          <Skeleton
-            style={{ marginBottom: '16px' }}
-            count={10}
-            height={76}
-            borderRadius={16}
-          />
+          <div className="skeleton">
+            <Skeleton inline count={11} height={68} borderRadius={16} />
+          </div>
         ) : history ? (
           history.map(({ id, title, val, icon, symbol, type, create_date }) => {
             return (

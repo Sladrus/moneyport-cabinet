@@ -41,7 +41,7 @@ const TextInput = ({
           />
           <label className={value && 'filled'}>{placeholder}</label>
         </div>
-        {type === 'password' && (
+        {!errors && type === 'password' && (
           <>
             {showPass ? (
               <OpenedEyeIcon

@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import './PhysicalTransfersPage.css';
 import LargeButton from '../../components/Buttons/LargeButton';
+import { openInNewTab } from '../../utils/window';
+import { DataContext } from '../../context/context';
 
 const PhysicalTransfersPage = () => {
+  const { chat } = useContext(DataContext);
+
   return (
     <div className="physical-page">
       <div className="physical-page-content">
@@ -53,7 +57,10 @@ const PhysicalTransfersPage = () => {
           </div>
         </div>
         <div className="physical-page-content-button">
-          <LargeButton text={'Вступить в чат-кассу'} />
+          <LargeButton
+            text={'Вступить в чат-кассу'}
+            onClick={() => openInNewTab(chat?.chat_url)}
+          />
         </div>
       </div>
     </div>

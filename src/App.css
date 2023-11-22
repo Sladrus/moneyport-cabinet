@@ -19,3 +19,15 @@
   height: 100%;
   display: inline-flex;
 }
+
+.skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.skeleton span {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

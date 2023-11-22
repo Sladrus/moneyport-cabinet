@@ -17,7 +17,7 @@
   overflow: hidden;
 
   /* transform: all 0.5s ease-out; */
-  transition: width 1.5s cubic-bezier(0.62, 0.05, 0.01, 0.98);
+  transition: width 1s cubic-bezier(0.62, 0.05, 0.01, 0.98);
 }
 
 .home-menu.open {

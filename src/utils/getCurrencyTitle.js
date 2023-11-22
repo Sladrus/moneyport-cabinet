@@ -3,8 +3,10 @@ import { ReactComponent as UsdIcon } from '../assets/icons/currency/USD.svg';
 import { ReactComponent as EurIcon } from '../assets/icons/currency/EUR.svg';
 import { ReactComponent as UsdtIcon } from '../assets/icons/currency/USDT.svg';
 import { ReactComponent as AedIcon } from '../assets/icons/currency/AED.svg';
-import { ReactComponent as GbrIcon } from '../assets/icons/currency/GBR.svg';
+import { ReactComponent as GbpIcon } from '../assets/icons/currency/GBP.svg';
 import { ReactComponent as TryIcon } from '../assets/icons/currency/TRY.svg';
+import { ReactComponent as CnyIcon } from '../assets/icons/currency/CNY.svg';
+import { ReactComponent as KrwIcon } from '../assets/icons/currency/KRW.svg';
 
 const currencies = [
   {
@@ -34,8 +36,8 @@ const currencies = [
   },
   {
     title: 'Фунты',
-    code: 'GBR',
-    icon: <GbrIcon className="history-item-currency" />,
+    code: 'GBP',
+    icon: <GbpIcon className="history-item-currency" />,
   },
   {
     title: 'Турецкие лиры',
@@ -45,12 +47,17 @@ const currencies = [
   {
     title: 'Турецкие лиры',
     code: 'JPY',
-    icon: <TryIcon className="history-item-currency" />, //ИКОНКА НЕ ТА
+    icon: <CnyIcon className="history-item-currency" />,
+  },
+  {
+    title: 'Турецкие лиры',
+    code: 'CNY',
+    icon: <CnyIcon className="history-item-currency" />,
   },
   {
     title: 'Турецкие лиры',
     code: 'KRW',
-    icon: <TryIcon className="history-item-currency" />, //ИКОНКА НЕ ТА
+    icon: <KrwIcon className="history-item-currency" />,
   },
   {
     title: 'Турецкие лиры',

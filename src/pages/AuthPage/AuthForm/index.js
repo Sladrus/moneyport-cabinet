@@ -7,7 +7,7 @@ import LargeTextButton from '../../../components/Buttons/LargeTextButton';
 import MoneyportLogo from '../../../components/Icons/MoneyportLogo';
 import { useContext } from 'react';
 import { AuthContext } from '../../../context/context';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { RECOVERY_ROUTE, REG_ROUTE } from '../../../utils/consts';
 import { ReactComponent as Logo } from '../../../assets/logo/logo.svg';
 
@@ -24,6 +24,7 @@ const AuthForm = ({ className }) => {
   };
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   return (
     <div className={className}>
@@ -59,7 +60,7 @@ const AuthForm = ({ className }) => {
 
           <SmallTextButton
             value={'Забыли пароль?'}
-            onClick={() => navigate(RECOVERY_ROUTE)}
+            onClick={() => navigate({ pathname: RECOVERY_ROUTE, search: location.search })}
           />
         </div>
         <div
@@ -83,7 +84,7 @@ const AuthForm = ({ className }) => {
             <span style={{ paddingRight: '5px' }}>Еще нет аккаунта?</span>
             <LargeTextButton
               value={'Зарегистрироваться'}
-              onClick={() => navigate(REG_ROUTE)}
+              onClick={() => navigate({ pathname: REG_ROUTE, search: location.search })}
             />
           </div>
         </div>

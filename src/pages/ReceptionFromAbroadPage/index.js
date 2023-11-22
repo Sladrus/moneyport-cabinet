@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import './ReceptionFromAbroadPage.css';
 import LargeButton from '../../components/Buttons/LargeButton';
+import { openInNewTab } from '../../utils/window';
+import { DataContext } from '../../context/context';
 
 const ReceptionFromAbroadPage = () => {
+  const { chat } = useContext(DataContext);
+
   return (
     <div className="reception-page">
       <div className="reception-page-content">
@@ -54,7 +58,10 @@ const ReceptionFromAbroadPage = () => {
           </div>
         </div>
         <div className="reception-page-content-button">
-          <LargeButton text={'Вступить в чат-кассу'} />
+          <LargeButton
+            text={'Вступить в чат-кассу'}
+            onClick={() => openInNewTab(chat?.chat_url)}
+          />
         </div>
       </div>
     </div>

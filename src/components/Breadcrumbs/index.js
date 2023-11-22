@@ -8,16 +8,15 @@ import { HOME_ROUTE } from '../../utils/consts';
 import { RouteContext } from '../../context/context';
 
 const Breadcrumbs = ({ path }) => {
-  const { setSelectedMenuItem } = useContext(RouteContext);
+  const { setSelectedMenuItem, location } = useContext(RouteContext);
 
-  const location = useLocation();
   const navigate = useNavigate();
 
   const route = authRoutes.find((route) => route.path === location.pathname);
 
   const handleClick = () => {
     setSelectedMenuItem(1);
-    navigate(HOME_ROUTE);
+    navigate({ pathname: HOME_ROUTE, search: location.search });
   };
 
   return (

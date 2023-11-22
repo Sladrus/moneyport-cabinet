@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import './CashWithdrawPage.css';
 import LargeButton from '../../components/Buttons/LargeButton';
+import { DataContext } from '../../context/context';
+import { openInNewTab } from '../../utils/window';
 
 const CashWithdrawPage = () => {
+  const { chat } = useContext(DataContext);
+
   return (
     <div className="cash-page">
       <div className="cash-page-content">
-
         <div className="cash-page-content-body">
           <div
             style={{
@@ -54,7 +57,10 @@ const CashWithdrawPage = () => {
           </div>
         </div>
         <div className="cash-page-content-button">
-          <LargeButton text={'Вступить в чат-кассу'} />
+          <LargeButton
+            text={'Вступить в чат-кассу'}
+            onClick={() => openInNewTab(chat?.chat_url)}
+          />
         </div>
       </div>
     </div>

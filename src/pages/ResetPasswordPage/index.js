@@ -11,12 +11,14 @@ import mailLogo from '../../assets/logo/mail-destination.png';
 
 import LargeTextButton from '../../components/Buttons/LargeTextButton';
 import { AUTH_ROUTE, REG_ROUTE } from '../../utils/consts';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 const ResetPasswordPage = () => {
   const { loading, onCheckReset, onUpdatePassword, isPassEqual } =
     useContext(AuthContext);
+
   const navigate = useNavigate();
+  const location = useLocation();
 
   const { token } = useParams();
 
@@ -55,7 +57,9 @@ const ResetPasswordPage = () => {
         <div style={{ display: 'flex', alignItems: 'center', gap: '32px' }}>
           <ArrowLeft
             style={{ cursor: 'pointer' }}
-            onClick={() => navigate(AUTH_ROUTE)}
+            onClick={() =>
+              navigate({ pathname: AUTH_ROUTE, search: location.search })
+            }
           />
           <Logo className="logo" />
         </div>

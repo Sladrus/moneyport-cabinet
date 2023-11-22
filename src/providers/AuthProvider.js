@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import {
+  useLocation,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from 'react-router-dom';
 import { AuthContext } from '../context/context';
 import { AUTH_ROUTE, HOME_ROUTE } from '../utils/consts';
 import AuthApi from '../http/AuthApi';
@@ -8,10 +13,11 @@ import { publicRoutes } from '../routes';
 const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { token } = useParams();
 
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  const [searchParams] = useSearchParams();
 
   useEffect(() => {
     if (!user) handleCheckAuth();
@@ -33,7 +39,7 @@ const AuthProvider = ({ children }) => {
 
     setUser(data?.user);
     setLoading(false);
-    navigate(HOME_ROUTE);
+    navigate({ pathname: HOME_ROUTE, search: location.search });
     return { result: true, errors: null };
   };
 
@@ -50,8 +56,14 @@ const AuthProvider = ({ children }) => {
 
   const handleRegistration = async ({ name, email, phone, password }) => {
     setLoading(true);
-    const data = await AuthApi.register({ name, email, phone, password });
-    console.log(data);
+    const utms = {
+      source: searchParams.get('utm_source'),
+      medium: searchParams.get('utm_medium'),
+      campaign: searchParams.get('utm_campaign'),
+      content: searchParams.get('utm_content'),
+      term: searchParams.get('utm_term'),
+    };
+    const data = await AuthApi.register({ name, email, phone, password, utms });
     if (data?.errors || data?.error) {
       setLoading(false);
       return {
@@ -64,7 +76,7 @@ const AuthProvider = ({ children }) => {
 
     setUser(data?.user);
     setLoading(false);
-    navigate(HOME_ROUTE);
+    navigate({ pathname: HOME_ROUTE, search: location.search });
     return { result: true, errors: null };
   };
 
@@ -76,7 +88,7 @@ const AuthProvider = ({ children }) => {
     sessionStorage.setItem('refresh', '');
     setUser(null);
     setLoading(false);
-    navigate(AUTH_ROUTE);
+    navigate({ pathname: AUTH_ROUTE, search: location.search });
   };
 
   const handleCheckAuth = async () => {
@@ -98,14 +110,14 @@ const AuthProvider = ({ children }) => {
         });
       });
       if (!isPublicRoute) {
-        return navigate(AUTH_ROUTE);
+        return navigate({ pathname: AUTH_ROUTE, search: location.search });
       }
       return;
     }
 
     setUser(user);
     setLoading(false);
-    navigate(HOME_ROUTE);
+    navigate({ pathname: HOME_ROUTE, search: location.search });
   };
 
   const handleRecoveryPass = async ({ email }) => {
@@ -145,7 +157,7 @@ const AuthProvider = ({ children }) => {
       };
     }
     setLoading(false);
-    navigate(AUTH_ROUTE);
+    navigate({ pathname: AUTH_ROUTE, search: location.search });
     return { result: true, errors: null };
   };
 

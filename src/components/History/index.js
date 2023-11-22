@@ -9,7 +9,7 @@ import LargeTextButton from '../Buttons/LargeTextButton';
 import { DataContext, RouteContext } from '../../context/context';
 import Skeleton from 'react-loading-skeleton';
 import EmptyHistory from './EmptyHistory';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { HISTORY_ROUTE } from '../../utils/consts';
 
 // const history = [
@@ -70,15 +70,19 @@ const History = () => {
   const { history, historyLoading, getHistory } = useContext(DataContext);
   const { setSelectedMenuItem } = useContext(RouteContext);
 
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
+
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
-    getHistory();
+    getHistory({ page, limit });
   }, []);
 
   const handleClick = () => {
     setSelectedMenuItem(5);
-    navigate(HISTORY_ROUTE);
+    navigate({ pathname: HISTORY_ROUTE, search: location.search });
   };
 
   return (
@@ -96,12 +100,9 @@ const History = () => {
       </div>
       <div className={`history-list ${open ? 'expanded' : 'closed'}`}>
         {historyLoading ? (
-          <Skeleton
-            style={{ marginBottom: '16px' }}
-            count={12}
-            height={76}
-            borderRadius={16}
-          />
+          <div className="skeleton">
+            <Skeleton inline count={5} height={68} borderRadius={16} />
+          </div>
         ) : history ? (
           history.map(({ id, title, val, icon, symbol, type, create_date }) => {
             return (

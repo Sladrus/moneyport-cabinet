@@ -1,18 +1,31 @@
 import { authBase } from '.';
 
 class DataApi {
-  async getBalances() {
+  async getBalances({ type, limit, page }) {
     try {
-      const response = await authBase.get('/balances');
+      const response = await authBase.get(`/balances`, {
+        params: { type, limit, page },
+      });
       return response.data;
     } catch (e) {
       console.log(e);
     }
   }
 
-  async getHistory() {
+  async getHistory({ page, limit }) {
     try {
-      const response = await authBase.get('/history');
+      const response = await authBase.get('/history', {
+        params: { limit, page },
+      });
+      return response.data;
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async getChat() {
+    try {
+      const response = await authBase.get('/chat');
       return response.data;
     } catch (e) {
       console.log(e);

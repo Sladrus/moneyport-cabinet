@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import './CompanyTransfersPage.css';
 import LargeButton from '../../components/Buttons/LargeButton';
+import { openInNewTab } from '../../utils/window';
+import { DataContext } from '../../context/context';
 
 const CompanyTransfersPage = () => {
+  const { chat } = useContext(DataContext);
+
   return (
     <div className="company-page">
       <div className="company-page-content">
-     
         <div className="company-page-content-body">
           <div
             style={{
@@ -55,7 +58,10 @@ const CompanyTransfersPage = () => {
           </div>
         </div>
         <div className="company-page-content-button">
-          <LargeButton text={'Вступить в чат-кассу'} />
+          <LargeButton
+            text={'Вступить в чат-кассу'}
+            onClick={() => openInNewTab(chat?.chat_url)}
+          />
         </div>
       </div>
     </div>

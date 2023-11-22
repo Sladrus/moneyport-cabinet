@@ -45,3 +45,9 @@
   line-height: 42px;
   letter-spacing: -0.64px;
 }
+
+@media (max-width: 820px) {
+  .breadcrumbs-path {
+    display: none;
+  }
+}

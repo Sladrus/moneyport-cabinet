@@ -8,12 +8,12 @@ import { RouteContext } from '../../../../context/context';
 import { menuItems } from '../../../../utils/menuItems';
 
 const HomeMenuList = ({ open }) => {
-  const { setSelectedMenuItem, } = useContext(RouteContext);
+  const { setSelectedMenuItem, location } = useContext(RouteContext);
   const navigate = useNavigate();
 
   const navigateToPage = (id, path) => {
     setSelectedMenuItem(id);
-    navigate(path);
+    navigate({ pathname: path, search: location.search });
   };
 
   return (

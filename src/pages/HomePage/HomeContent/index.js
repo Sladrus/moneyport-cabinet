@@ -60,7 +60,8 @@ const items = [
 
 const HomeContent = () => {
   const { user } = useContext(AuthContext);
-  const { setSelectedSubItem, setSelectedMenuItem } = useContext(RouteContext);
+  const { setSelectedSubItem, setSelectedMenuItem, location } =
+    useContext(RouteContext);
 
   const navigate = useNavigate();
 
@@ -69,7 +70,7 @@ const HomeContent = () => {
       setSelectedMenuItem(3);
       setSelectedSubItem(id);
     } else setSelectedMenuItem(4);
-    navigate(path);
+    navigate({ pathname: path, search: location.search });
   };
 
   return (

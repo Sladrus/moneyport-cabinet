@@ -8,12 +8,13 @@ import { menuItems } from '../../utils/menuItems';
 import './TabBar.css';
 
 const TabBar = () => {
-  const { setSelectedMenuItem, selectedMenuItem } = useContext(RouteContext);
+  const { setSelectedMenuItem, selectedMenuItem, location } =
+    useContext(RouteContext);
   const navigate = useNavigate();
 
   const navigateToPage = (id, path) => {
     setSelectedMenuItem(id);
-    navigate(path);
+    navigate({ pathname: path, search: location.search });
   };
 
   return (

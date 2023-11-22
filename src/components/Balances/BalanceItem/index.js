@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import './BalanceItem.css';
 import { formatCurrency } from '../../../utils/formatCurrency';
-import { ReactComponent as DotsIcon } from '../../../assets/icons/menu/menu-dots.svg';
 import { getCurrencyTitle } from '../../../utils/getCurrencyTitle';
 
 const BalanceItem = ({ title, amount, icon, code, sign }) => {

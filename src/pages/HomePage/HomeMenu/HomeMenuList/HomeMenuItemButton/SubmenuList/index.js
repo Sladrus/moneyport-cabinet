@@ -5,14 +5,12 @@ import { useNavigate } from 'react-router-dom';
 import { RouteContext } from '../../../../../../context/context';
 
 const SubmenuList = ({ menuId, submenuOpen, submenuList }) => {
-  const navigate = useNavigate();
   const { setSelectedMenuItem, setSelectedSubItem, selectedSubItem } =
     useContext(RouteContext);
 
   const navigateToPage = (id, path) => {
     setSelectedSubItem(id);
     setSelectedMenuItem(menuId);
-    // navigate(path);
   };
 
   return (

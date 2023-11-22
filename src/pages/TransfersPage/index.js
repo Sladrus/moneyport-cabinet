@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PhysicalTransfersPage from '../PhysicalTransfersPage';
 import CompanyTransfersPage from '../CompanyTransfersPage';
 import {
@@ -13,7 +13,7 @@ import { TransferTabs } from './TransferTabs';
 import TransfersContent from './TransfersContent';
 
 import './TransfersPage.css';
-import { RouteContext } from '../../context/context';
+import { DataContext, RouteContext } from '../../context/context';
 import Breadcrumbs from '../../components/Breadcrumbs';
 
 const tabs = [
@@ -45,20 +45,30 @@ const tabs = [
 
 const TransfersPage = () => {
   const { setSelectedSubItem, selectedSubItem } = useContext(RouteContext);
+  const { chat, chatLoading, getChat } = useContext(DataContext);
+
+  useEffect(() => {
+    getChat();
+  }, []);
+  console.log(chat);
 
   return (
     <div className="transfers-page">
-      <div className="transfers-page-content">
-        <div style={{ padding: '0 24px' }}>
-          <Breadcrumbs />
+      {chatLoading ? (
+        'Loading'
+      ) : (
+        <div className="transfers-page-content">
+          <div style={{ padding: '0 24px' }}>
+            <Breadcrumbs />
+          </div>
+          <TransferTabs
+            tabs={tabs}
+            activeTab={selectedSubItem}
+            setActiveTab={setSelectedSubItem}
+          />
+          <TransfersContent tabs={tabs} activeTab={selectedSubItem} />
         </div>
-        <TransferTabs
-          tabs={tabs}
-          activeTab={selectedSubItem}
-          setActiveTab={setSelectedSubItem}
-        />
-        <TransfersContent tabs={tabs} activeTab={selectedSubItem} />
-      </div>
+      )}
     </div>
   );
 };

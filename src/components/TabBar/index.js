@@ -3,7 +3,7 @@ import TabBarItem from './TabBarItem';
 
 import { useNavigate } from 'react-router-dom';
 import { RouteContext } from '../../context/context';
-import { menuItems } from '../../utils/menuItems';
+import { menuItems, mobileMenuItems } from '../../utils/menuItems';
 
 import './TabBar.css';
 
@@ -19,7 +19,7 @@ const TabBar = () => {
 
   return (
     <div className="tab-bar">
-      {menuItems.map(({ id, title, Icon, path }) => {
+      {mobileMenuItems.map(({ id, title, Icon, path }) => {
         return (
           <TabBarItem
             id={id}

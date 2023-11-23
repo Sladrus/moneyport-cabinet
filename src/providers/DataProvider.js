@@ -20,22 +20,17 @@ const DataProvider = ({ children }) => {
 
   const getBalances = async ({ type, limit, page }) => {
     setBalancesLoading(true);
-    // setBalances(null);
     const data = await DataApi.getBalances({ type, limit, page });
-
     if (!data) return setBalancesLoading(false);
-    const { balances, pagination } = data;
-    setBalances({ balances, pagination });
+    setBalances(data);
     setBalancesLoading(false);
   };
 
   const getShortBalances = async ({ type = 'short' }) => {
     setShortBalancesLoading(true);
     const data = await DataApi.getBalances({ type });
-
     if (!data) return setShortBalancesLoading(false);
-    const { balances, pagination } = data;
-    setShortBalances({ balances, pagination });
+    setShortBalances(data);
     setShortBalancesLoading(false);
   };
 
@@ -44,13 +39,13 @@ const DataProvider = ({ children }) => {
     setHistory(null);
     const data = await DataApi.getHistory({ page, limit });
     if (!data) return setHistoryLoading(false);
-    const { history, pagination } = data;
-    console.log(data);
+    // console.log(data);
     setHistory(data);
     setHistoryLoading(false);
   };
 
   const getChat = async () => {
+    console.log(chat);
     if (chat) return;
     setChatLoading(true);
     const data = await DataApi.getChat();
@@ -58,6 +53,15 @@ const DataProvider = ({ children }) => {
 
     setChat(data);
     setChatLoading(false);
+  };
+
+  const clearData = async () => {
+    console.log(chat);
+
+    setHistory(null);
+    setShortBalances(null);
+    setBalances(null);
+    setChat(null);
   };
 
   const value = {
@@ -73,6 +77,7 @@ const DataProvider = ({ children }) => {
     chatLoading,
     chat,
     getChat,
+    clearData,
   };
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;

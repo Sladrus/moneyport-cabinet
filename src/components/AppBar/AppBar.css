@@ -1,6 +1,11 @@
 @media (max-width: 820px) {
   .home-appbar {
     /* height: 80px; */
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: var(--white, #ffffff);
+
     display: flex;
     padding: 24px;
     justify-content: space-between;

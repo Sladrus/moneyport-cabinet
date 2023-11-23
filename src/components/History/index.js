@@ -104,19 +104,21 @@ const History = () => {
             <Skeleton inline count={5} height={68} borderRadius={16} />
           </div>
         ) : history ? (
-          history.map(({ id, title, val, icon, symbol, type, create_date }) => {
-            return (
-              <HistoryItem
-                key={id}
-                title={title}
-                amount={val}
-                icon={icon}
-                code={symbol}
-                type={type}
-                date={create_date}
-              />
-            );
-          })
+          history?.data?.map(
+            ({ id, title, val, icon, symbol, type, create_date }) => {
+              return (
+                <HistoryItem
+                  key={id}
+                  title={title}
+                  amount={val}
+                  icon={icon}
+                  code={symbol}
+                  type={type}
+                  date={create_date}
+                />
+              );
+            }
+          )
         ) : (
           <EmptyHistory />
         )}

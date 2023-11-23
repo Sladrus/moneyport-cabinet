@@ -20,7 +20,7 @@ export const TransferTabs = ({ tabs, activeTab, setActiveTab }) => {
   const [offset, setOffset] = useState(0);
   const [width, setWidth] = useState(0);
 
-  console.log(activeTab);
+  // console.log(activeTab);
   useEffect(() => {
     if (!activeTab) return;
     const activeElement = activeRef?.current;

@@ -26,7 +26,7 @@ const BalancesList = () => {
             <Skeleton inline count={11} height={68} borderRadius={16} />
           </div>
         ) : (
-          balances?.balances?.map(
+          balances?.data?.map(
             ({ id, title, amount, icon, code, sign }, index) => {
               return (
                 <BalanceItem

@@ -11,7 +11,7 @@ const HistoryList = () => {
   const { history, historyLoading, getHistory } = useContext(DataContext);
 
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(10);
+  const [limit, setLimit] = useState(15);
 
   useEffect(() => {
     getHistory({ page, limit });
@@ -21,32 +21,34 @@ const HistoryList = () => {
     <>
       <div className={`history-page-list`}>
         {historyLoading ? (
-          <div className="skeleton">
-            <Skeleton inline count={11} height={68} borderRadius={16} />
-          </div>
-        ) : history ? (
-          history.map(({ id, title, val, icon, symbol, type, create_date }) => {
-            return (
-              <HistoryItem
-                key={id}
-                title={title}
-                amount={val}
-                icon={icon}
-                code={symbol}
-                type={type}
-                date={create_date}
-              />
-            );
-          })
+          // <div className="skeleton">
+          <Skeleton inline count={15} height={72} borderRadius={16} />
+        ) : // </div>
+        history ? (
+          history?.data?.map(
+            ({ id, title, val, icon, symbol, type, create_date }) => {
+              return (
+                <HistoryItem
+                  key={id}
+                  title={title}
+                  amount={val}
+                  icon={icon}
+                  code={symbol}
+                  type={type}
+                  date={create_date}
+                />
+              );
+            }
+          )
         ) : (
           <EmptyHistory />
         )}
       </div>
-      {history && (
+      {/* {history && (
         <div className="history-page-content-button">
           <LargeButton text={'Показать еще'} variant="outlined" />
         </div>
-      )}
+      )} */}
     </>
   );
 };

@@ -46,7 +46,7 @@ const Balances = () => {
         {shortBalancesLoading ? (
           <Skeleton inline count={3} height={68} borderRadius={16} />
         ) : (
-          shortBalances?.balances?.map(
+          shortBalances?.data?.map(
             ({ id, title, amount, code, sign }, index) => {
               return (
                 <BalanceItem

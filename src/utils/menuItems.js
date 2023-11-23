@@ -82,3 +82,67 @@ export const menuItems = [
     submenu: false,
   },
 ];
+
+export const mobileMenuItems = [
+  {
+    id: 1,
+    title: 'Главная',
+    Icon: <HomeMenuIcon className="home-menu-item-icon" />,
+    path: HOME_ROUTE,
+    submenu: false,
+  },
+  {
+    id: 2,
+    title: 'Счета',
+    Icon: <BalancesIcon className="home-menu-item-icon" />,
+    path: BALANCES_ROUTE,
+    submenu: false,
+  },
+  {
+    id: 3,
+    title: 'Переводы',
+    Icon: <TransfersIcon className="home-menu-item-icon" />,
+    path: TRANSFERS_ROUTE,
+    submenu: true,
+    submenuList: [
+      {
+        id: 1,
+        title: 'Переводы физ. лицу',
+        Component: PhysicalTransfersPage,
+        path: PHYS_TRANS_ROUTE,
+      },
+      {
+        id: 2,
+        title: 'Переводы юр. лицу',
+        Component: CompanyTransfersPage,
+        path: COMPANY_TRANS_ROUTE,
+      },
+      {
+        id: 3,
+        title: 'Прием из-за рубежа',
+        Component: ReceptionFromAbroadPage,
+        path: RECEPTION_ROUTE,
+      },
+      {
+        id: 4,
+        title: 'Выдача наличных',
+        Component: CashWithdrawPage,
+        path: CASH_ROUTE,
+      },
+    ],
+  },
+  {
+    id: 4,
+    title: 'Обмен',
+    path: EXCHANGE_ROUTE,
+    Icon: <ExchangeIcon className="home-menu-item-icon" />,
+    submenu: false,
+  },
+  {
+    id: 5,
+    title: 'Операции',
+    path: HISTORY_ROUTE,
+    Icon: <HistoryIcon className="home-menu-item-icon" />,
+    submenu: false,
+  },
+];

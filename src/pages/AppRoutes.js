@@ -21,27 +21,27 @@ const AppRoutes = () => {
     <AuthProvider>
       <RouteProvider>
         <div className="wrapper">
-          <NotAuthRoute>
-            <HomeMenu open={open} />
-          </NotAuthRoute>
-          <div
-            style={{
-              width: '100%',
-              maxHeight: '100%',
-              display: 'flex',
-              flexDirection: 'column',
-              overflow: 'auto',
-            }}
-          >
+          <DataProvider>
             <NotAuthRoute>
-              <AppBar />
-              <Header
-                toogleMenu={() => {
-                  setOpen(!open);
-                }}
-              />
+              <HomeMenu open={open} />
             </NotAuthRoute>
-            <DataProvider>
+            <div
+              style={{
+                width: '100%',
+                maxHeight: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                overflow: 'auto',
+              }}
+            >
+              <NotAuthRoute>
+                <AppBar />
+                <Header
+                  toogleMenu={() => {
+                    setOpen(!open);
+                  }}
+                />
+              </NotAuthRoute>
               <Routes>
                 {publicRoutes.map(({ path, Component }) => {
                   return (
@@ -73,11 +73,11 @@ const AppRoutes = () => {
                   element={<Navigate to={AUTH_ROUTE} replace />}
                 />
               </Routes>
-            </DataProvider>
-            <NotAuthRoute>
-              <TabBar />
-            </NotAuthRoute>
-          </div>
+              <NotAuthRoute>
+                <TabBar />
+              </NotAuthRoute>
+            </div>
+          </DataProvider>
         </div>
       </RouteProvider>
     </AuthProvider>

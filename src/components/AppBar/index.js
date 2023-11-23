@@ -7,11 +7,16 @@ import { ReactComponent as UserIcon } from '../../assets/icons/header/user.svg';
 
 import MoneyportLogo from '../Icons/MoneyportLogo';
 import Popup from 'reactjs-popup';
-import { AuthContext } from '../../context/context';
+import { AuthContext, DataContext } from '../../context/context';
 
 const AppBar = ({}) => {
-  const [open, setOpen] = useState(false);
-  const { user, onLogout } = useContext(AuthContext);
+  const { onLogout } = useContext(AuthContext);
+  const { clearData } = useContext(DataContext);
+
+  const handleLogout = async () => {
+    await clearData();
+    await onLogout();
+  };
 
   return (
     <div className="home-appbar">
@@ -34,7 +39,10 @@ const AppBar = ({}) => {
             </div>
           }
         >
-          <div className="header-content-profile-popup" onClick={onLogout}>
+          <div
+            className="header-content-profile-popup"
+            onClick={() => handleLogout()}
+          >
             <UserIcon />
             <span>Выйти</span>
           </div>

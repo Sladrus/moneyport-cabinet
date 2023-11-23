@@ -15,7 +15,7 @@ const BalancesPage = () => {
       <div className="balances-page-content">
         <Breadcrumbs />
         <BalancesList />
-        {balances?.pagination?.nextPage && (
+        {balances?.nextPage && (
           <div className="balances-page-content-button">
             <LargeButton text={'Показать еще'} variant="outlined" />
           </div>

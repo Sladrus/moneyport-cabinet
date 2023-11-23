@@ -77,7 +77,14 @@ class AuthApi {
     }
   }
 
-  async logout() {}
+  async logout() {
+    try {
+      const response = await authBase.get('/logout');
+      return response.data;
+    } catch (e) {
+      console.log(e);
+    }
+  }
 }
 
 export default new AuthApi();

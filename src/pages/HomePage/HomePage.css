@@ -1,6 +1,7 @@
 .home-page {
   display: inline-flex;
   transition: height 0.3s ease;
+  /* padding-top: calc(80px + 32px); */
 }
 
 .home-page-elements {

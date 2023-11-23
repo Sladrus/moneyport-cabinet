@@ -50,7 +50,6 @@ const TransfersPage = () => {
   useEffect(() => {
     getChat();
   }, []);
-  console.log(chat);
 
   return (
     <div className="transfers-page">

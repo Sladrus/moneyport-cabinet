@@ -25,7 +25,7 @@ class DataApi {
 
   async getChat() {
     try {
-      const response = await authBase.get('/chat');
+      const response = await authBase.get('/chat?source=lk');
       return response.data;
     } catch (e) {
       console.log(e);

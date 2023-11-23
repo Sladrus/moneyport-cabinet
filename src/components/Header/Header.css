@@ -1,12 +1,18 @@
 .header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.header-body {
   display: flex;
-  flex-direction: row;
+  flex-direction: row; 
   width: calc(100% - 48px);
   height: calc(80px - 56px);
-  padding: 24px;
-  margin-bottom: 24px;
+  padding: 32px 24px 24px;
   justify-content: space-between;
   align-items: center;
+  background: var(--white, #ffffff);
 }
 
 .header-content-questions {
@@ -149,10 +155,11 @@
 
 .header-content-profile-popup {
   display: flex;
-  padding: 8px 16px;
+  padding: 16px;
   align-items: center;
   gap: 12px;
   align-self: stretch;
+  z-index: 10000;
 }
 
 .header-content-profile-popup span {

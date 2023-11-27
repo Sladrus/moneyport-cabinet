@@ -67,21 +67,19 @@ import { HISTORY_ROUTE } from '../../utils/consts';
 
 const History = () => {
   const [open, setOpen] = useState(true);
-  const { shortHistory, shortHistoryLoading, getShortHistory } = useContext(DataContext);
+  const { shortHistory, shortHistoryLoading, getShortHistory } =
+    useContext(DataContext);
   const { setSelectedMenuItem } = useContext(RouteContext);
-
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(10);
 
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
-    setPage(1);
-    setLimit(10);
-    getShortHistory({ page, limit });
+    getShortHistory({ page: 1, limit: 10 });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  console.log(shortHistory);
 
   const handleClick = () => {
     setSelectedMenuItem(5);
@@ -106,7 +104,7 @@ const History = () => {
           <div className="skeleton">
             <Skeleton inline count={5} height={68} borderRadius={16} />
           </div>
-        ) : shortHistory ? (
+        ) : shortHistory?.data?.length ? (
           shortHistory?.data?.map(
             ({ id, title, val, icon, symbol, type, create_date }) => {
               return (

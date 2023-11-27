@@ -61,15 +61,13 @@ const HistoryList = () => {
     }
   };
 
-  console.log(history);
-
   return (
     <>
       <div className={`history-page-list`}>
         {historyLoading && !history?.data && (
           <Skeleton inline count={15} height={72} borderRadius={16} />
         )}
-        {history?.data ? (
+        {history?.data?.length ? (
           <>
             {history?.data?.map(
               ({ id, title, val, icon, symbol, type, create_date }) => {

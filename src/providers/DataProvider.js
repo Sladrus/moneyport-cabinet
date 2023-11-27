@@ -12,7 +12,7 @@ const DataProvider = ({ children }) => {
   const [balances, setBalances] = useState(null);
   const [balancesLoading, setBalancesLoading] = useState(false);
 
-  const [shortHistory, setShortHistory] = useState({ data: [] });
+  const [shortHistory, setShortHistory] = useState(null);
   const [shortHistoryLoading, setShortHistoryLoading] = useState(false);
 
   const [history, setHistory] = useState(null);

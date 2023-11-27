@@ -13,8 +13,8 @@ import { ReactComponent as Logo } from '../../../assets/logo/logo.svg';
 const AuthForm = ({ className }) => {
   const { loading, onLogin } = useContext(AuthContext);
 
-  const [email, setEmail] = useState('neizbejno@yandex.ru');
-  const [password, setPassword] = useState('183CxL3c');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [errors, setErrors] = useState(null);
 
   const handleLogin = async () => {
@@ -59,7 +59,9 @@ const AuthForm = ({ className }) => {
 
           <SmallTextButton
             value={'Забыли пароль?'}
-            onClick={() => navigate({ pathname: RECOVERY_ROUTE, search: location.search })}
+            onClick={() =>
+              navigate({ pathname: RECOVERY_ROUTE, search: location.search })
+            }
           />
         </div>
         <div
@@ -83,7 +85,9 @@ const AuthForm = ({ className }) => {
             <span style={{ paddingRight: '5px' }}>Еще нет аккаунта?</span>
             <LargeTextButton
               value={'Зарегистрироваться'}
-              onClick={() => navigate({ pathname: REG_ROUTE, search: location.search })}
+              onClick={() =>
+                navigate({ pathname: REG_ROUTE, search: location.search })
+              }
             />
           </div>
         </div>

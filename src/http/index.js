@@ -1,10 +1,14 @@
 import axios from 'axios';
 
+axios.defaults.withCredentials = true;
+
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
-export const authBase = axios.create({
-  baseURL: BASE_URL,
-});
+export const authBase = 
+  axios.create({
+    baseURL: BASE_URL,
+    withCredentials: true,
+  })
 
 authBase.interceptors.request.use(
   (config) => {
@@ -28,10 +32,13 @@ authBase.interceptors.response.use(
       originalRequest._retry = true;
 
       try {
-        const refreshToken = sessionStorage.getItem('refresh');
-        const response = await axios.post(`${BASE_URL}/refresh`, {
-          refresh_token: refreshToken,
-        });
+        const response = await axios.post(
+          `${BASE_URL}/refresh`,
+          {},
+          {
+            withCredentials: true,
+          }
+        );
         const { access_token, refresh_token } = response.data;
 
         sessionStorage.setItem('token', access_token);

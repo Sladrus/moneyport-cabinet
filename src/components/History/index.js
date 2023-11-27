@@ -67,7 +67,7 @@ import { HISTORY_ROUTE } from '../../utils/consts';
 
 const History = () => {
   const [open, setOpen] = useState(true);
-  const { history, historyLoading, getHistory } = useContext(DataContext);
+  const { shortHistory, shortHistoryLoading, getShortHistory } = useContext(DataContext);
   const { setSelectedMenuItem } = useContext(RouteContext);
 
   const [page, setPage] = useState(1);
@@ -79,7 +79,7 @@ const History = () => {
   useEffect(() => {
     setPage(1);
     setLimit(10);
-    getHistory({ page, limit });
+    getShortHistory({ page, limit });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -102,12 +102,12 @@ const History = () => {
         </div>
       </div>
       <div className={`history-list ${open ? 'expanded' : 'closed'}`}>
-        {historyLoading ? (
+        {shortHistoryLoading ? (
           <div className="skeleton">
             <Skeleton inline count={5} height={68} borderRadius={16} />
           </div>
-        ) : history ? (
-          history?.data?.map(
+        ) : shortHistory ? (
+          shortHistory?.data?.map(
             ({ id, title, val, icon, symbol, type, create_date }) => {
               return (
                 <HistoryItem

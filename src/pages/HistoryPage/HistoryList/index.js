@@ -1,58 +1,97 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 
 import './HistoryList.css';
 import { DataContext } from '../../../context/context';
 import HistoryItem from '../../../components/History/HistoryItem';
 import Skeleton from 'react-loading-skeleton';
 import EmptyHistory from '../../../components/History/EmptyHistory';
+import Spinner from '../../../components/Spinner';
 
 const HistoryList = () => {
-  const { history, historyLoading, getHistory } = useContext(DataContext);
+  const { history, setHistoryLoading, setHistory, historyLoading, getHistory } =
+    useContext(DataContext);
 
   const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(20);
+  const loader = useRef(null);
 
-  const [limit, setLimit] = useState(15);
+  // console.log(history);
+  console.log(page);
+  useEffect(() => {
+    setHistory(null);
+    setHistoryLoading(true);
+  }, []);
 
   useEffect(() => {
-    setPage(1);
-    setLimit(15);
-    getHistory({ page, limit });
+    if (historyLoading) {
+      getHistory({ page, limit }).then((data) => {
+        console.log('last page', data.last_page);
+        setPage((prev) => prev + 1);
+      });
+    }
+  }, [historyLoading]);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    const elements = document.getElementsByClassName('wrapper-scroll');
+
+    Array.from(elements).forEach((element) => {
+      element.addEventListener('scroll', scrollHandler);
+    });
+
+    return function () {
+      Array.from(elements).forEach((element) => {
+        element.removeEventListener('scroll', scrollHandler);
+      });
+    };
   }, []);
+
+  const scrollHandler = (e) => {
+    const target = e.target;
+
+    if (!target) return;
+    if (target.scrollHeight - (target.scrollTop + window.innerHeight) < 100) {
+      // if (history?.last_page === page) return;
+      setHistoryLoading(true);
+    }
+  };
+
+  console.log(history);
 
   return (
     <>
       <div className={`history-page-list`}>
-        {historyLoading ? (
-          // <div className="skeleton">
+        {historyLoading && !history?.data && (
           <Skeleton inline count={15} height={72} borderRadius={16} />
-        ) : // </div>
-        history ? (
-          history?.data?.map(
-            ({ id, title, val, icon, symbol, type, create_date }) => {
-              return (
-                <HistoryItem
-                  key={id}
-                  title={title}
-                  amount={val}
-                  icon={icon}
-                  code={symbol}
-                  type={type}
-                  date={create_date}
-                />
-              );
-            }
-          )
+        )}
+        {history?.data ? (
+          <>
+            {history?.data?.map(
+              ({ id, title, val, icon, symbol, type, create_date }) => {
+                return (
+                  <HistoryItem
+                    key={id}
+                    title={title}
+                    amount={val}
+                    icon={icon}
+                    code={symbol}
+                    type={type}
+                    date={create_date}
+                  />
+                );
+              }
+            )}
+            {historyLoading && page <= history?.last_page && <Spinner />}
+          </>
         ) : (
-          <EmptyHistory />
+          !historyLoading && <EmptyHistory />
         )}
       </div>
-      {/* {history && (
-        <div className="history-page-content-button">
-          <LargeButton text={'Показать еще'} variant="outlined" />
-        </div>
-      )} */}
     </>
   );
 };

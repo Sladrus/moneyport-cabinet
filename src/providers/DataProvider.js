@@ -12,6 +12,9 @@ const DataProvider = ({ children }) => {
   const [balances, setBalances] = useState(null);
   const [balancesLoading, setBalancesLoading] = useState(false);
 
+  const [shortHistory, setShortHistory] = useState({ data: [] });
+  const [shortHistoryLoading, setShortHistoryLoading] = useState(false);
+
   const [history, setHistory] = useState(null);
   const [historyLoading, setHistoryLoading] = useState(false);
 
@@ -35,11 +38,26 @@ const DataProvider = ({ children }) => {
 
   const getHistory = async ({ page, limit }) => {
     setHistoryLoading(true);
-    setHistory(null);
     const data = await DataApi.getHistory({ page, limit });
     if (!data) return setHistoryLoading(false);
-    setHistory(data);
+    // console.log(data);
+    if (history) {
+      setHistory({ ...history, data: [...history.data, ...data.data] });
+    } else {
+      setHistory(data);
+    }
     setHistoryLoading(false);
+    return data;
+  };
+
+  const getShortHistory = async ({ page = 1, limit = 10 }) => {
+    setShortHistoryLoading(true);
+    // setHistory(null);
+    const data = await DataApi.getHistory({ page, limit });
+    if (!data) return setShortHistoryLoading(false);
+    setShortHistory(data);
+    setShortHistoryLoading(false);
+    // return data;
   };
 
   const getChat = async () => {
@@ -67,8 +85,13 @@ const DataProvider = ({ children }) => {
     shortBalances,
     getShortBalances,
     historyLoading,
+    setHistoryLoading,
     history,
     getHistory,
+    shortHistory,
+    shortHistoryLoading,
+    setHistory,
+    getShortHistory,
     chatLoading,
     chat,
     getChat,

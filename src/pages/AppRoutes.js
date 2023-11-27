@@ -1,4 +1,4 @@
-import React, {  useState } from 'react';
+import React, { useState } from 'react';
 import { authRoutes, publicRoutes } from '../routes';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import AuthProvider from '../providers/AuthProvider';
@@ -23,15 +23,7 @@ const AppRoutes = () => {
             <NotAuthRoute>
               <HomeMenu open={open} />
             </NotAuthRoute>
-            <div
-              style={{
-                width: '100%',
-                maxHeight: '100%',
-                display: 'flex',
-                flexDirection: 'column',
-                overflow: 'auto',
-              }}
-            >
+            <div className="wrapper-scroll">
               <NotAuthRoute>
                 <AppBar />
                 <Header

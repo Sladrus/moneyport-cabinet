@@ -22,7 +22,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "start-dev": "env-cmd react-scripts build",
+    "start-dev": "env-cmd react-scripts start",
     "build": "react-scripts build",
     "build-dev": "env-cmd react-scripts build",
     "test": "react-scripts test",

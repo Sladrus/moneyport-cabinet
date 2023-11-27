@@ -5,7 +5,6 @@ import closedLogo from '../../../assets/logo/closedLogo.svg';
 import './MoneyportLogo.css';
 
 const MoneyportLogo = ({ open = true }) => {
-  const logoSrc = open ? openLogo : closedLogo;
 
   return (
     <div className={`moneyport-logo ${open ? 'expanded' : 'closed'}`}>

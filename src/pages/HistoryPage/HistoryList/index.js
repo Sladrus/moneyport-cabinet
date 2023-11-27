@@ -5,16 +5,20 @@ import { DataContext } from '../../../context/context';
 import HistoryItem from '../../../components/History/HistoryItem';
 import Skeleton from 'react-loading-skeleton';
 import EmptyHistory from '../../../components/History/EmptyHistory';
-import LargeButton from '../../../components/Buttons/LargeButton';
 
 const HistoryList = () => {
   const { history, historyLoading, getHistory } = useContext(DataContext);
 
   const [page, setPage] = useState(1);
+
   const [limit, setLimit] = useState(15);
 
   useEffect(() => {
+    setPage(1);
+    setLimit(15);
     getHistory({ page, limit });
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

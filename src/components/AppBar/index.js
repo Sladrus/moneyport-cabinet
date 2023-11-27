@@ -1,15 +1,14 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 
 import './AppBar.css';
 import { ReactComponent as HelpIcon } from '../../assets/icons/header/help.svg';
-import { ReactComponent as BellIcon } from '../../assets/icons/header/bell.svg';
 import { ReactComponent as UserIcon } from '../../assets/icons/header/user.svg';
 
 import MoneyportLogo from '../Icons/MoneyportLogo';
 import Popup from 'reactjs-popup';
 import { AuthContext, DataContext } from '../../context/context';
 
-const AppBar = ({}) => {
+const AppBar = () => {
   const { onLogout } = useContext(AuthContext);
   const { clearData } = useContext(DataContext);
 

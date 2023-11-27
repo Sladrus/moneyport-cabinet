@@ -3,7 +3,6 @@ import React, { useContext, useState } from 'react';
 import './Header.css';
 import { ReactComponent as ToogleMenuIcon } from '../../assets/icons/menu/toogle.svg';
 import { ReactComponent as HelpIcon } from '../../assets/icons/header/help.svg';
-import { ReactComponent as BellIcon } from '../../assets/icons/header/bell.svg';
 import { ReactComponent as UserIcon } from '../../assets/icons/header/user.svg';
 import { ReactComponent as ArrowDownIcon } from '../../assets/icons/arrows/arrow-down.svg';
 

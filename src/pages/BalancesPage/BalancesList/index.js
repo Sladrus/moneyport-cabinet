@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import './BalancesList.css';
 import { DataContext } from '../../../context/context';
 import BalanceItem from '../../../components/Balances/BalanceItem';
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
 const BalancesList = () => {
@@ -13,10 +13,11 @@ const BalancesList = () => {
   const [limit, setLimit] = useState(15);
 
   useEffect(() => {
+    setPage(1);
+    setLimit(15);
     getBalances({ limit, page });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  console.log(balancesLoading);
 
   return (
     <>

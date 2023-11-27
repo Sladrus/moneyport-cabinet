@@ -1,9 +1,9 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import TabBarItem from './TabBarItem';
 
 import { useNavigate } from 'react-router-dom';
 import { RouteContext } from '../../context/context';
-import { menuItems, mobileMenuItems } from '../../utils/menuItems';
+import { mobileMenuItems } from '../../utils/menuItems';
 
 import './TabBar.css';
 

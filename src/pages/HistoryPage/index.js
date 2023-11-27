@@ -2,9 +2,7 @@ import React from 'react';
 
 import './HistoryPage.css';
 import HistoryList from './HistoryList';
-import LargeButton from '../../components/Buttons/LargeButton';
 import Breadcrumbs from '../../components/Breadcrumbs';
-// import LargeButton from '../../components/Buttons/LargeButton';
 
 const HistoryPage = () => {
   return (

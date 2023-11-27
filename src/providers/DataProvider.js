@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import { DataContext } from '../context/context';
 import DataApi from '../http/DataApi';
 
@@ -39,13 +38,11 @@ const DataProvider = ({ children }) => {
     setHistory(null);
     const data = await DataApi.getHistory({ page, limit });
     if (!data) return setHistoryLoading(false);
-    // console.log(data);
     setHistory(data);
     setHistoryLoading(false);
   };
 
   const getChat = async () => {
-    console.log(chat);
     if (chat) return;
     setChatLoading(true);
     const data = await DataApi.getChat();
@@ -56,8 +53,6 @@ const DataProvider = ({ children }) => {
   };
 
   const clearData = async () => {
-    console.log(chat);
-
     setHistory(null);
     setShortBalances(null);
     setBalances(null);

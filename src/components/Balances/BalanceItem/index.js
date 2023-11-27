@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
 import './BalanceItem.css';
 import { formatCurrency } from '../../../utils/formatCurrency';

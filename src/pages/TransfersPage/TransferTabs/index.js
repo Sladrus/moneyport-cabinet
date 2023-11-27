@@ -1,4 +1,4 @@
-import React, { createRef, useEffect, useRef, useState } from 'react';
+import React, {  useEffect, useRef, useState } from 'react';
 
 import './TransferTabs.css';
 import TransferTabItem from './TransferTabItem/index,';
@@ -20,7 +20,6 @@ export const TransferTabs = ({ tabs, activeTab, setActiveTab }) => {
   const [offset, setOffset] = useState(0);
   const [width, setWidth] = useState(0);
 
-  // console.log(activeTab);
   useEffect(() => {
     if (!activeTab) return;
     const activeElement = activeRef?.current;

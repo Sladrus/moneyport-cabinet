@@ -1,9 +1,7 @@
 import React, { useContext, useState } from 'react';
 import './HomeMenuItemButton.css';
-import { ReactComponent as ArrowUpIcon } from '../../../../../assets/icons/arrows/arrow-up.svg';
 import { ReactComponent as ArrowDownIcon } from '../../../../../assets/icons/arrows/arrow-down.svg';
 import SubmenuList from './SubmenuList';
-import Popup from 'reactjs-popup';
 import { RouteContext } from '../../../../../context/context';
 
 const HomeMenuItemButton = ({

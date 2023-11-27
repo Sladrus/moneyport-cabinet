@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './HomeMenu.css';
 import MoneyportLogo from '../../../components/Icons/MoneyportLogo';
 import ChannelButton from '../../../components/Buttons/ChannelButton';

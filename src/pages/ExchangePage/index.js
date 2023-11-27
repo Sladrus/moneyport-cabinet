@@ -10,7 +10,8 @@ const ExchangePage = () => {
   const { chat, chatLoading, getChat } = useContext(DataContext);
 
   useEffect(() => {
-    getChat();
+    getChat(); 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

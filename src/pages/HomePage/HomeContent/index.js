@@ -11,10 +11,7 @@ import { ReactComponent as UserIcon } from '../../../assets/icons/sendtypes/user
 import Balances from '../../../components/Balances';
 import History from '../../../components/History';
 import {
-  CASH_ROUTE,
-  COMPANY_TRANS_ROUTE,
   EXCHANGE_ROUTE,
-  PHYS_TRANS_ROUTE,
   TRANSFERS_ROUTE,
 } from '../../../utils/consts';
 import { useNavigate } from 'react-router-dom';

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import {
   useLocation,
   useNavigate,
-  useParams,
   useSearchParams,
 } from 'react-router-dom';
 import { AuthContext } from '../context/context';
@@ -20,7 +19,8 @@ const AuthProvider = ({ children }) => {
   const [searchParams] = useSearchParams();
 
   useEffect(() => {
-    if (!user) handleCheckAuth();
+    if (!user) handleCheckAuth(); 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleLogin = async ({ email, password }) => {

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import PhysicalTransfersPage from '../PhysicalTransfersPage';
 import CompanyTransfersPage from '../CompanyTransfersPage';
 import {
@@ -45,10 +45,11 @@ const tabs = [
 
 const TransfersPage = () => {
   const { setSelectedSubItem, selectedSubItem } = useContext(RouteContext);
-  const { chat, chatLoading, getChat } = useContext(DataContext);
+  const { chatLoading, getChat } = useContext(DataContext);
 
   useEffect(() => {
     getChat();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

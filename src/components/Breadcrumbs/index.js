@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { ReactComponent as HomeIcon } from '../../assets/icons/menu/home.svg';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { authRoutes } from '../../routes';
 
 import './Breadcrumbs.css';

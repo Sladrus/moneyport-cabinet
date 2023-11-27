@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import './RegForm.css';
 import TextInput from '../../../components/TextInput';
-import SmallTextButton from '../../../components/Buttons/SmallTextButton';
 import LargeButton from '../../../components/Buttons/LargeButton';
 import LargeTextButton from '../../../components/Buttons/LargeTextButton';
-import MoneyportLogo from '../../../components/Icons/MoneyportLogo';
 import { useContext } from 'react';
 import { AuthContext } from '../../../context/context';
 import CheckBox from '../../../components/CheckBox';
@@ -42,7 +40,7 @@ const RegForm = ({ className }) => {
     if (!equal) {
       return setErrors({ finalPass: ['Passwords do not match'] });
     }
-    const { result, errors } = await onReg({ name, email, phone, password });
+    const {  errors } = await onReg({ name, email, phone, password });
     setErrors(errors);
   };
 

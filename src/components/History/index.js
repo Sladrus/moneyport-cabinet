@@ -77,7 +77,10 @@ const History = () => {
   const location = useLocation();
 
   useEffect(() => {
+    setPage(1);
+    setLimit(10);
     getHistory({ page, limit });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleClick = () => {

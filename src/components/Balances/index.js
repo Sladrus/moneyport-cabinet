@@ -19,6 +19,7 @@ const Balances = () => {
 
   useEffect(() => {
     getShortBalances({ type: 'short' });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleClick = () => {

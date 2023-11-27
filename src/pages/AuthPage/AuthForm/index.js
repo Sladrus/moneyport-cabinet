@@ -4,7 +4,6 @@ import TextInput from '../../../components/TextInput';
 import SmallTextButton from '../../../components/Buttons/SmallTextButton';
 import LargeButton from '../../../components/Buttons/LargeButton';
 import LargeTextButton from '../../../components/Buttons/LargeTextButton';
-import MoneyportLogo from '../../../components/Icons/MoneyportLogo';
 import { useContext } from 'react';
 import { AuthContext } from '../../../context/context';
 import { useLocation, useNavigate } from 'react-router-dom';

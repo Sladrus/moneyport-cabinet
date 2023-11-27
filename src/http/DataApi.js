@@ -33,4 +33,5 @@ class DataApi {
   }
 }
 
+// eslint-disable-next-line react-hooks/exhaustive-deps, import/no-anonymous-default-export
 export default new DataApi();

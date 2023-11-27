@@ -7,10 +7,8 @@ import { AuthContext } from '../../context/context';
 import LargeButton from '../../components/Buttons/LargeButton';
 import { ReactComponent as Logo } from '../../assets/logo/logo.svg';
 import { ReactComponent as ArrowLeft } from '../../assets/icons/arrows/arrow-left.svg';
-import mailLogo from '../../assets/logo/mail-destination.png';
 
-import LargeTextButton from '../../components/Buttons/LargeTextButton';
-import { AUTH_ROUTE, REG_ROUTE } from '../../utils/consts';
+import { AUTH_ROUTE } from '../../utils/consts';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 const ResetPasswordPage = () => {
@@ -35,7 +33,7 @@ const ResetPasswordPage = () => {
     if (!equal) {
       return setErrors({ finalPass: ['Passwords do not match'] });
     }
-    const { result, errors } = await onUpdatePassword({
+    const { errors } = await onUpdatePassword({
       token,
       email,
       password,
@@ -49,6 +47,7 @@ const ResetPasswordPage = () => {
       setErrors(errors);
       setComplete(result);
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

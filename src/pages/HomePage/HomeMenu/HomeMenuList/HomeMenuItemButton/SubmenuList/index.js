@@ -1,7 +1,6 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 
 import './SubmenuList.css';
-import { useNavigate } from 'react-router-dom';
 import { RouteContext } from '../../../../../../context/context';
 
 const SubmenuList = ({ menuId, submenuOpen, submenuList }) => {

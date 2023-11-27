@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import { authRoutes, publicRoutes } from '../routes';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import AuthProvider from '../providers/AuthProvider';
@@ -7,8 +7,6 @@ import Header from '../components/Header';
 import HomeMenu from './HomePage/HomeMenu';
 import NotAuthRoute from './NotAuthRoute';
 import { AUTH_ROUTE } from '../utils/consts';
-import AuthApi from '../http/AuthApi';
-import { AuthContext } from '../context/context';
 import DataProvider from '../providers/DataProvider';
 import AppBar from '../components/AppBar';
 import TabBar from '../components/TabBar';

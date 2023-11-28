@@ -68,6 +68,7 @@ const DataProvider = ({ children }) => {
 
     setChat(data);
     setChatLoading(false);
+    return data;
   };
 
   const clearData = async () => {

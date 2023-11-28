@@ -15,6 +15,7 @@ import TransfersContent from './TransfersContent';
 import './TransfersPage.css';
 import { DataContext, RouteContext } from '../../context/context';
 import Breadcrumbs from '../../components/Breadcrumbs';
+import Spinner from '../../components/Spinner';
 
 const tabs = [
   {
@@ -55,7 +56,9 @@ const TransfersPage = () => {
   return (
     <div className="transfers-page">
       {chatLoading ? (
-        'Loading'
+        <div className="transfers-page-loading">
+          <Spinner />
+        </div>
       ) : (
         <div className="transfers-page-content">
           <div style={{ padding: '0 24px' }}>

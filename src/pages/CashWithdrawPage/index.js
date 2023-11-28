@@ -4,6 +4,7 @@ import './CashWithdrawPage.css';
 import LargeButton from '../../components/Buttons/LargeButton';
 import { DataContext } from '../../context/context';
 import { openInNewTab } from '../../utils/window';
+import QRCode from 'react-qr-code';
 
 const CashWithdrawPage = () => {
   const { chat } = useContext(DataContext);
@@ -52,7 +53,9 @@ const CashWithdrawPage = () => {
                   оказать лучший сервис
                 </span>
               </div>
-              <div className="cash-page-content-body-qr"></div>
+              <div className="cash-page-content-body-qr">
+                <QRCode value={chat?.chat_url || ''} size={153} />
+              </div>
             </div>
           </div>
         </div>

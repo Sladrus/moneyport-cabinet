@@ -4,6 +4,7 @@ import './ReceptionFromAbroadPage.css';
 import LargeButton from '../../components/Buttons/LargeButton';
 import { openInNewTab } from '../../utils/window';
 import { DataContext } from '../../context/context';
+import QRCode from 'react-qr-code';
 
 const ReceptionFromAbroadPage = () => {
   const { chat } = useContext(DataContext);
@@ -53,7 +54,9 @@ const ReceptionFromAbroadPage = () => {
                   лучшее платежное решение и оказать лучший сервис.
                 </span>
               </div>
-              <div className="reception-page-content-body-qr"></div>
+              <div className="reception-page-content-body-qr">
+                <QRCode value={chat?.chat_url || ''} size={153} />
+              </div>
             </div>
           </div>
         </div>

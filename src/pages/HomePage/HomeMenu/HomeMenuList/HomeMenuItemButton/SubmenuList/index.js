@@ -2,26 +2,30 @@ import React, { useContext } from 'react';
 
 import './SubmenuList.css';
 import { RouteContext } from '../../../../../../context/context';
+import { useNavigate } from 'react-router-dom';
 
-const SubmenuList = ({ menuId, submenuOpen, submenuList }) => {
-  const { setSelectedMenuItem, setSelectedSubItem, selectedSubItem } =
+const SubmenuList = ({ path, menuId, submenuOpen, submenuList }) => {
+  const { setSelectedMenuItem, setSelectedSubItem, selectedSubItem, location } =
     useContext(RouteContext);
 
-  const navigateToPage = (id, path) => {
-    setSelectedSubItem(id);
+  const navigate = useNavigate();
+
+  const navigateToPage = (id, title) => {
+    setSelectedSubItem({ id, title });
     setSelectedMenuItem(menuId);
+    navigate({ pathname: path, search: location.search });
   };
 
   return (
     <div className={`submenu-list ${submenuOpen ? 'expanded' : 'closed'}`}>
       <div className={`submenu-list-content`}>
-        {submenuList?.map(({ id, title, path }) => {
+        {submenuList?.map(({ id, title }) => {
           return (
             <div
               key={id}
-              onClick={() => navigateToPage(id, path)}
+              onClick={() => navigateToPage(id, title)}
               className={`submenu-list-item ${
-                selectedSubItem === id ? 'selected' : ''
+                selectedSubItem?.id === id ? 'selected' : ''
               }`}
             >
               <span>{title}</span>

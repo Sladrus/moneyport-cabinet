@@ -1,8 +1,15 @@
 .transfers-page {
   /* width: 1200px; */
   width: 100%;
-  /* height: 100%; */
+  height: 100%;
   display: inline-flex;
+}
+
+.transfers-page-loading {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
 }
 
 .transfers-page-content {

@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import './AppBar.css';
 import { ReactComponent as HelpIcon } from '../../assets/icons/header/help.svg';
 import { ReactComponent as UserIcon } from '../../assets/icons/header/user.svg';
+import { ReactComponent as BorderIcon } from '../../assets/icons/header/border.svg';
 
 import MoneyportLogo from '../Icons/MoneyportLogo';
 import Popup from 'reactjs-popup';
@@ -10,7 +11,14 @@ import { AuthContext, DataContext } from '../../context/context';
 
 const AppBar = () => {
   const { onLogout } = useContext(AuthContext);
-  const { clearData } = useContext(DataContext);
+  const { clearData, chat, getChat } = useContext(DataContext);
+
+  const handleHelp = async (e) => {
+    e.preventDefault();
+    let link = chat;
+    if (!chat) link = await getChat();
+    window.open(link?.chat_url, '_blank');
+  };
 
   const handleLogout = async () => {
     await clearData();
@@ -21,8 +29,8 @@ const AppBar = () => {
     <div className="home-appbar">
       <MoneyportLogo width={'179px'} height={'29px'} />
       <div className="appbar-content">
-        <HelpIcon className="appbar-content-icon" />
-        {/* <BellIcon className="appbar-content-icon" /> */}
+        <HelpIcon onClick={handleHelp} className="appbar-content-icon" />
+        <BorderIcon />
         <Popup
           position="bottom right"
           on="click"

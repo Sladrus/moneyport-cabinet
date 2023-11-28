@@ -1,0 +1,37 @@
+.popup-menu-container {
+  position: relative;
+
+  padding: 0 24px;
+}
+
+.popup-menu {
+  position: absolute;
+  height: 100px;
+  transform: scale(0);
+  /* transform-origin: top left; */
+
+  /* width: 10rem;
+  margin-top: 0.5rem;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 0.5rem; */
+
+  transition: transform 0.2s;
+}
+
+.popup-menu span {
+  color: var(--tech-grey-medium, #a8b1be);
+
+  font-family: 'Mulish';
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 22px;
+  letter-spacing: -0.32px;
+}
+
+.popup-menu.shown {
+  height: 100px;
+  transform: scale(1);
+  z-index: 10000;
+}

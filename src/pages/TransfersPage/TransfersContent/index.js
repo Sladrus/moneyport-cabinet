@@ -6,7 +6,7 @@ const TransfersContent = ({ tabs, activeTab }) => {
   return (
     <div className="transfers-content">
       {tabs.map(({ id, Component }) => {
-        if (activeTab === id) return <Component key={id} />;
+        if (activeTab.id === id) return <Component key={id} />;
         return '';
       })}
     </div>

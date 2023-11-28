@@ -23,7 +23,7 @@ const HomeMenuItemButton = ({
       <div
         onClick={() => {
           if (!submenu) setSelectedSubItem(null);
-          else setSelectedSubItem(1);
+          else setSelectedSubItem({ id: 1, title: 'Переводы физ. лицу' });
           onClick(id, path);
         }}
         className={`home-menu-item-button ${open === true ? 'open' : ''} ${
@@ -44,7 +44,8 @@ const HomeMenuItemButton = ({
           {<span>{title}</span>}
         </div>
         <div
-          onClick={() => {
+          onClick={(e) => {
+            e.stopPropagation();
             setSubmenuOpen(!submenuOpen);
           }}
         >
@@ -59,6 +60,7 @@ const HomeMenuItemButton = ({
       </div>
       {open && submenu && (
         <SubmenuList
+          path={path}
           submenuOpen={submenuOpen}
           menuId={id}
           submenuList={submenuList}

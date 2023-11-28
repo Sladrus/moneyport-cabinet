@@ -1,10 +1,11 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import './Header.css';
 import { ReactComponent as ToogleMenuIcon } from '../../assets/icons/menu/toogle.svg';
 import { ReactComponent as HelpIcon } from '../../assets/icons/header/help.svg';
 import { ReactComponent as UserIcon } from '../../assets/icons/header/user.svg';
 import { ReactComponent as ArrowDownIcon } from '../../assets/icons/arrows/arrow-down.svg';
+import { ReactComponent as BorderIcon } from '../../assets/icons/header/border.svg';
 
 import { AuthContext, DataContext } from '../../context/context';
 import Popup from 'reactjs-popup';
@@ -12,7 +13,14 @@ import Popup from 'reactjs-popup';
 const Header = ({ toogleMenu }) => {
   const [open, setOpen] = useState(false);
   const { user, onLogout } = useContext(AuthContext);
-  const { clearData } = useContext(DataContext);
+  const { clearData, chat, chatLoading, getChat } = useContext(DataContext);
+
+  const handleHelp = async (e) => {
+    e.preventDefault();
+    let link = chat;
+    if (!chat) link = await getChat();
+    window.open(link?.chat_url, '_blank');
+  };
 
   const handleLogout = async () => {
     await clearData();
@@ -26,11 +34,12 @@ const Header = ({ toogleMenu }) => {
           <ToogleMenuIcon className="header-toogle-icon" />
         </div>
         <div className="header-content">
-          <div className="header-content-questions">
+          <div onClick={handleHelp} className="header-content-questions">
             <span>Поддержка</span>
             <HelpIcon className="header-content-bell-icon" />
           </div>
           {/* <BellIcon className="header-content-bell-icon" /> */}
+          <BorderIcon />
           <Popup
             position="bottom right"
             on="click"
@@ -57,7 +66,10 @@ const Header = ({ toogleMenu }) => {
               </div>
             }
           >
-            <div className="header-content-profile-popup" onClick={handleLogout}>
+            <div
+              className="header-content-profile-popup"
+              onClick={handleLogout}
+            >
               <UserIcon />
               <span>Выйти</span>
             </div>

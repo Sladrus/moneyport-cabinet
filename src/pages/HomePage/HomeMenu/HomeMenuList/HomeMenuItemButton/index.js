@@ -22,6 +22,7 @@ const HomeMenuItemButton = ({
     <div>
       <div
         onClick={() => {
+          setSubmenuOpen(!submenuOpen);
           if (!submenu) setSelectedSubItem(null);
           else setSelectedSubItem({ id: 1, title: 'Переводы физ. лицу' });
           onClick(id, path);

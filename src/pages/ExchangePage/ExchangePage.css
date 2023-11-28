@@ -114,7 +114,7 @@
   background-color: grey;
 }
 
-@media (max-width: 428px) {
+@media (max-width: 430px) {
   .exchange-page-content-body-qr {
     display: none;
   }

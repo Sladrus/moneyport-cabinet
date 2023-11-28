@@ -91,7 +91,10 @@ const History = () => {
           <span>История операций</span>
           <LargeTextButton value={'Все'} onClick={handleClick} />
         </div>
-        <div onClick={() => setOpen(!open)}>
+        <div
+          style={{ display: 'flex', alignItems: 'center' }}
+          onClick={() => setOpen(!open)}
+        >
           <ArrowDownIcon
             className={`history-title-arrow ${open ? 'expanded' : 'closed'}`}
           />

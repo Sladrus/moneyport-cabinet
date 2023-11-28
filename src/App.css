@@ -21,23 +21,13 @@
 }
 
 .wrapper-scroll {
+  box-sizing: border-box;
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
+  /* justify-content: center; */
   overflow: auto;
-}
-
-.skeleton {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.skeleton span {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
 }
 
 .popup-content {
@@ -63,4 +53,16 @@
 
 [data-popup='tooltip'].popup-overlay {
   background: transparent;
+}
+
+.skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.skeleton span {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }

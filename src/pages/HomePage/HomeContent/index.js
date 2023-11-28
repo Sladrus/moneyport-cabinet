@@ -16,13 +16,6 @@ import { AuthContext, RouteContext } from '../../../context/context';
 
 const items = [
   {
-    id: 1,
-    title: 'Перевод физ. лицу',
-    subtitle: 'PayPal, Zelle, Wise, Revolut, Сбербанк, Тинькофф',
-    Icon: <UserIcon className="send-type-button-icon" />,
-    path: TRANSFERS_ROUTE,
-  },
-  {
     id: 2,
     title: 'Перевод юр. лицу',
     subtitle: 'SWIFT, SEPA',
@@ -49,6 +42,13 @@ const items = [
     subtitle: 'USDT, BTC, ETF и другие',
     Icon: <BitcoinIcon className="send-type-button-icon" />,
     path: EXCHANGE_ROUTE,
+  },
+  {
+    id: 1,
+    title: 'Перевод физ. лицу',
+    subtitle: 'PayPal, Zelle, Wise, Revolut, Сбербанк, Тинькофф',
+    Icon: <UserIcon className="send-type-button-icon" />,
+    path: TRANSFERS_ROUTE,
   },
 ];
 

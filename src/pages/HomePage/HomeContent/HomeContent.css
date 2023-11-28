@@ -10,6 +10,9 @@
   .home-page-content {
     padding-bottom: 92px;
   }
+  .home-page-content .home-page-content-send-list {
+    gap: 18px 18px;
+  }
 }
 
 .home-page-content-title {

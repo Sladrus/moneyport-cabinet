@@ -10,10 +10,7 @@ import { ReactComponent as UserIcon } from '../../../assets/icons/sendtypes/user
 
 import Balances from '../../../components/Balances';
 import History from '../../../components/History';
-import {
-  EXCHANGE_ROUTE,
-  TRANSFERS_ROUTE,
-} from '../../../utils/consts';
+import { EXCHANGE_ROUTE, TRANSFERS_ROUTE } from '../../../utils/consts';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext, RouteContext } from '../../../context/context';
 
@@ -62,10 +59,10 @@ const HomeContent = () => {
 
   const navigate = useNavigate();
 
-  const handleClick = (id, path) => {
+  const handleClick = (id, title, path) => {
     if (path === TRANSFERS_ROUTE) {
       setSelectedMenuItem(3);
-      setSelectedSubItem(id);
+      setSelectedSubItem({ id, title });
     } else setSelectedMenuItem(4);
     navigate({ pathname: path, search: location.search });
   };
@@ -86,7 +83,7 @@ const HomeContent = () => {
               title={title}
               subtitle={subtitle}
               icon={Icon}
-              onClick={() => handleClick(id, path)}
+              onClick={() => handleClick(id, title, path)}
             />
           );
         })}

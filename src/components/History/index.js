@@ -79,8 +79,6 @@ const History = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(shortHistory);
-
   const handleClick = () => {
     setSelectedMenuItem(5);
     navigate({ pathname: HISTORY_ROUTE, search: location.search });

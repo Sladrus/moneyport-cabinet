@@ -11,6 +11,7 @@ import DataProvider from '../providers/DataProvider';
 import AppBar from '../components/AppBar';
 import TabBar from '../components/TabBar';
 import RouteProvider from '../providers/RouteProvider';
+import ScrollToTop from './ScrollToTop';
 
 const AppRoutes = () => {
   const [open, setOpen] = useState(true);
@@ -24,6 +25,7 @@ const AppRoutes = () => {
               <HomeMenu open={open} />
             </NotAuthRoute>
             <div className="wrapper-scroll">
+              <ScrollToTop />
               <NotAuthRoute>
                 <AppBar />
                 <Header

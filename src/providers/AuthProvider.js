@@ -148,7 +148,6 @@ const AuthProvider = ({ children }) => {
   const handleUpdatePassword = async ({ token, email, password }) => {
     setLoading(true);
     const data = await AuthApi.updatePassword({ token, email, password });
-    console.log(data);
     if (data?.errors || data?.error) {
       setLoading(false);
       return {

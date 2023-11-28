@@ -21,8 +21,6 @@ const HistoryList = () => {
   const [limit, setLimit] = useState(20);
   const loader = useRef(null);
 
-  // console.log(history);
-  console.log(page);
   useEffect(() => {
     setHistory(null);
     setHistoryLoading(true);
@@ -31,7 +29,6 @@ const HistoryList = () => {
   useEffect(() => {
     if (historyLoading) {
       getHistory({ page, limit }).then((data) => {
-        console.log('last page', data.last_page);
         setPage((prev) => prev + 1);
       });
     }

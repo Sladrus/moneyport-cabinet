@@ -38,7 +38,6 @@ const PopupMenu = ({ list }) => {
       <div onClick={handleToggleButtonClick}>Toggle Menu</div>
       <div className={`popup-menu ${isShown ? 'shown' : ''}`} ref={popupRef}>
         {list.map((item) => {
-          console.log(item);
           return <div>{item.title}</div>;
         })}
       </div>

@@ -1,5 +1,4 @@
 export const formatCurrency = (amount, code) => {
-  // console.log(amount, code);
   const currencies = [
     { code: 'RUB', value: '₽' },
     { code: 'USD', value: '$' },

@@ -4,7 +4,10 @@ import './ChannelButton.css';
 
 const ChannelButton = ({ open }) => {
   return (
-    <div className={`channel-button ${open === true ? 'open' : ''}`}>
+    <div
+      onClick={() => window.open('https://t.me/moneyport', '_blank')}
+      className={`channel-button ${open === true ? 'open' : ''}`}
+    >
       <div className="channel-button-icon">
         <img src={telegramIcon} alt="Telegram" />
       </div>

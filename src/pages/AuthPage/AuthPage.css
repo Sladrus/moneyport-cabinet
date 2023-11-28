@@ -1,6 +1,6 @@
 .auth-page {
   display: inline-flex;
-  padding: 42px 42px 42px 137px;
+  /* padding: 42px 42px 42px 137px; */
   justify-content: space-between;
   align-items: center;
   gap: 115px;

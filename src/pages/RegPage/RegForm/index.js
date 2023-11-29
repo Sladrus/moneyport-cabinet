@@ -55,7 +55,7 @@ const RegForm = ({ className }) => {
           placeholder={'ФИО'}
           type="text"
           onChange={(e) => setName(e.target.value)}
-          disabled={loading}
+          // disabled={loading}
         />
         <TextInput
           value={email}
@@ -64,7 +64,7 @@ const RegForm = ({ className }) => {
           placeholder={'E-mail'}
           type="text"
           onChange={(e) => setEmail(e.target.value)}
-          disabled={loading}
+          // disabled={loading}
         />
         <TextInput
           value={phone}
@@ -73,7 +73,7 @@ const RegForm = ({ className }) => {
           placeholder={'Мобильный телефон'}
           type="text"
           onChange={(e) => setPhone(e.target.value)}
-          disabled={loading}
+          // disabled={loading}
         />
         <TextInput
           value={password}
@@ -82,7 +82,7 @@ const RegForm = ({ className }) => {
           placeholder={'Пароль'}
           type="password"
           onChange={(e) => setPassword(e.target.value)}
-          disabled={loading}
+          // disabled={loading}
         />
 
         <TextInput
@@ -92,7 +92,7 @@ const RegForm = ({ className }) => {
           placeholder={'Пароль еще раз'}
           type="password"
           onChange={(e) => setFinalPass(e.target.value)}
-          disabled={loading}
+          // disabled={loading}
         />
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <CheckBox checked={checked} onChange={() => setChecked(!checked)} />

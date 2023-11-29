@@ -85,7 +85,7 @@ const ResetPasswordPage = () => {
                 type="text"
                 onClick={() => setErrors(null)}
                 onChange={(e) => setEmail(e.target.value)}
-                disabled={loading}
+                // disabled={loading}
               />
               <TextInput
                 value={password}
@@ -94,7 +94,7 @@ const ResetPasswordPage = () => {
                 type="password"
                 onClick={() => setErrors(null)}
                 onChange={(e) => setPassword(e.target.value)}
-                disabled={loading}
+                // disabled={loading}
               />
               <TextInput
                 value={finalPass}
@@ -103,7 +103,7 @@ const ResetPasswordPage = () => {
                 type="password"
                 onClick={() => setErrors(null)}
                 onChange={(e) => setFinalPass(e.target.value)}
-                disabled={loading}
+                // disabled={loading}
               />
             </div>
 

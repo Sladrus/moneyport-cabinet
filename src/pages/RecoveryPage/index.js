@@ -94,7 +94,7 @@ const RecoveryPage = () => {
                 type="text"
                 onClick={() => setErrors(null)}
                 onChange={(e) => setEmail(e.target.value)}
-                disabled={loading}
+                // disabled={loading}
               />
               <LargeButton
                 text={'Продолжить'}

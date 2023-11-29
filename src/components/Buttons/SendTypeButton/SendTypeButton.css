@@ -111,3 +111,9 @@
   transform: translateY(-10px);
   transition: transform 0.5s ease;
 }
+
+.send-type-button:active {
+  cursor: pointer;
+  transform: translateY(-10px);
+  transition: transform 0.5s ease;
+}

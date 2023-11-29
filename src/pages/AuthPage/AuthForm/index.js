@@ -36,7 +36,7 @@ const AuthForm = ({ className }) => {
           placeholder={'E-mail'}
           type="text"
           onChange={(e) => setEmail(e.target.value)}
-          disabled={loading}
+          // disabled={loading}
         />
         <div
           style={{
@@ -54,7 +54,7 @@ const AuthForm = ({ className }) => {
             placeholder={'Пароль'}
             type="password"
             onChange={(e) => setPassword(e.target.value)}
-            disabled={loading}
+            // disabled={loading}
           />
 
           <SmallTextButton

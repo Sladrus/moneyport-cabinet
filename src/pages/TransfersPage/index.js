@@ -46,7 +46,7 @@ const tabs = [
 
 const TransfersPage = () => {
   const { setSelectedSubItem, selectedSubItem } = useContext(RouteContext);
-  const { chatLoading, getChat } = useContext(DataContext);
+  const { chat, chatLoading, getChat } = useContext(DataContext);
 
   useEffect(() => {
     getChat();
@@ -55,22 +55,24 @@ const TransfersPage = () => {
 
   return (
     <div className="transfers-page">
+      <div style={{ padding: '0 24px' }}>
+        <Breadcrumbs />
+      </div>
       {chatLoading ? (
-        // <div className="transfers-page-loading">
-        <Spinner />
-      ) : (
-        // </div>
-        <div className="transfers-page-content">
-          <div style={{ padding: '0 24px' }}>
-            <Breadcrumbs />
-          </div>
-          <TransferTabs
-            tabs={tabs}
-            activeTab={selectedSubItem}
-            setActiveTab={setSelectedSubItem}
-          />
-          <TransfersContent tabs={tabs} activeTab={selectedSubItem} />
+        <div className="transfers-page-loading">
+          <Spinner />
         </div>
+      ) : (
+        chat && (
+          <div className="transfers-page-content">
+            <TransferTabs
+              tabs={tabs}
+              activeTab={selectedSubItem}
+              setActiveTab={setSelectedSubItem}
+            />
+            <TransfersContent tabs={tabs} activeTab={selectedSubItem} />
+          </div>
+        )
       )}
     </div>
   );

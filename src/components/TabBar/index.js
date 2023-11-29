@@ -6,20 +6,27 @@ import { RouteContext } from '../../context/context';
 import { mobileMenuItems } from '../../utils/menuItems';
 
 import './TabBar.css';
+import { sendMetric } from '../../utils/sendMetric';
 
 const TabBar = () => {
-  const { setSelectedMenuItem, selectedMenuItem, location } =
-    useContext(RouteContext);
+  const {
+    setSelectedMenuItem,
+    setSelectedSubItem,
+    selectedMenuItem,
+    location,
+  } = useContext(RouteContext);
   const navigate = useNavigate();
 
-  const navigateToPage = (id, path) => {
+  const navigateToPage = (id, path, type) => {
+    sendMetric('reachGoal', type);
+    setSelectedSubItem({ id: 1, title: 'Перевод физ. лицу' });
     setSelectedMenuItem(id);
     navigate({ pathname: path, search: location.search });
   };
 
   return (
     <div className="tab-bar">
-      {mobileMenuItems.map(({ id, title, Icon, path }) => {
+      {mobileMenuItems.map(({ id, title, Icon, path, type }) => {
         return (
           <TabBarItem
             id={id}
@@ -29,6 +36,7 @@ const TabBar = () => {
             title={title}
             icon={Icon}
             path={path}
+            type={type}
           />
         );
       })}

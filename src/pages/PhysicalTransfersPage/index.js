@@ -60,7 +60,7 @@ const PhysicalTransfersPage = () => {
         <div className="physical-page-content-button">
           <LargeButton
             text={'Вступить в чат-кассу'}
-            onClick={() => openInNewTab(chat?.chat_url)}
+            onClick={() => openInNewTab(chat?.chat_url, 'go_to_chat_perevod_fiz')}
           />
         </div>
       </div>

@@ -1,6 +1,6 @@
 .balance-item {
   display: flex;
-  /* width: calc(100% - 72px); */
+  width: calc(100% - 24px);
   padding: 12px;
   /* margin: 0 24px; */
   justify-content: space-between;
@@ -11,6 +11,11 @@
 
   box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.08);
   /* white-space: nowrap; */
+  transition: box-shadow 0.3s ease;
+}
+
+.balance-item.closed {
+  box-shadow: none;
 }
 
 .balance-item-logo {

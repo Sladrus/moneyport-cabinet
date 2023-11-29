@@ -44,7 +44,7 @@ const Balances = () => {
           />
         </div>
       </div>
-      <div className="skeleton">
+      <div className={`balances-list`}>
         {shortBalancesLoading ? (
           // <Skeleton inline count={3} height={68} borderRadius={16} />
           <Spinner />
@@ -53,6 +53,7 @@ const Balances = () => {
             ({ id, title, amount, code, sign }, index) => {
               return (
                 <BalanceItem
+                  open={open}
                   key={index}
                   title={title}
                   amount={amount}

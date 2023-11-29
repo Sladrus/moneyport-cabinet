@@ -6,10 +6,7 @@ const RouteProvider = ({ children }) => {
   const location = useLocation();
 
   const [selectedMenuItem, setSelectedMenuItem] = useState(1);
-  const [selectedSubItem, setSelectedSubItem] = useState({
-    id: 1,
-    title: 'Перевод физ. лицу',
-  });
+  const [selectedSubItem, setSelectedSubItem] = useState();
 
   const value = {
     selectedMenuItem,

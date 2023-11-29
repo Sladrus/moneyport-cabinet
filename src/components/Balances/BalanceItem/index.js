@@ -4,10 +4,10 @@ import './BalanceItem.css';
 import { formatCurrency } from '../../../utils/formatCurrency';
 import { getCurrencyTitle } from '../../../utils/getCurrencyTitle';
 
-const BalanceItem = ({ title, amount, icon, code, sign }) => {
+const BalanceItem = ({ open, title, amount, icon, code, sign }) => {
   const currency = getCurrencyTitle(code);
   return (
-    <div className="balance-item">
+    <div className={`balance-item ${open ? 'expanded' : 'closed'}`}>
       <div className="balance-item-left">
         <div className="balance-item-logo">{currency?.icon}</div>
         <div className="balance-item-code">

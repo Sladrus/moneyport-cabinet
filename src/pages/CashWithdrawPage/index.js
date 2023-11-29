@@ -62,7 +62,9 @@ const CashWithdrawPage = () => {
         <div className="cash-page-content-button">
           <LargeButton
             text={'Вступить в чат-кассу'}
-            onClick={() => openInNewTab(chat?.chat_url)}
+            onClick={() =>
+              openInNewTab(chat?.chat_url, 'go_to_chat_perevod_cash')
+            }
           />
         </div>
       </div>

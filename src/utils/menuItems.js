@@ -26,6 +26,7 @@ export const menuItems = [
     Icon: <HomeMenuIcon className="home-menu-item-icon" />,
     path: HOME_ROUTE,
     submenu: false,
+    type: '',
   },
   {
     id: 2,
@@ -33,6 +34,7 @@ export const menuItems = [
     Icon: <BalancesIcon className="home-menu-item-icon" />,
     path: BALANCES_ROUTE,
     submenu: false,
+    type: '',
   },
   {
     id: 3,
@@ -40,30 +42,35 @@ export const menuItems = [
     Icon: <TransfersIcon className="home-menu-item-icon" />,
     path: TRANSFERS_ROUTE,
     submenu: true,
+    type: '',
     submenuList: [
       {
         id: 1,
         title: 'Переводы физ. лицу',
         Component: PhysicalTransfersPage,
         path: PHYS_TRANS_ROUTE,
+        type: 'click_perevod_fiz',
       },
       {
         id: 2,
         title: 'Переводы юр. лицу',
         Component: CompanyTransfersPage,
         path: COMPANY_TRANS_ROUTE,
+        type: 'click_perevod_ur',
       },
       {
         id: 3,
         title: 'Прием из-за рубежа',
         Component: ReceptionFromAbroadPage,
         path: RECEPTION_ROUTE,
+        type: 'click_perevod_priem_from_abroad',
       },
       {
         id: 4,
         title: 'Выдача наличных',
         Component: CashWithdrawPage,
         path: CASH_ROUTE,
+        type: 'click_perevod_cash',
       },
     ],
   },
@@ -73,6 +80,7 @@ export const menuItems = [
     path: EXCHANGE_ROUTE,
     Icon: <ExchangeIcon className="home-menu-item-icon" />,
     submenu: false,
+    type: 'click_cryptoexchange',
   },
   {
     id: 5,
@@ -80,6 +88,7 @@ export const menuItems = [
     path: HISTORY_ROUTE,
     Icon: <HistoryIcon className="home-menu-item-icon" />,
     submenu: false,
+    type: '',
   },
 ];
 
@@ -90,6 +99,7 @@ export const mobileMenuItems = [
     Icon: <HomeMenuIcon className="home-menu-item-icon" />,
     path: HOME_ROUTE,
     submenu: false,
+    type: '',
   },
   {
     id: 2,
@@ -97,6 +107,7 @@ export const mobileMenuItems = [
     Icon: <BalancesIcon className="home-menu-item-icon" />,
     path: BALANCES_ROUTE,
     submenu: false,
+    type: '',
   },
   {
     id: 3,
@@ -104,30 +115,35 @@ export const mobileMenuItems = [
     Icon: <TransfersIcon className="home-menu-item-icon" />,
     path: TRANSFERS_ROUTE,
     submenu: true,
+    type: '',
     submenuList: [
       {
         id: 1,
         title: 'Переводы физ. лицу',
         Component: PhysicalTransfersPage,
         path: PHYS_TRANS_ROUTE,
+        type: 'click_perevod_fiz',
       },
       {
         id: 2,
         title: 'Переводы юр. лицу',
         Component: CompanyTransfersPage,
         path: COMPANY_TRANS_ROUTE,
+        type: 'click_perevod_ur',
       },
       {
         id: 3,
         title: 'Прием из-за рубежа',
         Component: ReceptionFromAbroadPage,
         path: RECEPTION_ROUTE,
+        type: 'click_perevod_priem_from_abroad',
       },
       {
         id: 4,
         title: 'Выдача наличных',
         Component: CashWithdrawPage,
         path: CASH_ROUTE,
+        type: 'click_perevod_cash',
       },
     ],
   },
@@ -137,6 +153,7 @@ export const mobileMenuItems = [
     path: EXCHANGE_ROUTE,
     Icon: <ExchangeIcon className="home-menu-item-icon" />,
     submenu: false,
+    type: 'click_cryptoexchange',
   },
   {
     id: 5,
@@ -144,5 +161,6 @@ export const mobileMenuItems = [
     path: HISTORY_ROUTE,
     Icon: <HistoryIcon className="home-menu-item-icon" />,
     submenu: false,
+    type: '',
   },
 ];

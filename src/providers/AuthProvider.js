@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import {
-  useLocation,
-  useNavigate,
-  useSearchParams,
-} from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { AuthContext } from '../context/context';
 import { AUTH_ROUTE, HOME_ROUTE } from '../utils/consts';
 import AuthApi from '../http/AuthApi';
 import { publicRoutes } from '../routes';
+import { sendMetric } from '../utils/sendMetric';
 
 const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
@@ -19,7 +16,7 @@ const AuthProvider = ({ children }) => {
   const [searchParams] = useSearchParams();
 
   useEffect(() => {
-    if (!user) handleCheckAuth(); 
+    if (!user) handleCheckAuth();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -75,6 +72,7 @@ const AuthProvider = ({ children }) => {
     sessionStorage.setItem('token', data?.access_token);
 
     setUser(data?.user);
+    sendMetric('reachGoal', 'firstreg');
     setLoading(false);
     navigate({ pathname: HOME_ROUTE, search: location.search });
     return { result: true, errors: null };

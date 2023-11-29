@@ -3,6 +3,7 @@ import './HomeMenuItemButton.css';
 import { ReactComponent as ArrowDownIcon } from '../../../../../assets/icons/arrows/arrow-down.svg';
 import SubmenuList from './SubmenuList';
 import { RouteContext } from '../../../../../context/context';
+import { sendMetric } from '../../../../../utils/sendMetric';
 
 const HomeMenuItemButton = ({
   id,
@@ -13,19 +14,21 @@ const HomeMenuItemButton = ({
   submenu,
   submenuList,
   onClick,
+  type,
 }) => {
   const [submenuOpen, setSubmenuOpen] = useState(false);
 
-  const { selectedMenuItem, setSelectedSubItem } = useContext(RouteContext);
+  const { selectedMenuItem, setSelectedMenuItem } = useContext(RouteContext);
 
   return (
     <div>
       <div
         onClick={() => {
           setSubmenuOpen(!submenuOpen);
-          if (!submenu) setSelectedSubItem(null);
-          else setSelectedSubItem({ id: 1, title: 'Переводы физ. лицу' });
-          onClick(id, path);
+          // if (!submenu) setSelectedSubItem(null);
+          // else setSelectedSubItem({ id: 1, title: 'Переводы физ. лицу' });
+          setSelectedMenuItem(id);
+          if (!submenu) onClick(id, path);
         }}
         className={`home-menu-item-button ${open === true ? 'open' : ''} ${
           selectedMenuItem === id ? 'selected' : ''

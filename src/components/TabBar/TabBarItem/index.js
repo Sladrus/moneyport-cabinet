@@ -2,10 +2,10 @@ import React from 'react';
 
 import './TabBarItem.css';
 
-const TabBarItem = ({ id, icon, title, path, onClick, selectedItem }) => {
+const TabBarItem = ({ id, icon, title, path, onClick, selectedItem, type }) => {
   return (
     <div
-      onClick={() => onClick(id, path)}
+      onClick={() => onClick(id, path, type)}
       className={`tab-bar-item ${selectedItem === id ? 'selected' : ''}`}
     >
       {icon}

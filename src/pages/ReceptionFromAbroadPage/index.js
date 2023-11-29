@@ -62,7 +62,9 @@ const ReceptionFromAbroadPage = () => {
         <div className="reception-page-content-button">
           <LargeButton
             text={'Вступить в чат-кассу'}
-            onClick={() => openInNewTab(chat?.chat_url)}
+            onClick={() =>
+              openInNewTab(chat?.chat_url, 'go_to_chat_perevod_priem_from_abroad')
+            }
           />
         </div>
       </div>

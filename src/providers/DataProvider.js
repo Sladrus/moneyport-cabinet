@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { DataContext } from '../context/context';
 import DataApi from '../http/DataApi';
+import { sendMetric } from '../utils/sendMetric';
 
 const DataProvider = ({ children }) => {
   const [chat, setChat] = useState(null);
@@ -59,7 +60,7 @@ const DataProvider = ({ children }) => {
     // return data;
   };
 
-  const getChat = async () => {
+  const getChat = async (type) => {
     if (chat) return;
     setChatLoading(true);
     const data = await DataApi.getChat();

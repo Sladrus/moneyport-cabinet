@@ -47,7 +47,16 @@ const HomeMenuItemButton = ({
             gap: '24px',
           }}
         >
-          <div onClick={onClick} className="home-menu-item-logo">
+          <div
+            onClick={() => {
+              if (!open) {
+                setSelectedSubItem({ id: 1, title: 'Перевод физ. лицу' });
+                setSelectedMenuItem(3);
+                onClick(id, path);
+              }
+            }}
+            className="home-menu-item-logo"
+          >
             {icon}
           </div>
           {<span>{title}</span>}

@@ -7,9 +7,14 @@
 
   border-bottom: 1px solid var(--tech-grey-border, #f3f4f6);
   /* white-space: nowrap; */
+  transition: background-color 0.2s ease-out;
 }
 
 .history-item:hover {
+  background: var(--tech-grey-border, #f3f4f6);
+}
+
+.history-item:active {
   background: var(--tech-grey-border, #f3f4f6);
 }
 

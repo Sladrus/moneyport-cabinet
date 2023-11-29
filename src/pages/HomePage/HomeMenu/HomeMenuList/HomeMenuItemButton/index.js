@@ -18,7 +18,8 @@ const HomeMenuItemButton = ({
 }) => {
   const [submenuOpen, setSubmenuOpen] = useState(false);
 
-  const { selectedMenuItem, setSelectedMenuItem } = useContext(RouteContext);
+  const { selectedMenuItem, setSelectedMenuItem, setSelectedSubItem } =
+    useContext(RouteContext);
 
   return (
     <div>
@@ -27,8 +28,12 @@ const HomeMenuItemButton = ({
           setSubmenuOpen(!submenuOpen);
           // if (!submenu) setSelectedSubItem(null);
           // else setSelectedSubItem({ id: 1, title: 'Переводы физ. лицу' });
-          setSelectedMenuItem(id);
-          if (!submenu) onClick(id, path);
+
+          if (!submenu) {
+            setSelectedSubItem(null);
+            setSelectedMenuItem(id);
+            onClick(id, path);
+          }
         }}
         className={`home-menu-item-button ${open === true ? 'open' : ''} ${
           selectedMenuItem === id ? 'selected' : ''

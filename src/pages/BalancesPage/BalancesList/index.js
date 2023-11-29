@@ -5,6 +5,7 @@ import { DataContext } from '../../../context/context';
 import BalanceItem from '../../../components/Balances/BalanceItem';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import Spinner from '../../../components/Spinner';
 
 const BalancesList = () => {
   const { balances, balancesLoading, getBalances } = useContext(DataContext);
@@ -24,7 +25,8 @@ const BalancesList = () => {
       <div className={`balances-page-list`}>
         {balancesLoading ? (
           <div className="skeleton">
-            <Skeleton inline count={11} height={68} borderRadius={16} />
+            {/* <Skeleton inline count={11} height={68} borderRadius={16} /> */}
+            <Spinner />
           </div>
         ) : (
           balances?.data?.map(

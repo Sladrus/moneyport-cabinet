@@ -62,7 +62,8 @@ const HistoryList = () => {
     <>
       <div className={`history-page-list`}>
         {historyLoading && !history?.data && (
-          <Skeleton inline count={15} height={72} borderRadius={16} />
+          // <Skeleton inline count={15} height={72} borderRadius={16} />
+          <Spinner />
         )}
         {history?.data?.length ? (
           <>

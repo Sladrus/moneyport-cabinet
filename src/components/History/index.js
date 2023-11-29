@@ -11,6 +11,7 @@ import Skeleton from 'react-loading-skeleton';
 import EmptyHistory from './EmptyHistory';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { HISTORY_ROUTE } from '../../utils/consts';
+import Spinner from '../Spinner';
 
 // const history = [
 //   {
@@ -103,7 +104,8 @@ const History = () => {
       <div className={`history-list ${open ? 'expanded' : 'closed'}`}>
         {shortHistoryLoading ? (
           <div className="skeleton">
-            <Skeleton inline count={5} height={68} borderRadius={16} />
+            {/* <Skeleton inline count={5} height={68} borderRadius={16} /> */}
+            <Spinner />
           </div>
         ) : shortHistory?.data?.length ? (
           shortHistory?.data?.map(

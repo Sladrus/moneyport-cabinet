@@ -9,6 +9,7 @@ import Skeleton from 'react-loading-skeleton';
 import LargeTextButton from '../Buttons/LargeTextButton';
 import { useNavigate } from 'react-router-dom';
 import { BALANCES_ROUTE } from '../../utils/consts';
+import Spinner from '../Spinner';
 
 const Balances = () => {
   const [open, setOpen] = useState(true);
@@ -19,7 +20,7 @@ const Balances = () => {
 
   useEffect(() => {
     getShortBalances({ type: 'short' });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleClick = () => {
@@ -45,7 +46,8 @@ const Balances = () => {
       </div>
       <div className="skeleton">
         {shortBalancesLoading ? (
-          <Skeleton inline count={3} height={68} borderRadius={16} />
+          // <Skeleton inline count={3} height={68} borderRadius={16} />
+          <Spinner />
         ) : (
           shortBalances?.data?.map(
             ({ id, title, amount, code, sign }, index) => {

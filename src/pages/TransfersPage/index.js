@@ -56,10 +56,10 @@ const TransfersPage = () => {
   return (
     <div className="transfers-page">
       {chatLoading ? (
-        <div className="transfers-page-loading">
-          <Spinner />
-        </div>
+        // <div className="transfers-page-loading">
+        <Spinner />
       ) : (
+        // </div>
         <div className="transfers-page-content">
           <div style={{ padding: '0 24px' }}>
             <Breadcrumbs />

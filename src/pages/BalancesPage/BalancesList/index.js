@@ -33,6 +33,7 @@ const BalancesList = () => {
             ({ id, title, amount, icon, code, sign }, index) => {
               return (
                 <BalanceItem
+                  open={true}
                   key={index}
                   title={title}
                   amount={amount}

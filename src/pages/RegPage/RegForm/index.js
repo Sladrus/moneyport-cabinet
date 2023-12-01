@@ -40,7 +40,7 @@ const RegForm = ({ className }) => {
     if (!equal) {
       return setErrors({ finalPass: ['Passwords do not match'] });
     }
-    const {  errors } = await onReg({ name, email, phone, password });
+    const { errors } = await onReg({ name, email, phone, password });
     setErrors(errors);
   };
 
@@ -97,7 +97,14 @@ const RegForm = ({ className }) => {
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <CheckBox checked={checked} onChange={() => setChecked(!checked)} />
           <span>
-            Соглашаюсь с <a href={AUTH_ROUTE}>правилами сервиса</a>
+            Соглашаюсь с{' '}
+            <a
+              href={'https://moneyport.ru/policy/'}
+              rel="noreferrer"
+              target="_blank"
+            >
+              правилами сервиса
+            </a>
           </span>
         </div>
         <div
@@ -123,7 +130,9 @@ const RegForm = ({ className }) => {
             <span style={{ paddingRight: '5px' }}>Уже есть аккаунт?</span>
             <LargeTextButton
               value={'Войти'}
-              onClick={() => navigate({ pathname: AUTH_ROUTE, search: location.search })}
+              onClick={() =>
+                navigate({ pathname: AUTH_ROUTE, search: location.search })
+              }
             />
           </div>
         </div>

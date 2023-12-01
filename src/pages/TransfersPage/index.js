@@ -61,8 +61,10 @@ const TransfersPage = () => {
         <div className="transfers-page-error">
           <span>
             Произошла ошибка. Свяжитесь с{' '}
-            <a href={'https://t.me/mpstart'}>https://t.me/mpstart</a> для
-            получения помощи.
+            <a href={'https://t.me/mpstart'} rel="noreferrer" target="_blank">
+              https://t.me/mpstart
+            </a>{' '}
+            для получения помощи.
           </span>
         </div>{' '}
       </div>

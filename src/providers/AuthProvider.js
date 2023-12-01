@@ -21,12 +21,17 @@ const AuthProvider = ({ children }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const setUtmFromSearchParams = (utm) => {
+    if (searchParams.get('searchParam'))
+      localStorage.setItem(utm, searchParams.get(utm));
+  };
+
   const saveUtms = () => {
-    localStorage.setItem('utm_source', searchParams.get('utm_source'));
-    localStorage.setItem('utm_medium', searchParams.get('utm_medium'));
-    localStorage.setItem('utm_campaign', searchParams.get('utm_campaign'));
-    localStorage.setItem('utm_content', searchParams.get('utm_content'));
-    localStorage.setItem('utm_term', searchParams.get('utm_term'));
+    setUtmFromSearchParams('utm_source');
+    setUtmFromSearchParams('utm_medium');
+    setUtmFromSearchParams('utm_campaign');
+    setUtmFromSearchParams('utm_content');
+    setUtmFromSearchParams('utm_term');
   };
 
   const handleLogin = async ({ email, password }) => {

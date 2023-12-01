@@ -69,15 +69,23 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     const utms = {
       source:
-        searchParams.get('utm_source') || localStorage.getItem('utm_source'),
+        searchParams.get('utm_source') ||
+        localStorage.getItem('utm_source') ||
+        '',
       medium:
-        searchParams.get('utm_medium') || localStorage.getItem('utm_medium'),
+        searchParams.get('utm_medium') ||
+        localStorage.getItem('utm_medium') ||
+        '',
       campaign:
         searchParams.get('utm_campaign') ||
-        localStorage.getItem('utm_campaign'),
+        localStorage.getItem('utm_campaign') ||
+        '',
       content:
-        searchParams.get('utm_content') || localStorage.getItem('utm_content'),
-      term: searchParams.get('utm_term') || localStorage.getItem('utm_term'),
+        searchParams.get('utm_content') ||
+        localStorage.getItem('utm_content') ||
+        '',
+      term:
+        searchParams.get('utm_term') || localStorage.getItem('utm_term') || '',
     };
     const data = await AuthApi.register({ name, email, phone, password, utms });
     if (data?.errors || data?.error) {

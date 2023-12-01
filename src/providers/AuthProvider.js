@@ -16,7 +16,8 @@ const AuthProvider = ({ children }) => {
   const [searchParams] = useSearchParams();
 
   useEffect(() => {
-    saveUtms();
+    setUtms();
+    console.log('set utms');
     if (!user) handleCheckAuth();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -26,7 +27,7 @@ const AuthProvider = ({ children }) => {
       localStorage.setItem(utm, searchParams.get(utm));
   };
 
-  const saveUtms = () => {
+  const setUtms = () => {
     setUtmFromSearchParams('utm_source');
     setUtmFromSearchParams('utm_medium');
     setUtmFromSearchParams('utm_campaign');

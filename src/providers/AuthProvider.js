@@ -23,8 +23,7 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   const setUtmFromSearchParams = (utm) => {
-    if (searchParams.get('searchParam'))
-      localStorage.setItem(utm, searchParams.get(utm));
+    if (searchParams.get(utm)) localStorage.setItem(utm, searchParams.get(utm));
   };
 
   const setUtms = () => {

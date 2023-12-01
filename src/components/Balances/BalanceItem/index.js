@@ -19,7 +19,7 @@ const BalanceItem = ({ open, title, amount, icon, code, sign }) => {
       </div>
       <div className="balance-item-right">
         <div className="balance-item-amount">
-          {formatCurrency(amount, code)} {sign}
+          {formatCurrency(Number(amount), code)} {sign}
         </div>
         {/* <div className="balance-item-menu">
           <DotsIcon className="balance-item-menu-icon" />

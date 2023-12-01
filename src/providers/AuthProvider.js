@@ -17,7 +17,7 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     setUtms();
-    if (!user) handleCheckAuth();
+    if (!user && sessionStorage.getItem('token')) handleCheckAuth();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -106,7 +106,6 @@ const AuthProvider = ({ children }) => {
 
   const handleLogout = async () => {
     setLoading(true);
-
     await AuthApi.logout();
     sessionStorage.setItem('token', '');
     sessionStorage.setItem('refresh', '');

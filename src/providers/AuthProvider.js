@@ -16,9 +16,18 @@ const AuthProvider = ({ children }) => {
   const [searchParams] = useSearchParams();
 
   useEffect(() => {
+    saveUtms();
     if (!user) handleCheckAuth();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const saveUtms = () => {
+    localStorage.setItem('utm_source', searchParams.get('utm_source'));
+    localStorage.setItem('utm_medium', searchParams.get('utm_medium'));
+    localStorage.setItem('utm_campaign', searchParams.get('utm_campaign'));
+    localStorage.setItem('utm_content', searchParams.get('utm_content'));
+    localStorage.setItem('utm_term', searchParams.get('utm_term'));
+  };
 
   const handleLogin = async ({ email, password }) => {
     setLoading(true);
@@ -54,13 +63,17 @@ const AuthProvider = ({ children }) => {
   const handleRegistration = async ({ name, email, phone, password }) => {
     setLoading(true);
     const utms = {
-      source: searchParams.get('utm_source'),
-      medium: searchParams.get('utm_medium'),
-      campaign: searchParams.get('utm_campaign'),
-      content: searchParams.get('utm_content'),
-      term: searchParams.get('utm_term'),
+      source:
+        searchParams.get('utm_source') || localStorage.getItem('utm_source'),
+      medium:
+        searchParams.get('utm_medium') || localStorage.getItem('utm_medium'),
+      campaign:
+        searchParams.get('utm_campaign') ||
+        localStorage.getItem('utm_campaign'),
+      content:
+        searchParams.get('utm_content') || localStorage.getItem('utm_content'),
+      term: searchParams.get('utm_term') || localStorage.getItem('utm_term'),
     };
-    console.log({ name, email, phone, password, utms });
     const data = await AuthApi.register({ name, email, phone, password, utms });
     if (data?.errors || data?.error) {
       setLoading(false);

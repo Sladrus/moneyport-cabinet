@@ -60,6 +60,7 @@ const AuthProvider = ({ children }) => {
       content: searchParams.get('utm_content'),
       term: searchParams.get('utm_term'),
     };
+    console.log({ name, email, phone, password, utms });
     const data = await AuthApi.register({ name, email, phone, password, utms });
     if (data?.errors || data?.error) {
       setLoading(false);

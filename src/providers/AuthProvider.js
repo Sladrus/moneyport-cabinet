@@ -106,7 +106,7 @@ const AuthProvider = ({ children }) => {
 
   const handleLogout = async () => {
     setLoading(true);
-    await AuthApi.logout();
+    AuthApi.logout();
     sessionStorage.setItem('token', '');
     sessionStorage.setItem('refresh', '');
     setUser(null);

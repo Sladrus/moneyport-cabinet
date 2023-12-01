@@ -20,13 +20,14 @@ class AuthApi {
     }
   }
 
-  async register({ name, email, phone, password }) {
+  async register({ name, email, phone, password, utms }) {
     try {
       const response = await authBase.post('/register', {
         name,
         email,
         phone,
         password,
+        utms,
       });
       return response.data;
     } catch (e) {

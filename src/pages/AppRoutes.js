@@ -62,7 +62,7 @@ const AppRoutes = () => {
                 })}
                 <Route
                   path="*"
-                  element={<Navigate to={AUTH_ROUTE} replace />}
+                  element={<Navigate to={AUTH_ROUTE} replace />} //поменять
                 />
               </Routes>
               <NotAuthRoute>

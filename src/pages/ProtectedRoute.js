@@ -8,7 +8,7 @@ const ProtectedRoute = ({ children }) => {
   const location = useLocation();
 
   if (!user) {
-    return <Navigate to={AUTH_ROUTE} replace state={{ from: location }} />;
+    return <Navigate to={AUTH_ROUTE} replace state={{ from: location }} />; //поменять
   }
   return children;
 };

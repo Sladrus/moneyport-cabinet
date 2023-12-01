@@ -16,6 +16,23 @@ const ExchangePage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  if (chat?.error) {
+    return (
+      <div className="exchange-page">
+        <div style={{ padding: '0 24px' }}>
+          <Breadcrumbs />
+        </div>
+        <div className="exchange-page-error">
+          <span>
+            Произошла ошибка. Свяжитесь с{' '}
+            <a href={'https://t.me/mpstart'}>https://t.me/mpstart</a> для
+            получения помощи.
+          </span>
+        </div>{' '}
+      </div>
+    );
+  }
+
   return (
     <div className="exchange-page">
       <div style={{ padding: '0 24px' }}>

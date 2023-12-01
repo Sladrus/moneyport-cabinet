@@ -17,7 +17,6 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     setUtms();
-    console.log('set utms');
     if (!user) handleCheckAuth();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

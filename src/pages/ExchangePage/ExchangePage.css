@@ -6,6 +6,15 @@
   gap: 24px;
 }
 
+.exchange-page-error {
+  width: 100%;
+  margin: auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .exchange-page-loading {
   width: 100%;
   display: flex;

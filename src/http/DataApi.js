@@ -29,6 +29,7 @@ class DataApi {
       return response.data;
     } catch (e) {
       console.log(e);
+      return e.response.data;
     }
   }
 }

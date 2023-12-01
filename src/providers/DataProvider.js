@@ -64,10 +64,14 @@ const DataProvider = ({ children }) => {
     if (chat) return;
     setChatLoading(true);
     const data = await DataApi.getChat();
+    console.log(data);
+
     if (!data) return setChatLoading(false);
 
     setChat(data);
     setChatLoading(false);
+    console.log(data);
+
     return data;
   };
 

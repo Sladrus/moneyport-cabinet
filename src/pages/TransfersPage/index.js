@@ -52,6 +52,22 @@ const TransfersPage = () => {
     getChat();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  if (chat?.error) {
+    return (
+      <div className="transfers-page">
+        <div style={{ padding: '0 24px' }}>
+          <Breadcrumbs />
+        </div>
+        <div className="transfers-page-error">
+          <span>
+            Произошла ошибка. Свяжитесь с{' '}
+            <a href={'https://t.me/mpstart'}>https://t.me/mpstart</a> для
+            получения помощи.
+          </span>
+        </div>{' '}
+      </div>
+    );
+  }
 
   return (
     <div className="transfers-page">

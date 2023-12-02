@@ -17,15 +17,11 @@ const randomNumberInRange = (min, max) => {
 const RegForm = ({ className }) => {
   const { loading, onReg, isPassEqual } = useContext(AuthContext);
 
-  const [name, setName] = useState('Имя Фамилия Отчество');
-  const [email, setEmail] = useState(
-    `name${randomNumberInRange(1, 1000)}@gmail.com`
-  );
-  const [phone, setPhone] = useState(
-    `8904183${randomNumberInRange(1000, 9999)}`
-  );
-  const [password, setPassword] = useState('1234567890');
-  const [finalPass, setFinalPass] = useState('1234567890');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState(``);
+  const [phone, setPhone] = useState(``);
+  const [password, setPassword] = useState('');
+  const [finalPass, setFinalPass] = useState('');
 
   const [checked, setChecked] = useState(false);
 

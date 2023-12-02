@@ -1,6 +1,6 @@
 //public
 export const AUTH_ROUTE = '/login';
-export const REG_ROUTE = '/registration';
+export const REG_ROUTE = '/register';
 export const RECOVERY_ROUTE = '/pass-recovery';
 export const RESET_ROUTE = '/reset/:token';
 

@@ -17,7 +17,7 @@ const AppBar = () => {
     e.preventDefault();
     let link = chat;
     if (!chat) link = await getChat();
-    window.open(link?.chat_url || 'https://t.me/mpstart', '_blank');
+    window.open(link?.chat_url || 'https://t.me/mpstart');
   };
 
   const handleLogout = async () => {

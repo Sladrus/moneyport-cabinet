@@ -5,7 +5,7 @@ import './ChannelButton.css';
 const ChannelButton = ({ open }) => {
   return (
     <div
-      onClick={() => window.open('https://t.me/moneyport', '_blank')}
+      onClick={() => window.open('https://t.me/moneyport')}
       className={`channel-button ${open === true ? 'open' : ''}`}
     >
       <div className="channel-button-icon">

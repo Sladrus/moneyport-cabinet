@@ -21,8 +21,8 @@ const ResetPasswordPage = () => {
   const { token } = useParams();
 
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('1234567890');
-  const [finalPass, setFinalPass] = useState('1234567890');
+  const [password, setPassword] = useState('');
+  const [finalPass, setFinalPass] = useState('');
 
   const [errors, setErrors] = useState(null);
   const [isComplete, setComplete] = useState(false);
@@ -47,7 +47,7 @@ const ResetPasswordPage = () => {
       setErrors(errors);
       setComplete(result);
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

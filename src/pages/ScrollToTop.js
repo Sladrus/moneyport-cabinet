@@ -6,7 +6,6 @@ const ScrollToTop = () => {
 
   useLayoutEffect(() => {
     document.getElementsByClassName('wrapper-scroll')[0].scrollTo(0, 0);
-    console.log('scroll');
   }, [location.pathname]);
 };
 

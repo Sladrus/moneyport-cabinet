@@ -17,7 +17,7 @@ const RecoveryPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [email, setEmail] = useState('yakov.ufimkin@gmail.com');
+  const [email, setEmail] = useState('');
   const [isComplete, setComplete] = useState(false);
   const [errors, setErrors] = useState(null);
 
@@ -33,7 +33,9 @@ const RecoveryPage = () => {
         <div style={{ display: 'flex', alignItems: 'center', gap: '32px' }}>
           <ArrowLeft
             style={{ cursor: 'pointer' }}
-            onClick={() => navigate({ pathname: AUTH_ROUTE, search: location.search })}
+            onClick={() =>
+              navigate({ pathname: AUTH_ROUTE, search: location.search })
+            }
           />
           <Logo className="logo" />
         </div>
@@ -41,7 +43,9 @@ const RecoveryPage = () => {
           <span style={{ paddingRight: '5px' }}>Еще нет аккаунта?</span>
           <LargeTextButton
             value={'Зарегистрироваться'}
-            onClick={() => navigate({ pathname: REG_ROUTE, search: location.search })}
+            onClick={() =>
+              navigate({ pathname: REG_ROUTE, search: location.search })
+            }
           />
         </div>
       </div>
@@ -107,7 +111,9 @@ const RecoveryPage = () => {
               <span style={{ paddingRight: '5px' }}>Еще нет аккаунта?</span>
               <LargeTextButton
                 value={'Зарегистрироваться'}
-                onClick={() => navigate({ pathname: REG_ROUTE, search: location.search })}
+                onClick={() =>
+                  navigate({ pathname: REG_ROUTE, search: location.search })
+                }
               />
             </div>
           </form>

@@ -90,7 +90,7 @@ const ResetPasswordPage = () => {
               <TextInput
                 value={password}
                 errors={errors?.password}
-                placeholder={'E-mail'}
+                placeholder={'Пароль'}
                 type="password"
                 onClick={() => setErrors(null)}
                 onChange={(e) => setPassword(e.target.value)}
@@ -99,7 +99,7 @@ const ResetPasswordPage = () => {
               <TextInput
                 value={finalPass}
                 errors={errors?.finalPass}
-                placeholder={'E-mail'}
+                placeholder={'Пароль еще раз'}
                 type="password"
                 onClick={() => setErrors(null)}
                 onChange={(e) => setFinalPass(e.target.value)}

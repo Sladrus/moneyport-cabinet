@@ -19,7 +19,9 @@ const Header = ({ toogleMenu }) => {
     e.preventDefault();
     let link = chat;
     if (!chat) link = await getChat();
-    window.open(link?.chat_url, '_blank');
+    console.log(link?.chat_url || 'https://t.me/mpstart');
+
+    window.open(link?.chat_url || 'https://t.me/mpstart', '_blank');
   };
 
   const handleLogout = async () => {

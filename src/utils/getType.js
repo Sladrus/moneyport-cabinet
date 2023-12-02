@@ -1,8 +1,8 @@
 export const getType = (type) => {
   if (type === 'in') {
-    return 'Пополнение';
+    return 'Вывод';
   }
   if (type === 'out') {
-    return 'Вывод';
+    return 'Пополнение';
   }
 };

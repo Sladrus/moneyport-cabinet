@@ -135,7 +135,7 @@
   letter-spacing: -0.32px;
 }
 
-.history-item-amount.in {
+.history-item-amount.out {
   color: var(--green-hard, #34b450);
 
   font-family: 'Mulish';
@@ -146,7 +146,7 @@
   letter-spacing: -0.32px;
 }
 
-.history-item-amount.out {
+.history-item-amount.in {
   color: var(--red-hard, #e40034);
 
   font-family: 'Mulish';

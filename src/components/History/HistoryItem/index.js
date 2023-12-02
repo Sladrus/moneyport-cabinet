@@ -9,12 +9,7 @@ import { formatDate } from '../../../utils/formatDate';
 const HistoryItem = ({ amount, code, type, date }) => {
   const currency = getCurrencyTitle(code);
 
-  amount =
-    type === 'in'
-      ? Number(amount) >= 0
-        ? amount
-        : Number(amount) * -1
-      : Number(amount) * -1;
+  amount = Number(amount);
   return (
     <div className="history-item">
       <div className="history-item-logo">{currency?.icon}</div>

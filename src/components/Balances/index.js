@@ -4,7 +4,7 @@ import './Balances.css';
 import BalanceItem from './BalanceItem';
 
 import { ReactComponent as ArrowDownIcon } from '../../assets/icons/arrows/arrow-down.svg';
-import { DataContext, RouteContext } from '../../context/context';
+import { AuthContext, DataContext, RouteContext } from '../../context/context';
 import Skeleton from 'react-loading-skeleton';
 import LargeTextButton from '../Buttons/LargeTextButton';
 import { useNavigate } from 'react-router-dom';
@@ -13,15 +13,16 @@ import Spinner from '../Spinner';
 
 const Balances = () => {
   const [open, setOpen] = useState(true);
+  const { loading } = useContext(AuthContext);
   const { shortBalances, shortBalancesLoading, getShortBalances } =
     useContext(DataContext);
   const { setSelectedMenuItem, location } = useContext(RouteContext);
   const navigate = useNavigate();
 
   useEffect(() => {
-    getShortBalances({ type: 'short' });
+    if (!loading) getShortBalances({ type: 'short' });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [loading]);
 
   const handleClick = () => {
     setSelectedMenuItem(2);

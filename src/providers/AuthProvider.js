@@ -106,12 +106,12 @@ const AuthProvider = ({ children }) => {
 
   const handleLogout = async () => {
     setLoading(true);
-    sessionStorage.removeItem('token');
 
     setUser(null);
     setLoading(false);
     navigate({ pathname: AUTH_ROUTE, search: location.search });
     await AuthApi.logout();
+    sessionStorage.removeItem('token');
   };
 
   const handleCheckAuth = async () => {

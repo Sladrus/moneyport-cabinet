@@ -6,7 +6,7 @@ import { ReactComponent as ArrowDownIcon } from '../../assets/icons/arrows/arrow
 
 import HistoryItem from './HistoryItem';
 import LargeTextButton from '../Buttons/LargeTextButton';
-import { DataContext, RouteContext } from '../../context/context';
+import { AuthContext, DataContext, RouteContext } from '../../context/context';
 import Skeleton from 'react-loading-skeleton';
 import EmptyHistory from './EmptyHistory';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -68,6 +68,8 @@ import Spinner from '../Spinner';
 
 const History = () => {
   const [open, setOpen] = useState(true);
+  const { loading } = useContext(AuthContext);
+
   const { shortHistory, shortHistoryLoading, getShortHistory } =
     useContext(DataContext);
   const { setSelectedMenuItem } = useContext(RouteContext);
@@ -76,9 +78,10 @@ const History = () => {
   const location = useLocation();
 
   useEffect(() => {
-    getShortHistory({ page: 1, limit: 10 });
+    console.log('TYT');
+    if (!loading) getShortHistory({ page: 1, limit: 10 });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [loading]);
 
   const handleClick = () => {
     setSelectedMenuItem(5);

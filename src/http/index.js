@@ -3,12 +3,12 @@ import axios from 'axios';
 axios.defaults.withCredentials = true;
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
+const loading = false;
 
-export const authBase = 
-  axios.create({
-    baseURL: BASE_URL,
-    withCredentials: true,
-  })
+export const authBase = axios.create({
+  baseURL: BASE_URL,
+  withCredentials: true,
+});
 
 authBase.interceptors.request.use(
   (config) => {
@@ -26,6 +26,7 @@ authBase.interceptors.request.use(
 authBase.interceptors.response.use(
   (response) => response,
   async (error) => {
+    // loading = true;
     const originalRequest = error.config;
 
     if (error.response.status === 401 && !originalRequest._retry) {

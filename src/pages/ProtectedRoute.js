@@ -7,9 +7,9 @@ const ProtectedRoute = ({ children }) => {
   const { user } = useContext(AuthContext);
   const location = useLocation();
 
-  if (!user) {
-    return <Navigate to={AUTH_ROUTE} replace state={{ from: location }} />; //поменять
-  }
+  // if (!user) {
+  //   return <Navigate to={AUTH_ROUTE} replace state={{ from: location }} />; //поменять
+  // }
   return children;
 };
 

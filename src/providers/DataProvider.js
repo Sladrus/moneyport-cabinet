@@ -66,7 +66,7 @@ const DataProvider = ({ children }) => {
     const data = await DataApi.getChat();
     console.log(data);
 
-    if (!data) {
+    if (data?.error) {
       setChatLoading(false);
       return;
     }

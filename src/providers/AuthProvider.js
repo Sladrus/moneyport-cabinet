@@ -100,7 +100,7 @@ const AuthProvider = ({ children }) => {
     setUser(data?.user);
     sendMetric('reachGoal', 'firstreg');
     setLoading(false);
-    navigate({ pathname: AUTH_ROUTE, search: location.search });
+    navigate({ pathname: HOME_ROUTE, search: location.search });
     return { result: true, errors: null };
   };
 

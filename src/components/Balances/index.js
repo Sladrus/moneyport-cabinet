@@ -46,7 +46,7 @@ const Balances = () => {
         </div>
       </div>
       <div className={`balances-list`}>
-        {shortBalancesLoading ? (
+        {shortBalancesLoading && loading ? (
           // <Skeleton inline count={3} height={68} borderRadius={16} />
           <Spinner />
         ) : (

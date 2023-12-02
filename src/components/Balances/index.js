@@ -20,9 +20,9 @@ const Balances = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!loading) getShortBalances({ type: 'short' });
+    getShortBalances({ type: 'short' });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loading]);
+  }, []);
 
   const handleClick = () => {
     setSelectedMenuItem(2);
@@ -46,7 +46,7 @@ const Balances = () => {
         </div>
       </div>
       <div className={`balances-list`}>
-        {shortBalancesLoading && loading ? (
+        {shortBalancesLoading ? (
           // <Skeleton inline count={3} height={68} borderRadius={16} />
           <Spinner />
         ) : (

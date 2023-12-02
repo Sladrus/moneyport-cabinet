@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 
 import './BalancesList.css';
-import { DataContext } from '../../../context/context';
+import { AuthContext, DataContext } from '../../../context/context';
 import BalanceItem from '../../../components/Balances/BalanceItem';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
@@ -9,16 +9,15 @@ import Spinner from '../../../components/Spinner';
 
 const BalancesList = () => {
   const { balances, balancesLoading, getBalances } = useContext(DataContext);
+  const { loading } = useContext(AuthContext);
 
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(15);
+  const [limit, setLimit] = useState(25);
 
   useEffect(() => {
-    setPage(1);
-    setLimit(15);
-    getBalances({ limit, page });
+    if (!loading) getBalances({ limit, page });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [loading]);
 
   return (
     <>

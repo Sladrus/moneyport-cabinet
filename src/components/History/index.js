@@ -78,10 +78,9 @@ const History = () => {
   const location = useLocation();
 
   useEffect(() => {
-    console.log('TYT');
-    if (!loading) getShortHistory({ page: 1, limit: 10 });
+   getShortHistory({ page: 1, limit: 10 });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loading]);
+  }, []);
 
   const handleClick = () => {
     setSelectedMenuItem(5);
@@ -105,7 +104,7 @@ const History = () => {
         </div>
       </div>
       <div className={`history-list ${open ? 'expanded' : 'closed'}`}>
-        {shortHistoryLoading && loading ? (
+        {shortHistoryLoading? (
           <div className="skeleton">
             {/* <Skeleton inline count={5} height={68} borderRadius={16} /> */}
             <Spinner />

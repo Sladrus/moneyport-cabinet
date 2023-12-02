@@ -7,7 +7,7 @@ import React, {
 } from 'react';
 
 import './HistoryList.css';
-import { DataContext } from '../../../context/context';
+import { AuthContext, DataContext } from '../../../context/context';
 import HistoryItem from '../../../components/History/HistoryItem';
 import Skeleton from 'react-loading-skeleton';
 import EmptyHistory from '../../../components/History/EmptyHistory';
@@ -16,6 +16,7 @@ import Spinner from '../../../components/Spinner';
 const HistoryList = () => {
   const { history, setHistoryLoading, setHistory, historyLoading, getHistory } =
     useContext(DataContext);
+    const { loading } = useContext(AuthContext);
 
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(20);

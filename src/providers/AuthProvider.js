@@ -141,7 +141,8 @@ const AuthProvider = ({ children }) => {
 
     setUser(user);
     setLoading(false);
-    navigate({ pathname: HOME_ROUTE, search: location.search });
+    if (location.pathname === AUTH_ROUTE)
+      navigate({ pathname: HOME_ROUTE, search: location.search });
   };
 
   const handleRecoveryPass = async ({ email }) => {

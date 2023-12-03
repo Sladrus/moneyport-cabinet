@@ -26,7 +26,7 @@ const RecoveryPage = () => {
     setComplete(result);
     setErrors(errors);
   };
-
+  console.log(isComplete);
   return (
     <div className="recovery-page">
       <div className="recovery-page-header">
@@ -78,7 +78,13 @@ const RecoveryPage = () => {
         </div>
       ) : (
         <>
-          <form className="recovery-page-form">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleRecovery();
+            }}
+            className="recovery-page-form"
+          >
             <span className="recovery-page-form-title">
               Восстановление пароля
             </span>
@@ -101,6 +107,7 @@ const RecoveryPage = () => {
                 // disabled={loading}
               />
               <LargeButton
+                type="submit"
                 text={'Продолжить'}
                 variant="standart"
                 onClick={() => handleRecovery()}
@@ -111,9 +118,9 @@ const RecoveryPage = () => {
               <span style={{ paddingRight: '5px' }}>Еще нет аккаунта?</span>
               <LargeTextButton
                 value={'Зарегистрироваться'}
-                onClick={() =>
-                  navigate({ pathname: REG_ROUTE, search: location.search })
-                }
+                onClick={() => {
+                  navigate({ pathname: REG_ROUTE, search: location.search });
+                }}
               />
             </div>
           </form>

@@ -17,7 +17,8 @@ const AuthForm = ({ className }) => {
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState(null);
 
-  const handleLogin = async () => {
+  const handleLogin = async (e) => {
+    e.preventDefault();
     const { errors } = await onLogin({ email, password });
     setErrors(errors);
   };
@@ -28,7 +29,7 @@ const AuthForm = ({ className }) => {
   return (
     <div className={className}>
       <Logo className="logo" />
-      <form>
+      <form onSubmit={handleLogin}>
         <TextInput
           value={email}
           errors={errors?.email}
@@ -75,9 +76,10 @@ const AuthForm = ({ className }) => {
           }}
         >
           <LargeButton
+            type="submit"
             text={'Авторизация'}
             variant="standart"
-            onClick={() => handleLogin()}
+            // onClick={() => handleLogin()}
             loading={loading}
           />
 

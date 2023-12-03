@@ -1,5 +1,5 @@
 .large-button.standart {
-  width: calc(100% - 64px);
+  width: 100%;
 
   display: inline-flex;
   padding: 14px 32px;

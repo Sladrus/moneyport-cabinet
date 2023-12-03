@@ -72,11 +72,7 @@ const HistoryList = () => {
                 );
               }
             )}
-            {historyLoading && page <= history?.last_page && (
-              <div style={{ width: '100%', paddingBottom: '50px' }}>
-                <Spinner />
-              </div>
-            )}
+            {historyLoading && page <= history?.last_page && <Spinner />}
           </>
         ) : (
           !historyLoading && <EmptyHistory />

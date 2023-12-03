@@ -6,12 +6,14 @@ const LargeButton = ({
   type,
   text,
   onClick,
+  onKeyDown,
   disabled,
   variant = 'standart',
   loading,
 }) => {
   return (
-    <div
+    <button
+      onKeyDown={onKeyDown}
       type={type}
       className={`large-button ${variant} ${disabled && 'disabled'}`}
       onClick={!disabled ? onClick : () => null}
@@ -21,7 +23,7 @@ const LargeButton = ({
       >
         {!loading ? text : <Loader className="spinner" />}
       </span>
-    </div>
+    </button>
   );
 };
 

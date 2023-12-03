@@ -13,15 +13,16 @@ const HistoryList = () => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(20);
 
-  const listRef = useRef(null);
+  const historyListRef = useRef(null);
 
   useEffect(() => {
     setHistoryLoading(true);
   }, []);
 
   useEffect(() => {
-    if (listRef.current) {
-      listRef.current.scrollTop = listRef.current.scrollHeight - 50;
+    if (historyLoading && historyListRef.current) {
+      const list = historyListRef.current;
+      list.scrollTo(0, list.scrollHeight);
     }
   }, [historyLoading]);
 
@@ -53,13 +54,12 @@ const HistoryList = () => {
     if (!target) return;
     if (target.scrollHeight - (target.scrollTop + window.innerHeight) < 100) {
       setHistoryLoading(true);
-      listRef.current.scrollTop = listRef.current.scrollHeight;
     }
   };
 
   return (
     <>
-      <div className={`history-page-list`} ref={listRef}>
+      <div className={`history-page-list`} ref={historyListRef}>
         {historyLoading && !history?.data?.length ? (
           <Spinner />
         ) : history?.data?.length ? (

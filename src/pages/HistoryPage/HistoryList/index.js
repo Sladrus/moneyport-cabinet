@@ -1,32 +1,31 @@
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 
 import './HistoryList.css';
-import { AuthContext, DataContext } from '../../../context/context';
+import { DataContext } from '../../../context/context';
 import HistoryItem from '../../../components/History/HistoryItem';
-import Skeleton from 'react-loading-skeleton';
 import EmptyHistory from '../../../components/History/EmptyHistory';
 import Spinner from '../../../components/Spinner';
 
 const HistoryList = () => {
-  const { history, setHistoryLoading, setHistory, historyLoading, getHistory } =
+  const { history, setHistoryLoading, historyLoading, getHistory } =
     useContext(DataContext);
 
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(20);
 
+  const listRef = useRef(null);
+
   useEffect(() => {
     setHistoryLoading(true);
-    // setHistory(null);
   }, []);
 
   useEffect(() => {
-    // if (page === 1) setHistory(null);
+    if (listRef.current) {
+      listRef.current.scrollTop = listRef.current.scrollHeight;
+    }
+  }, [historyLoading]);
+
+  useEffect(() => {
     if (historyLoading) {
       getHistory({ page, limit }).then((data) => {
         setPage((prev) => prev + 1);
@@ -57,10 +56,10 @@ const HistoryList = () => {
       setHistoryLoading(true);
     }
   };
-  console.log(history?.data);
+
   return (
     <>
-      <div className={`history-page-list`}>
+      <div className={`history-page-list`} ref={listRef}>
         {historyLoading && !history?.data?.length ? (
           <Spinner />
         ) : history?.data?.length ? (

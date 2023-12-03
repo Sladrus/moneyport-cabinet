@@ -20,13 +20,6 @@ const HistoryList = () => {
   }, []);
 
   useEffect(() => {
-    if (historyLoading && historyListRef.current) {
-      const list = historyListRef.current;
-      list.scrollTo(0, list.scrollHeight);
-    }
-  }, [historyLoading]);
-
-  useEffect(() => {
     if (historyLoading) {
       getHistory({ page, limit }).then((data) => {
         setPage((prev) => prev + 1);
@@ -79,7 +72,11 @@ const HistoryList = () => {
                 );
               }
             )}
-            {historyLoading && page <= history?.last_page && <Spinner />}
+            {historyLoading && page <= history?.last_page && (
+              <div style={{ width: '100%', paddingBottom: '50px' }}>
+                <Spinner />
+              </div>
+            )}
           </>
         ) : (
           !historyLoading && <EmptyHistory />

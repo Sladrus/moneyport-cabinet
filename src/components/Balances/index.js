@@ -46,8 +46,7 @@ const Balances = () => {
         </div>
       </div>
       <div className={`balances-list`}>
-        {shortBalancesLoading ? (
-          // <Skeleton inline count={3} height={68} borderRadius={16} />
+        {shortBalancesLoading && !shortBalances?.data?.length ? (
           <Spinner />
         ) : (
           shortBalances?.data?.map(

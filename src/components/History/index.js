@@ -78,7 +78,7 @@ const History = () => {
   const location = useLocation();
 
   useEffect(() => {
-   getShortHistory({ page: 1, limit: 10 });
+    getShortHistory({ page: 1, limit: 10 });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -104,7 +104,7 @@ const History = () => {
         </div>
       </div>
       <div className={`history-list ${open ? 'expanded' : 'closed'}`}>
-        {shortHistoryLoading? (
+        {shortHistoryLoading && !shortHistory?.data?.length ? (
           <div className="skeleton">
             {/* <Skeleton inline count={5} height={68} borderRadius={16} /> */}
             <Spinner />

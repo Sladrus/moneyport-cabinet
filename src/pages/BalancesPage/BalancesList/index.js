@@ -9,20 +9,19 @@ import Spinner from '../../../components/Spinner';
 
 const BalancesList = () => {
   const { balances, balancesLoading, getBalances } = useContext(DataContext);
-  const { loading } = useContext(AuthContext);
 
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(25);
 
   useEffect(() => {
-    if (!loading) getBalances({ limit, page });
+    getBalances({ limit, page });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loading]);
+  }, []);
 
   return (
     <>
       <div className={`balances-page-list`}>
-        {balancesLoading ? (
+        {balancesLoading && !balances?.data?.length ? (
           <div className="skeleton">
             {/* <Skeleton inline count={11} height={68} borderRadius={16} /> */}
             <Spinner />

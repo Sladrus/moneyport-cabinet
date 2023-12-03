@@ -41,7 +41,7 @@ const DataProvider = ({ children }) => {
     setHistoryLoading(true);
     const data = await DataApi.getHistory({ page, limit });
     if (!data) return setHistoryLoading(false);
-    if (history) {
+    if (history && page !== 1) {
       setHistory({ ...history, data: [...history.data, ...data.data] });
     } else {
       setHistory(data);

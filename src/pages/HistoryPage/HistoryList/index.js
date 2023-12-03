@@ -16,18 +16,17 @@ import Spinner from '../../../components/Spinner';
 const HistoryList = () => {
   const { history, setHistoryLoading, setHistory, historyLoading, getHistory } =
     useContext(DataContext);
-    const { loading } = useContext(AuthContext);
 
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(20);
-  const loader = useRef(null);
 
   useEffect(() => {
-    setHistory(null);
     setHistoryLoading(true);
+    // setHistory(null);
   }, []);
 
   useEffect(() => {
+    // if (page === 1) setHistory(null);
     if (historyLoading) {
       getHistory({ page, limit }).then((data) => {
         setPage((prev) => prev + 1);
@@ -58,15 +57,13 @@ const HistoryList = () => {
       setHistoryLoading(true);
     }
   };
-
+  console.log(history?.data);
   return (
     <>
       <div className={`history-page-list`}>
-        {historyLoading && !history?.data && (
-          // <Skeleton inline count={15} height={72} borderRadius={16} />
+        {historyLoading && !history?.data?.length ? (
           <Spinner />
-        )}
-        {history?.data?.length ? (
+        ) : history?.data?.length ? (
           <>
             {history?.data?.map(
               ({ id, title, val, icon, symbol, type, create_date }) => {

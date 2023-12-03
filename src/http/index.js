@@ -58,7 +58,6 @@ authBase.interceptors.response.use(
         if (!refreshingFunc) refreshingFunc = refreshToken();
 
         const { access_token, refresh_token } = await refreshingFunc;
-        console.log({ access_token, refresh_token });
 
         sessionStorage.setItem('token', access_token);
         sessionStorage.setItem('refresh', refresh_token);

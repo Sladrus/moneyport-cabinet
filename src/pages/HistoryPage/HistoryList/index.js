@@ -52,8 +52,8 @@ const HistoryList = () => {
 
     if (!target) return;
     if (target.scrollHeight - (target.scrollTop + window.innerHeight) < 100) {
-      // if (history?.last_page === page) return;
       setHistoryLoading(true);
+      listRef.current.scrollTop = listRef.current.scrollHeight;
     }
   };
 

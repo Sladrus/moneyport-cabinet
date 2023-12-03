@@ -54,14 +54,16 @@ authBase.interceptors.response.use(
       try {
         if (!refreshingFunc) refreshingFunc = refreshToken();
 
-        const { access_token } = await refreshingFunc;
+        const { access_token, refresh_token } = await refreshingFunc;
+        console.log({ access_token, refresh_token });
 
         sessionStorage.setItem('token', access_token);
+        sessionStorage.setItem('refresh', refresh_token);
 
         originalRequest.headers.Authorization = `Bearer ${access_token}`;
 
         try {
-          return await axios.request(originalRequest);
+          return axios(originalRequest);
         } catch (innerError) {
           if (isUnauthorizedError(innerError)) {
             throw innerError;
@@ -69,7 +71,8 @@ authBase.interceptors.response.use(
         }
       } catch (error) {
         sessionStorage.removeItem('token');
-        console.log(error);
+
+        window.location = `${window.location.origin}/login`;
       } finally {
         refreshingFunc = undefined;
       }

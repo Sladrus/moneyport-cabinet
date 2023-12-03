@@ -115,6 +115,7 @@ const AuthProvider = ({ children }) => {
   };
 
   const handleCheckAuth = async () => {
+    if (!sessionStorage.getItem('token')) return;
     setLoading(true);
     const user = await AuthApi.checkAuth();
     if (!user) {

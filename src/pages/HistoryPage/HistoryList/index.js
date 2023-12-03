@@ -21,7 +21,7 @@ const HistoryList = () => {
 
   useEffect(() => {
     if (listRef.current) {
-      listRef.current.scrollTop = listRef.current.scrollHeight;
+      listRef.current.scrollTop = listRef.current.scrollHeight - 100;
     }
   }, [historyLoading]);
 

@@ -13,6 +13,7 @@ import History from '../../../components/History';
 import { EXCHANGE_ROUTE, TRANSFERS_ROUTE } from '../../../utils/consts';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext, RouteContext } from '../../../context/context';
+import { sendMetric } from '../../../utils/sendMetric';
 
 const items = [
   {
@@ -21,6 +22,7 @@ const items = [
     subtitle: 'SWIFT, SEPA',
     Icon: <BillListIcon className="send-type-button-icon" />,
     path: TRANSFERS_ROUTE,
+    type: 'click_perevod_ur',
   },
   {
     id: 3,
@@ -28,6 +30,7 @@ const items = [
     subtitle: 'Возврат валютной выручки в Россию',
     Icon: <MoneyBagIcon className="send-type-button-icon" />,
     path: TRANSFERS_ROUTE,
+    type: 'click_perevod_priem_from_abroad',
   },
   {
     id: 4,
@@ -35,6 +38,7 @@ const items = [
     subtitle: 'В 35 городах мира',
     Icon: <WalletIcon className="send-type-button-icon" />,
     path: TRANSFERS_ROUTE,
+    type: 'click_perevod_cash',
   },
   {
     id: 5,
@@ -42,6 +46,7 @@ const items = [
     subtitle: 'USDT, BTC, ETF и другие',
     Icon: <BitcoinIcon className="send-type-button-icon" />,
     path: EXCHANGE_ROUTE,
+    type: 'click_cryptoexchange',
   },
   {
     id: 1,
@@ -49,6 +54,7 @@ const items = [
     subtitle: 'PayPal, Zelle, Wise, Revolut, Сбербанк, Тинькофф',
     Icon: <UserIcon className="send-type-button-icon" />,
     path: TRANSFERS_ROUTE,
+    type: 'click_perevod_fiz',
   },
 ];
 
@@ -59,7 +65,8 @@ const HomeContent = () => {
 
   const navigate = useNavigate();
 
-  const handleClick = (id, title, path) => {
+  const handleClick = (id, title, path, type) => {
+    sendMetric('reachGoal', type);
     if (path === TRANSFERS_ROUTE) {
       setSelectedMenuItem(3);
       setSelectedSubItem({ id, title });
@@ -76,14 +83,14 @@ const HomeContent = () => {
         <span className="home-page-content-head">Главная</span>
       </div>
       <div className="home-page-content-send-list">
-        {items.map(({ id, title, subtitle, Icon, path }) => {
+        {items.map(({ id, title, subtitle, Icon, path, type }) => {
           return (
             <SendTypeButton
               key={id}
               title={title}
               subtitle={subtitle}
               icon={Icon}
-              onClick={() => handleClick(id, title, path)}
+              onClick={() => handleClick(id, title, path, type)}
             />
           );
         })}

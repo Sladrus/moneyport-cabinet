@@ -19,7 +19,7 @@ const PreOrderCompanyContent = () => {
   const handleClick = () => {
     sendMetric('reachGoal', 'click_perevod_ur_start');
     setOrder({ amount, currency, type: 'company', id: 2 });
-    getChat(amount, currency, 'company');
+    getChat('lk',amount, currency, 'company');
   };
 
   return (

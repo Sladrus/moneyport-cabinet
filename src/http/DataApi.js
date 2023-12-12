@@ -23,10 +23,10 @@ class DataApi {
     }
   }
 
-  async getChat( amount = null, currency, type ) {
+  async getChat(source, amount = null, currency, type) {
     try {
       const response = await authBase.get(
-        `/chat?source=lk&amount=${amount || null}&currency=${
+        `/chat?source=${source}&amount=${amount || null}&currency=${
           currency || null
         }&type=${type || null}`
       );

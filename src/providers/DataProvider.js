@@ -60,10 +60,15 @@ const DataProvider = ({ children }) => {
     // return data;
   };
 
-  const getChat = async (amount = null, currency = null, type = null) => {
+  const getChat = async (
+    source = 'lk',
+    amount = null,
+    currency = null,
+    type = null
+  ) => {
     if (chat) return;
     setChatLoading(true);
-    const data = await DataApi.getChat(amount, currency, type);
+    const data = await DataApi.getChat(source, amount, currency, type);
 
     // if (data?.error) {
     //   setChatLoading(false);

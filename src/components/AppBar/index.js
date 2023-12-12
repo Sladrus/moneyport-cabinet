@@ -16,7 +16,7 @@ const AppBar = () => {
   const handleHelp = async (e) => {
     e.preventDefault();
     let link = chat;
-    if (!chat) link = await getChat();
+    if (!chat) link = await getChat('headbtn');
     window.open(link?.chat_url || 'https://t.me/mpstart');
   };
 

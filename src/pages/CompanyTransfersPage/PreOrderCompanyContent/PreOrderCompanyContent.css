@@ -60,7 +60,7 @@
   text-align: right;
 }
 
-@media (max-width: 430px) {
+@media (max-width: 945px) {
   .company-page-order {
     gap: 32px;
   }

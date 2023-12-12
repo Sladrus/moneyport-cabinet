@@ -60,7 +60,7 @@
   width: 190px;
 }
 
-@media (max-width: 430px) {
+@media (max-width: 945px) {
   .physical-page-order {
     gap: 32px;
   }

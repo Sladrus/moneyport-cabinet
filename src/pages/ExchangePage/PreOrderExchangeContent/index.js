@@ -9,6 +9,7 @@ import { DataContext } from '../../../context/context';
 import TextInput from '../../../components/TextInput';
 import TextSelect from '../../../components/TextSelect';
 import { currencies } from '../../../utils/currencies';
+import { sendMetric } from '../../../utils/sendMetric';
 
 const PreOrderExchangeContent = () => {
   const { chat, setOrder, getChat } = useContext(DataContext);
@@ -16,8 +17,9 @@ const PreOrderExchangeContent = () => {
   const [currency, setCurrency] = useState('USD');
 
   const handleClick = () => {
-    setOrder({ amount, currency: 'RUB', id: 5 });
-    getChat();
+    sendMetric('reachGoal', 'click_cryptoexchange_start');
+    setOrder({ amount, currency, type: 'exchange', id: 5 });
+    getChat({ amount, currency });
   };
 
   return (

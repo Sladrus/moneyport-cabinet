@@ -9,6 +9,7 @@ import { DataContext } from '../../../context/context';
 import TextInput from '../../../components/TextInput';
 import TextSelect from '../../../components/TextSelect';
 import { currencies } from '../../../utils/currencies';
+import { sendMetric } from '../../../utils/sendMetric';
 
 const PreOrderFromAbroadContent = () => {
   const { chat, setOrder, getChat } = useContext(DataContext);
@@ -16,8 +17,9 @@ const PreOrderFromAbroadContent = () => {
   const [currency, setCurrency] = useState('USD');
 
   const handleClick = () => {
-    setOrder({ amount, currency: 'RUB', id: 3 });
-    getChat();
+    sendMetric('reachGoal', 'click_perevod_priem_from_abroad_start');
+    setOrder({ amount, currency,type: 'from_abroad', id: 3 });
+    getChat({amount, currency});
   };
   return (
     <div className="reception-page-order">

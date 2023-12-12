@@ -62,7 +62,7 @@
   text-align: right;
 }
 
-@media (max-width: 430px) {
+@media (max-width: 945px) {
   .cash-page-order {
     gap: 32px;
   }

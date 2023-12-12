@@ -21,8 +21,6 @@ const DataProvider = ({ children }) => {
   const [history, setHistory] = useState(null);
   const [historyLoading, setHistoryLoading] = useState(false);
 
-  useEffect(() => {}, []);
-
   const getBalances = async ({ type, limit, page }) => {
     setBalancesLoading(true);
     const data = await DataApi.getBalances({ type, limit, page });
@@ -62,10 +60,10 @@ const DataProvider = ({ children }) => {
     // return data;
   };
 
-  const getChat = async (type) => {
+  const getChat = async ({ amount, currency, type }) => {
     if (chat) return;
     setChatLoading(true);
-    const data = await DataApi.getChat();
+    const data = await DataApi.getChat({ amount, currency, type });
 
     // if (data?.error) {
     //   setChatLoading(false);

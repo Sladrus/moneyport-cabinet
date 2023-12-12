@@ -9,6 +9,7 @@ import { DataContext } from '../../../context/context';
 import TextInput from '../../../components/TextInput';
 import TextSelect from '../../../components/TextSelect';
 import { currencies } from '../../../utils/currencies';
+import { sendMetric } from '../../../utils/sendMetric';
 
 const PreOrderCashContent = () => {
   const { chat, setOrder, getChat } = useContext(DataContext);
@@ -16,8 +17,9 @@ const PreOrderCashContent = () => {
   const [currency, setCurrency] = useState('USD');
 
   const handleClick = () => {
-    setOrder({ amount, currency: 'RUB', id: 4 });
-    getChat();
+    sendMetric('reachGoal', 'click_perevod_cash_start');
+    setOrder({ amount, currency, type: 'cash', id: 4 });
+    getChat({ amount, currency });
   };
 
   return (

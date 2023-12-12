@@ -53,13 +53,15 @@ const tabs = [
 ];
 
 const TransfersPage = () => {
-  const { setSelectedSubItem, selectedSubItem } = useContext(RouteContext);
-  const { order, chat, chatLoading, getChat } = useContext(DataContext);
+  const { setSelectedSubItem, selectedSubItem, selectedMenuItem } =
+    useContext(RouteContext);
+  const { order, setOrder, chat, chatLoading, getChat } =
+    useContext(DataContext);
 
-  // useEffect(() => {
-  //   if (order) getChat();
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [order]);
+  useEffect(() => {
+    setOrder();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedSubItem]);
 
   useEffect(() => {
     if (!selectedSubItem) {

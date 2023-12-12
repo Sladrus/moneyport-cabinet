@@ -23,9 +23,11 @@ class DataApi {
     }
   }
 
-  async getChat() {
+  async getChat({ amount, currency,type }) {
     try {
-      const response = await authBase.get('/chat?source=lk');
+      const response = await authBase.get(
+        `/chat?source=lk&amount=${amount}&currency=${currency}&type=${type}`
+      );
       return response.data;
     } catch (e) {
       console.log(e);

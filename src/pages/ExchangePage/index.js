@@ -3,7 +3,7 @@ import React, { useContext, useEffect } from 'react';
 import './ExchangePage.css';
 import LargeButton from '../../components/Buttons/LargeButton';
 import Breadcrumbs from '../../components/Breadcrumbs';
-import { DataContext } from '../../context/context';
+import { DataContext, RouteContext } from '../../context/context';
 import { openInNewTab } from '../../utils/window';
 import QRCode from 'react-qr-code';
 import Spinner from '../../components/Spinner';
@@ -12,6 +12,12 @@ import PreOrderExchangeContent from './PreOrderExchangeContent';
 const ExchangePage = () => {
   const { order, setOrder, chat, chatLoading, getChat } =
     useContext(DataContext);
+  const { selectedMenuItem } = useContext(RouteContext);
+
+  useEffect(() => {
+    setOrder();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedMenuItem]);
 
   if (chat?.error) {
     return (
@@ -37,7 +43,7 @@ const ExchangePage = () => {
       <div style={{ padding: '0 24px' }}>
         <Breadcrumbs />
       </div>
-      {order?.id === 5 ? (
+      {order ? (
         chatLoading ? (
           <div className="exchange-page-loading">
             <Spinner />

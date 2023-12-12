@@ -10,7 +10,7 @@ const TransfersContent = ({ tabs, activeTab }) => {
     <div className="transfers-content">
       {tabs.map(({ id, Component, PreOrderComponent }) => {
         if (activeTab?.id === id)
-          return order?.id === id ? (
+          return order ? (
             <Component key={id} />
           ) : (
             <PreOrderComponent key={id} />

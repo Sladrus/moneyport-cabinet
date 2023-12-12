@@ -14,7 +14,7 @@ import { sendMetric } from '../../../utils/sendMetric';
 const PreOrderExchangeContent = () => {
   const { chat, setOrder, getChat } = useContext(DataContext);
   const [amount, setAmount] = useState(500);
-  const [currency, setCurrency] = useState('USD');
+  const [currency, setCurrency] = useState('USDT');
 
   const handleClick = () => {
     sendMetric('reachGoal', 'click_cryptoexchange_start');

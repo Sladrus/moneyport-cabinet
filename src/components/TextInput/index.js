@@ -27,6 +27,7 @@ const TextInput = ({
         <div
           style={{
             width: '100%',
+            height: '54px',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'start',

@@ -7,14 +7,11 @@ import { DataContext } from '../../context/context';
 import { openInNewTab } from '../../utils/window';
 import QRCode from 'react-qr-code';
 import Spinner from '../../components/Spinner';
+import PreOrderExchangeContent from './PreOrderExchangeContent';
 
 const ExchangePage = () => {
-  const { chat, chatLoading, getChat } = useContext(DataContext);
-
-  useEffect(() => {
-    getChat();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const { order, setOrder, chat, chatLoading, getChat } =
+    useContext(DataContext);
 
   if (chat?.error) {
     return (
@@ -40,13 +37,12 @@ const ExchangePage = () => {
       <div style={{ padding: '0 24px' }}>
         <Breadcrumbs />
       </div>
-
-      {chatLoading ? (
-        <div className="exchange-page-loading">
-          <Spinner />
-        </div>
-      ) : (
-        chat && (
+      {order?.id === 5 ? (
+        chatLoading ? (
+          <div className="exchange-page-loading">
+            <Spinner />
+          </div>
+        ) : (
           <div className="exchange-page-content">
             <div className="exchange-page-content-body">
               <div
@@ -98,6 +94,10 @@ const ExchangePage = () => {
             </div>
           </div>
         )
+      ) : (
+        <div style={{ padding: '0 24px' }}>
+          <PreOrderExchangeContent />
+        </div>
       )}
     </div>
   );

@@ -5,6 +5,8 @@ import { sendMetric } from '../utils/sendMetric';
 
 const DataProvider = ({ children }) => {
   const [chat, setChat] = useState(null);
+  const [order, setOrder] = useState(null);
+
   const [chatLoading, setChatLoading] = useState(false);
 
   const [shortBalances, setShortBalances] = useState(null);
@@ -101,6 +103,8 @@ const DataProvider = ({ children }) => {
     chat,
     getChat,
     clearData,
+    order,
+    setOrder,
   };
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;

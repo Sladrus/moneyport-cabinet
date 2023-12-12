@@ -33,7 +33,7 @@ export const TransferTabs = ({ tabs, activeTab, setActiveTab }) => {
   const [width, setWidth] = useState(0);
 
   useEffect(() => {
-    if (!activeTab.id) return;
+    if (!activeTab?.id) return;
     const activeElement = activeRef?.current;
     setOffset(activeElement?.offsetLeft);
     setWidth(activeElement?.clientWidth);
@@ -47,11 +47,11 @@ export const TransferTabs = ({ tabs, activeTab, setActiveTab }) => {
   return (
     <div className="transfer-tabs">
       <ul className="transfer-tabs-nav">
-        {tabs.map(({ id, title }) => {
+        {tabs?.map(({ id, title }) => {
           return (
             <TransferTabItem
               key={id}
-              ref={activeTab.id === id ? activeRef : none}
+              ref={activeTab?.id === id ? activeRef : none}
               id={id}
               d
               title={title}
@@ -75,24 +75,24 @@ export const TransferTabs = ({ tabs, activeTab, setActiveTab }) => {
         trigger={
           <div>
             <div className="transfer-menu">
-              <span>{activeTab.title}</span>
+              <span>{activeTab?.title}</span>
               <ArrowDownIcon />
             </div>
           </div>
         }
       >
         <div className="transfer-menu-list">
-          {tabs.map(({ id, title }) => {
+          {tabs?.map(({ id, title }) => {
             return (
               <div
                 className={`transfer-menu-item ${
-                  activeTab.id === id ? 'selected' : ''
+                  activeTab?.id === id ? 'selected' : ''
                 }`}
                 key={id}
                 onClick={() => navigateToPage(id, title)}
               >
                 <span>{title}</span>
-                {activeTab.id === id && <CheckIcon />}
+                {activeTab?.id === id && <CheckIcon />}
               </div>
             );
           })}

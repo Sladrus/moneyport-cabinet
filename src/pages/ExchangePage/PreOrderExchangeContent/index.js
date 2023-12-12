@@ -36,7 +36,7 @@ const PreOrderExchangeContent = () => {
             }}
           >
             <div className="exchange-page-content-body-title">
-              <span>Сумма и валюта выдачи</span>
+              <span>Сумма и валюта к обмену</span>
             </div>
             <div className="exchange-page-content-order-body-text">
               <div

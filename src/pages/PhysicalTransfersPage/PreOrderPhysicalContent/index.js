@@ -36,7 +36,7 @@ const PreOrderPhysicalContent = () => {
             }}
           >
             <div className="physical-page-content-body-title">
-              <span>Сумма и валюта выдачи</span>
+              <span>Сумма и валюта перевода</span>
             </div>
             <div className="physical-page-content-order-body-text">
               <div

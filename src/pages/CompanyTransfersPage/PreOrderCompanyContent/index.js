@@ -36,7 +36,7 @@ const PreOrderCompanyContent = () => {
             }}
           >
             <div className="company-page-content-body-title">
-              <span>Сумма и валюта выдачи</span>
+              <span>Сумма и валюта перевода</span>
             </div>
             <div className="company-page-content-order-body-text">
               <div

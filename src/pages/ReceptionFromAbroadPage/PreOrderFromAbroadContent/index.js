@@ -35,7 +35,7 @@ const PreOrderFromAbroadContent = () => {
             }}
           >
             <div className="reception-page-content-body-title">
-              <span>Сумма и валюта выдачи</span>
+              <span>Сумма и валюта к приему</span>
             </div>
             <div className="reception-page-content-order-body-text">
               <div

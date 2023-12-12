@@ -56,10 +56,16 @@ const TransfersPage = () => {
   const { setSelectedSubItem, selectedSubItem } = useContext(RouteContext);
   const { order, chat, chatLoading, getChat } = useContext(DataContext);
 
+  // useEffect(() => {
+  //   if (order) getChat();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [order]);
+
   useEffect(() => {
-    if (order) getChat();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [order]);
+    if (!selectedSubItem) {
+      setSelectedSubItem({ id: 1, title: 'Перевод юр. лицу' });
+    }
+  }, []);
 
   if (chat?.error) {
     return (

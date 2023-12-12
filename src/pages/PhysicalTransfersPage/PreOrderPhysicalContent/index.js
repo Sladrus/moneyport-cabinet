@@ -19,7 +19,7 @@ const PreOrderPhysicalContent = () => {
   const handleClick = () => {
     sendMetric('reachGoal', 'click_perevod_fiz_start');
     setOrder({ amount, currency, type: 'physical', id: 1 });
-    getChat({ amount, currency });
+    getChat(amount, currency, 'physical');
   };
 
   return (

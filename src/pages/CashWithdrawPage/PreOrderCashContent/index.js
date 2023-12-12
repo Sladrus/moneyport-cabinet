@@ -19,7 +19,7 @@ const PreOrderCashContent = () => {
   const handleClick = () => {
     sendMetric('reachGoal', 'click_perevod_cash_start');
     setOrder({ amount, currency, type: 'cash', id: 4 });
-    getChat({ amount, currency });
+    getChat(amount, currency, 'cash');
   };
 
   return (

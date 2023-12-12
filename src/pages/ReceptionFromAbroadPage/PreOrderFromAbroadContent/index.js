@@ -19,7 +19,7 @@ const PreOrderFromAbroadContent = () => {
   const handleClick = () => {
     sendMetric('reachGoal', 'click_perevod_priem_from_abroad_start');
     setOrder({ amount, currency,type: 'from_abroad', id: 3 });
-    getChat({amount, currency});
+    getChat(amount, currency, 'from_abroad');
   };
   return (
     <div className="reception-page-order">

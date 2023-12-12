@@ -19,7 +19,7 @@ const PreOrderExchangeContent = () => {
   const handleClick = () => {
     sendMetric('reachGoal', 'click_cryptoexchange_start');
     setOrder({ amount, currency, type: 'exchange', id: 5 });
-    getChat({ amount, currency });
+    getChat(amount, currency, 'exchange');
   };
 
   return (

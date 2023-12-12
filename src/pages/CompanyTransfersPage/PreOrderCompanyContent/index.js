@@ -13,8 +13,8 @@ import { sendMetric } from '../../../utils/sendMetric';
 
 const PreOrderCompanyContent = () => {
   const { chat, setOrder, getChat } = useContext(DataContext);
-  const [amount, setAmount] = useState(500);
-  const [currency, setCurrency] = useState('USD');
+  const [amount, setAmount] = useState(1000);
+  const [currency, setCurrency] = useState('EUR');
 
   const handleClick = () => {
     sendMetric('reachGoal', 'click_perevod_ur_start');

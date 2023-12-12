@@ -13,7 +13,7 @@ import { sendMetric } from '../../../utils/sendMetric';
 
 const PreOrderFromAbroadContent = () => {
   const { chat, setOrder, getChat } = useContext(DataContext);
-  const [amount, setAmount] = useState(500);
+  const [amount, setAmount] = useState(1000);
   const [currency, setCurrency] = useState('USD');
 
   const handleClick = () => {

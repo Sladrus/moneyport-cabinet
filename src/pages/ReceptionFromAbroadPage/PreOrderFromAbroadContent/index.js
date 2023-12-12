@@ -124,7 +124,7 @@ const PreOrderFromAbroadContent = () => {
                   <span style={{ fontWeight: '600', color: '#647081' }}>
                     Прием от юр. лица США
                   </span>
-                  <p>от 1 000 USD</p>
+                  <p>от 3 000 USD</p>
                 </div>
                 <div
                   style={{
@@ -150,7 +150,7 @@ const PreOrderFromAbroadContent = () => {
                   <span style={{ fontWeight: '600', color: '#647081' }}>
                     Прием от юр. лица ЕС
                   </span>
-                  <p>от 1 000 EUR</p>
+                  <p>от 3 000 EUR</p>
                 </div>
               </div>
             </div>

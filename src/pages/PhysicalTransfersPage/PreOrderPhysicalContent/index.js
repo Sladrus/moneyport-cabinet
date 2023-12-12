@@ -64,7 +64,7 @@ const PreOrderPhysicalContent = () => {
                     placeholder={'Сумма'}
                     onChange={(e) => setAmount(e.target.value)}
                   />
-                  <span>Минимальная сумма 500$</span>
+                  {/* <span>Минимальная сумма 500$</span> */}
                 </div>
                 <div>
                   <TextSelect

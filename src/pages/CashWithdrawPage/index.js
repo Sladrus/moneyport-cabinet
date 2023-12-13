@@ -7,7 +7,12 @@ import { openInNewTab } from '../../utils/window';
 import QRCode from 'react-qr-code';
 
 const CashWithdrawPage = () => {
-  const { chat } = useContext(DataContext);
+  const { chat, order, setChatOrder } = useContext(DataContext);
+
+  const handleClick = async () => {
+    await setChatOrder(order);
+    openInNewTab(chat?.chat_url, 'go_to_chat_perevod_cash');
+  };
 
   return (
     <div className="cash-page">
@@ -58,12 +63,7 @@ const CashWithdrawPage = () => {
           </div>
         </div>
         <div className="cash-page-content-button">
-          <LargeButton
-            text={'Вступить в чат-кассу'}
-            onClick={() =>
-              openInNewTab(chat?.chat_url, 'go_to_chat_perevod_cash')
-            }
-          />
+          <LargeButton text={'Вступить в чат-кассу'} onClick={handleClick} />
         </div>
       </div>
     </div>

@@ -1,3 +1,4 @@
 .transfers-content {
+  width: calc(100% - 48px);
   padding: 0px 24px;
 }

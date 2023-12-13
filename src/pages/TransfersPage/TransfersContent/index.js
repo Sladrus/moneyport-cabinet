@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 
 import './TransfersContent.css';
+import { DataContext } from '../../../context/context';
 
 const TransfersContent = ({ tabs, activeTab }) => {
+  const { order, chat, chatLoading, getChat } = useContext(DataContext);
+
   return (
     <div className="transfers-content">
-      {tabs.map(({ id, Component }) => {
-        if (activeTab.id === id) return <Component key={id} />;
+      {tabs.map(({ id, Component, PreOrderComponent }) => {
+        if (activeTab?.id === id)
+          return order ? (
+            <Component key={id} />
+          ) : (
+            <PreOrderComponent key={id} />
+          );
         return '';
       })}
     </div>

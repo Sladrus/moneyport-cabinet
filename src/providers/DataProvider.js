@@ -5,6 +5,8 @@ import { sendMetric } from '../utils/sendMetric';
 
 const DataProvider = ({ children }) => {
   const [chat, setChat] = useState(null);
+  const [order, setOrder] = useState(null);
+
   const [chatLoading, setChatLoading] = useState(false);
 
   const [shortBalances, setShortBalances] = useState(null);
@@ -18,8 +20,6 @@ const DataProvider = ({ children }) => {
 
   const [history, setHistory] = useState(null);
   const [historyLoading, setHistoryLoading] = useState(false);
-
-  useEffect(() => {}, []);
 
   const getBalances = async ({ type, limit, page }) => {
     setBalancesLoading(true);
@@ -60,10 +60,15 @@ const DataProvider = ({ children }) => {
     // return data;
   };
 
-  const getChat = async (type) => {
+  const getChat = async (
+    source = 'lk',
+    amount = null,
+    currency = null,
+    type = null
+  ) => {
     if (chat) return;
     setChatLoading(true);
-    const data = await DataApi.getChat();
+    const data = await DataApi.getChat(source, amount, currency, type);
 
     // if (data?.error) {
     //   setChatLoading(false);
@@ -73,6 +78,12 @@ const DataProvider = ({ children }) => {
     setChat(data);
     setChatLoading(false);
     return data;
+  };
+
+  const setChatOrder = async (order) => {
+    setChatLoading(true);
+    const data = await DataApi.setChatOrder(order);
+    setChatLoading(false);
   };
 
   const clearData = async () => {
@@ -101,6 +112,9 @@ const DataProvider = ({ children }) => {
     chat,
     getChat,
     clearData,
+    order,
+    setOrder,
+    setChatOrder,
   };
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;

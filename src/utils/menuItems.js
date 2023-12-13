@@ -76,7 +76,7 @@ export const menuItems = [
   },
   {
     id: 4,
-    title: 'Обмен валют',
+    title: 'Обмен криптовалют',
     path: EXCHANGE_ROUTE,
     Icon: <ExchangeIcon className="home-menu-item-icon" />,
     submenu: false,

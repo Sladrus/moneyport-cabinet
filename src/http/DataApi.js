@@ -23,9 +23,23 @@ class DataApi {
     }
   }
 
-  async getChat() {
+  async getChat(source, amount = null, currency, type) {
     try {
-      const response = await authBase.get('/chat?source=lk');
+      const response = await authBase.get(
+        `/chat?source=${source}&amount=${amount || null}&currency=${
+          currency || null
+        }&type=${type || null}`
+      );
+      return response.data;
+    } catch (e) {
+      console.log(e);
+      return e.response.data;
+    }
+  }
+
+  async setChatOrder(order) {
+    try {
+      const response = await authBase.post(`/order`, order);
       return response.data;
     } catch (e) {
       console.log(e);

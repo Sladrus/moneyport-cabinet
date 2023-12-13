@@ -12,7 +12,9 @@ const TransferTabItem = React.forwardRef(
       <div
         ref={ref}
         onClick={handleClick}
-        className={`transfer-tab-item ${id === activeTab.id ? 'selected' : ''}`}
+        className={`transfer-tab-item ${
+          id === activeTab?.id ? 'selected' : ''
+        }`}
       >
         <span>{title}</span>
       </div>

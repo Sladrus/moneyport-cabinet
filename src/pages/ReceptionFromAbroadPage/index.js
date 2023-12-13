@@ -7,7 +7,12 @@ import { DataContext } from '../../context/context';
 import QRCode from 'react-qr-code';
 
 const ReceptionFromAbroadPage = () => {
-  const { chat } = useContext(DataContext);
+  const { chat, order, setChatOrder } = useContext(DataContext);
+
+  const handleClick = async () => {
+    await setChatOrder(order);
+    openInNewTab(chat?.chat_url, 'go_to_chat_perevod_priem_from_abroad');
+  };
 
   return (
     <div className="reception-page">
@@ -60,12 +65,7 @@ const ReceptionFromAbroadPage = () => {
           </div>
         </div>
         <div className="reception-page-content-button">
-          <LargeButton
-            text={'Вступить в чат-кассу'}
-            onClick={() =>
-              openInNewTab(chat?.chat_url, 'go_to_chat_perevod_priem_from_abroad')
-            }
-          />
+          <LargeButton text={'Вступить в чат-кассу'} onClick={handleClick} />
         </div>
       </div>
     </div>

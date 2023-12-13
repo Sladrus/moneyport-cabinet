@@ -10,9 +10,14 @@ import Spinner from '../../components/Spinner';
 import PreOrderExchangeContent from './PreOrderExchangeContent';
 
 const ExchangePage = () => {
-  const { order, setOrder, chat, chatLoading, getChat } =
+  const { order, setOrder, setChatOrder, chat, chatLoading, getChat } =
     useContext(DataContext);
   const { selectedMenuItem } = useContext(RouteContext);
+
+  const handleClick = async () => {
+    await setChatOrder(order);
+    openInNewTab(chat?.chat_url, 'go_to_chat_cryptoexchange');
+  };
 
   useEffect(() => {
     setOrder();
@@ -93,9 +98,7 @@ const ExchangePage = () => {
             <div className="exchange-page-content-button">
               <LargeButton
                 text={'Вступить в чат-кассу'}
-                onClick={() =>
-                  openInNewTab(chat?.chat_url, 'go_to_chat_cryptoexchange')
-                }
+                onClick={handleClick}
               />
             </div>
           </div>

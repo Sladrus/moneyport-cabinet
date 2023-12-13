@@ -7,7 +7,12 @@ import { DataContext } from '../../context/context';
 import QRCode from 'react-qr-code';
 
 const PhysicalTransfersPage = () => {
-  const { chat } = useContext(DataContext);
+  const { chat, order, setChatOrder } = useContext(DataContext);
+
+  const handleClick = async () => {
+    await setChatOrder(order);
+    openInNewTab(chat?.chat_url, 'go_to_chat_perevod_fiz');
+  };
 
   return (
     <div className="physical-page">
@@ -58,10 +63,7 @@ const PhysicalTransfersPage = () => {
           </div>
         </div>
         <div className="physical-page-content-button">
-          <LargeButton
-            text={'Вступить в чат-кассу'}
-            onClick={() => openInNewTab(chat?.chat_url, 'go_to_chat_perevod_fiz')}
-          />
+          <LargeButton text={'Вступить в чат-кассу'} onClick={handleClick} />
         </div>
       </div>
     </div>

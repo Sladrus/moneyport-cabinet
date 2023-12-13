@@ -36,6 +36,16 @@ class DataApi {
       return e.response.data;
     }
   }
+
+  async setChatOrder(order) {
+    try {
+      const response = await authBase.post(`/order`, order);
+      return response.data;
+    } catch (e) {
+      console.log(e);
+      return e.response.data;
+    }
+  }
 }
 
 // eslint-disable-next-line react-hooks/exhaustive-deps, import/no-anonymous-default-export

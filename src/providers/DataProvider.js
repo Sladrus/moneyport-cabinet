@@ -80,6 +80,12 @@ const DataProvider = ({ children }) => {
     return data;
   };
 
+  const setChatOrder = async (order) => {
+    setChatLoading(true);
+    const data = await DataApi.setChatOrder(order);
+    setChatLoading(false);
+  };
+
   const clearData = async () => {
     setHistory(null);
     setShortBalances(null);
@@ -108,6 +114,7 @@ const DataProvider = ({ children }) => {
     clearData,
     order,
     setOrder,
+    setChatOrder,
   };
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;

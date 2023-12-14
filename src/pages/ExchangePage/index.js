@@ -14,8 +14,8 @@ const ExchangePage = () => {
     useContext(DataContext);
   const { selectedMenuItem } = useContext(RouteContext);
 
-  const handleClick = async () => {
-    await setChatOrder(order);
+  const handleClick =  () => {
+     setChatOrder(order);
     openInNewTab(chat?.chat_url, 'go_to_chat_cryptoexchange');
   };
 

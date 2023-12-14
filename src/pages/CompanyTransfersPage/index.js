@@ -9,8 +9,8 @@ import QRCode from 'react-qr-code';
 const CompanyTransfersPage = () => {
   const { chat, order, setChatOrder } = useContext(DataContext);
 
-  const handleClick = async () => {
-    await setChatOrder(order);
+  const handleClick =  () => {
+     setChatOrder(order);
     openInNewTab(chat?.chat_url, 'go_to_chat_perevod_ur');
   };
   return (

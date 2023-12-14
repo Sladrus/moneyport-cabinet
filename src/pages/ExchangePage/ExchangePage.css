@@ -135,4 +135,7 @@
   .exchange-page-content-button {
     width: 100%;
   }
+  .exchange-page-content-body-text span {
+    max-width: 100%;
+  }
 }

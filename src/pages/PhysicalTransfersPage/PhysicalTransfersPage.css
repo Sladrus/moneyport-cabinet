@@ -119,4 +119,7 @@
   .physical-page-content-button {
     width: 100%;
   }
+  .physical-page-content-body-text span {
+    max-width: 100%;
+  }
 }

@@ -118,4 +118,7 @@
   .cash-page-content-button {
     width: 100%;
   }
+  .cash-page-content-body-text span {
+    max-width: 100%;
+  }
 }

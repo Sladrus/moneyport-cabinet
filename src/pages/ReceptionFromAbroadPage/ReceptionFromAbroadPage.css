@@ -118,4 +118,7 @@
   .reception-page-content-button {
     width: 100%;
   }
+  .reception-page-content-body-text span {
+    max-width: 100%;
+  }
 }

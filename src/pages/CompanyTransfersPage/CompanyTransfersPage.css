@@ -118,4 +118,7 @@
   .company-page-content-button {
     width: 100%;
   }
+  .company-page-content-body-text span {
+    max-width: 100%;
+  }
 }

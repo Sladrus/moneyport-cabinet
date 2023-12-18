@@ -110,7 +110,7 @@ const RecoveryPage = () => {
                 type="submit"
                 text={'Продолжить'}
                 variant="standart"
-                onClick={() => handleRecovery()}
+                // onClick={() => handleRecovery()}
                 loading={loading}
               />
             </div>

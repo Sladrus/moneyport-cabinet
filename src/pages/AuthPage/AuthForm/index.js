@@ -25,6 +25,11 @@ const AuthForm = ({ className }) => {
 
   const navigate = useNavigate();
   const location = useLocation();
+  // let client_id;
+  // window.ym(92731458, 'getClientID', function (clientID) {
+  //   client_id = clientID;
+  // });
+  // console.log(client_id);
 
   return (
     <div className={className}>

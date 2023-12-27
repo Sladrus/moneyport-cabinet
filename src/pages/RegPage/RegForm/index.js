@@ -36,7 +36,12 @@ const RegForm = ({ className }) => {
     if (!equal) {
       return setErrors({ finalPass: ['Passwords do not match'] });
     }
-    const { errors } = await onReg({ name, email, phone, password });
+    let client_id;
+    window.ym(92731458, 'getClientID', function (clientID) {
+      client_id = clientID;
+    });
+    console.log(client_id);
+    const { errors } = await onReg({ name, email, phone, password, client_id });
     setErrors(errors);
   };
 

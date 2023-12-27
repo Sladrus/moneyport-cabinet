@@ -64,7 +64,13 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  const handleRegistration = async ({ name, email, phone, password }) => {
+  const handleRegistration = async ({
+    name,
+    email,
+    phone,
+    password,
+    client_id,
+  }) => {
     setLoading(true);
     const utms = {
       source:
@@ -86,7 +92,14 @@ const AuthProvider = ({ children }) => {
       term:
         searchParams.get('utm_term') || localStorage.getItem('utm_term') || '',
     };
-    const data = await AuthApi.register({ name, email, phone, password, utms });
+    const data = await AuthApi.register({
+      name,
+      email,
+      phone,
+      password,
+      client_id,
+      utms,
+    });
     if (data?.errors || data?.error) {
       setLoading(false);
       return {

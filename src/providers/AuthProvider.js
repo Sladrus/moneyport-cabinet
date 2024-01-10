@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { AuthContext } from '../context/context';
-import { AUTH_ROUTE, HOME_ROUTE } from '../utils/consts';
+import { AUTH_ROUTE, HOME_ROUTE, QUESTIONS_ROUTE } from '../utils/consts';
 import AuthApi from '../http/AuthApi';
 import { publicRoutes } from '../routes';
 import { sendMetric } from '../utils/sendMetric';
@@ -33,9 +33,9 @@ const AuthProvider = ({ children }) => {
     setUtmFromSearchParams('utm_term');
   };
 
-  const handleLogin = async ({ email, password }) => {
+  const handleLogin = async ({ email, password, client_id }) => {
     setLoading(true);
-    const data = await AuthApi.login({ email, password });
+    const data = await AuthApi.login({ email, password, client_id });
     if (data?.errors || data?.error) {
       setLoading(false);
       return {
@@ -147,7 +147,7 @@ const AuthProvider = ({ children }) => {
         });
       });
       if (!isPublicRoute) {
-        return navigate({ pathname: AUTH_ROUTE, search: location.search });
+        return navigate({ pathname: QUESTIONS_ROUTE, search: location.search });
       }
       return;
     }

@@ -19,7 +19,7 @@ const TabBar = () => {
 
   const navigateToPage = (id, path, type) => {
     sendMetric('reachGoal', type);
-    setSelectedSubItem({ id: 1, title: 'Перевод физ. лицу' });
+    setSelectedSubItem({ id: 1, title: 'Перевод физлицу' });
     setSelectedMenuItem(id);
     navigate({ pathname: path, search: location.search });
   };

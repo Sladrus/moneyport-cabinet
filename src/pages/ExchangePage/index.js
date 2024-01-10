@@ -14,8 +14,8 @@ const ExchangePage = () => {
     useContext(DataContext);
   const { selectedMenuItem } = useContext(RouteContext);
 
-  const handleClick =  () => {
-     setChatOrder(order);
+  const handleClick = () => {
+    setChatOrder(order);
     openInNewTab(chat?.chat_url, 'go_to_chat_cryptoexchange');
   };
 
@@ -67,7 +67,7 @@ const ExchangePage = () => {
                 }}
               >
                 <div className="exchange-page-content-body-title">
-                  <span>Создать перевод</span>
+                  <span>Используйте чат-кассу для перевода</span>
                 </div>
                 <div className="exchange-page-content-body-text">
                   <div
@@ -81,7 +81,8 @@ const ExchangePage = () => {
                   >
                     <span>
                       <b>
-                        Для вас создан чат–касса в Telegram с командой MoneyPort
+                        Мы создали для вас чат–кассу в Telegram с командой
+                        MoneyPort
                       </b>
                     </span>
                     <span>
@@ -97,7 +98,7 @@ const ExchangePage = () => {
             </div>
             <div className="exchange-page-content-button">
               <LargeButton
-                text={'Вступить в чат-кассу'}
+                text={'Перейти в чат-кассу'}
                 onClick={handleClick}
               />
             </div>

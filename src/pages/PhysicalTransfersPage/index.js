@@ -9,8 +9,8 @@ import QRCode from 'react-qr-code';
 const PhysicalTransfersPage = () => {
   const { chat, order, setChatOrder } = useContext(DataContext);
 
-  const handleClick =  () => {
-     setChatOrder(order);
+  const handleClick = () => {
+    setChatOrder(order);
     openInNewTab(chat?.chat_url, 'go_to_chat_perevod_fiz');
   };
 
@@ -29,7 +29,7 @@ const PhysicalTransfersPage = () => {
             }}
           >
             <div className="physical-page-content-body-title">
-              <span>Создать перевод</span>
+              <span>Используйте чат-кассу для перевода</span>
             </div>
             <div className="physical-page-content-body-text">
               <div
@@ -43,17 +43,18 @@ const PhysicalTransfersPage = () => {
               >
                 <span>
                   <b>
-                    Для вас создан чат–касса в Telegram с командой MoneyPort
+                    Мы создали для вас чат–кассу в Telegram с командой MoneyPort
                   </b>
                 </span>
                 <span>
-                  В нашей структуре есть счета в большом количестве банков и
-                  платежных систем: PayPal, Zelle, WISE, Revolut, WeChat, AliPay
-                  и других.
+                  В нашей структуре есть счета во многих банках и платёжных
+                  системах: PayPal, Zelle, WISE, Revolut, WeChat, AliPay и
+                  других.
                 </span>
                 <span>
-                  Вступайте в чат–кассу с менеджером и укажите реквизиты, куда
-                  необходимо отправить. Мы вас уже ожидаем.
+                  Переходите в чат-кассу с менеджером и укажите реквизиты, по
+                  которым вы хотите сделать перевод. Если возникнут вопросы, их
+                  тоже можно задать в чате.
                 </span>
               </div>
               <div className="physical-page-content-body-qr">
@@ -63,7 +64,7 @@ const PhysicalTransfersPage = () => {
           </div>
         </div>
         <div className="physical-page-content-button">
-          <LargeButton text={'Вступить в чат-кассу'} onClick={handleClick} />
+          <LargeButton text={'Перейти в чат-кассу'} onClick={handleClick} />
         </div>
       </div>
     </div>

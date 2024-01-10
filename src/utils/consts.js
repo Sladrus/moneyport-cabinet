@@ -17,3 +17,5 @@ export const EXCHANGE_ROUTE = '/exchange';
 export const CASH_ROUTE = '/cash';
 export const HISTORY_ROUTE = '/history';
 export const BALANCES_ROUTE = '/balance';
+
+export const QUESTIONS_ROUTE = '/questions';

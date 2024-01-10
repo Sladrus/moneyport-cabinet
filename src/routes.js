@@ -22,11 +22,13 @@ import {
   TRANSFERS_ROUTE,
   RECOVERY_ROUTE,
   RESET_ROUTE,
+  QUESTIONS_ROUTE,
 } from './utils/consts';
 import BalancesPage from './pages/BalancesPage';
 import TransfersPage from './pages/TransfersPage';
 import RecoveryPage from './pages/RecoveryPage';
 import ResetPasswordPage from './pages/ResetPasswordPage';
+import QuestionsPage from './pages/QuestionsPage';
 
 export const authRoutes = [
   {
@@ -36,13 +38,13 @@ export const authRoutes = [
     type: 'auth',
   },
   {
-    title: 'Переводы физ. лицу',
+    title: 'Переводы физлицу',
     path: PHYS_TRANS_ROUTE,
     Component: PhysicalTransfersPage,
     type: 'auth',
   },
   {
-    title: 'Переводы юр. лицу',
+    title: 'Переводы юрлицу',
     path: COMPANY_TRANS_ROUTE,
     Component: CompanyTransfersPage,
     type: 'auth',
@@ -81,6 +83,12 @@ export const authRoutes = [
     title: 'Мои счета',
     path: BALANCES_ROUTE,
     Component: BalancesPage,
+    type: 'auth',
+  },
+  {
+    title: 'Частые вопросы',
+    path: QUESTIONS_ROUTE,
+    Component: QuestionsPage,
     type: 'auth',
   },
 ];

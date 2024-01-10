@@ -29,7 +29,7 @@ const CashWithdrawPage = () => {
             }}
           >
             <div className="cash-page-content-body-title">
-              <span>Создать перевод</span>
+              <span>Используйте чат-кассу для перевода</span>
             </div>
             <div className="cash-page-content-body-text">
               <div
@@ -43,7 +43,7 @@ const CashWithdrawPage = () => {
               >
                 <span>
                   <b>
-                    Для вас создан чат–касса в Telegram с командой MoneyPort
+                    Мы создали для вас чат–кассу в Telegram с командой MoneyPort
                   </b>
                 </span>
                 <span>
@@ -63,7 +63,7 @@ const CashWithdrawPage = () => {
           </div>
         </div>
         <div className="cash-page-content-button">
-          <LargeButton text={'Вступить в чат-кассу'} onClick={handleClick} />
+          <LargeButton text={'Перейти в чат-кассу'} onClick={handleClick} />
         </div>
       </div>
     </div>

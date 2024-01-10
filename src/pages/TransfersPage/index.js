@@ -24,14 +24,14 @@ import PreOrderCashContent from '../CashWithdrawPage/PreOrderCashContent';
 const tabs = [
   {
     id: 1,
-    title: 'Переводы физ. лицу',
+    title: 'Переводы физлицу',
     PreOrderComponent: PreOrderPhysicalContent,
     Component: PhysicalTransfersPage,
     path: PHYS_TRANS_ROUTE,
   },
   {
     id: 2,
-    title: 'Переводы юр. лицу',
+    title: 'Переводы юрлицу',
     PreOrderComponent: PreOrderCompanyContent,
     Component: CompanyTransfersPage,
     path: COMPANY_TRANS_ROUTE,
@@ -65,7 +65,7 @@ const TransfersPage = () => {
 
   useEffect(() => {
     if (!selectedSubItem) {
-      setSelectedSubItem({ id: 1, title: 'Перевод юр. лицу' });
+      setSelectedSubItem({ id: 1, title: 'Перевод юрлицу' });
     }
   }, []);
 

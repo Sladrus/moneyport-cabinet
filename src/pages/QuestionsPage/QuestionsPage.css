@@ -1,0 +1,22 @@
+.questions-page {
+  /* width: 1200px; */
+  width: 100%;
+  /* height: 100%; */
+  display: inline-flex;
+}
+
+.questions-page-content {
+  width: 100%;
+  margin: 0px 24px 24px 24px;
+
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+@media (max-width: 430px) {
+  .questions-page-content {
+    padding-bottom: 65px;
+  }
+}

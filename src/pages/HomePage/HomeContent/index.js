@@ -18,7 +18,7 @@ import { sendMetric } from '../../../utils/sendMetric';
 const items = [
   {
     id: 2,
-    title: 'Перевод юр. лицу',
+    title: 'Перевод юрлицу',
     subtitle: 'SWIFT, SEPA',
     Icon: <BillListIcon className="send-type-button-icon" />,
     path: TRANSFERS_ROUTE,
@@ -50,7 +50,7 @@ const items = [
   },
   {
     id: 1,
-    title: 'Перевод физ. лицу',
+    title: 'Перевод физлицу',
     subtitle: 'PayPal, Zelle, Wise, Revolut, Сбербанк, Тинькофф',
     Icon: <UserIcon className="send-type-button-icon" />,
     path: TRANSFERS_ROUTE,

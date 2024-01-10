@@ -9,8 +9,8 @@ import QRCode from 'react-qr-code';
 const CompanyTransfersPage = () => {
   const { chat, order, setChatOrder } = useContext(DataContext);
 
-  const handleClick =  () => {
-     setChatOrder(order);
+  const handleClick = () => {
+    setChatOrder(order);
     openInNewTab(chat?.chat_url, 'go_to_chat_perevod_ur');
   };
   return (
@@ -28,7 +28,7 @@ const CompanyTransfersPage = () => {
             }}
           >
             <div className="company-page-content-body-title">
-              <span>Создать перевод</span>
+              <span>Используйте чат-кассу для перевода</span>
             </div>
             <div className="company-page-content-body-text">
               <div
@@ -42,7 +42,7 @@ const CompanyTransfersPage = () => {
               >
                 <span>
                   <b>
-                    Для вас создан чат–касса в Telegram с командой MoneyPort
+                    Мы создали для вас чат–кассу в Telegram с командой MoneyPort
                   </b>
                 </span>
                 <span>
@@ -64,7 +64,7 @@ const CompanyTransfersPage = () => {
           </div>
         </div>
         <div className="company-page-content-button">
-          <LargeButton text={'Вступить в чат-кассу'} onClick={handleClick} />
+          <LargeButton text={'Перейти в чат-кассу'} onClick={handleClick} />
         </div>
       </div>
     </div>

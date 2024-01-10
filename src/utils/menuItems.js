@@ -46,14 +46,14 @@ export const menuItems = [
     submenuList: [
       {
         id: 1,
-        title: 'Переводы физ. лицу',
+        title: 'Переводы физлицу',
         Component: PhysicalTransfersPage,
         path: PHYS_TRANS_ROUTE,
         type: 'click_perevod_fiz',
       },
       {
         id: 2,
-        title: 'Переводы юр. лицу',
+        title: 'Переводы юрлицу',
         Component: CompanyTransfersPage,
         path: COMPANY_TRANS_ROUTE,
         type: 'click_perevod_ur',
@@ -119,14 +119,14 @@ export const mobileMenuItems = [
     submenuList: [
       {
         id: 1,
-        title: 'Переводы физ. лицу',
+        title: 'Переводы физлицу',
         Component: PhysicalTransfersPage,
         path: PHYS_TRANS_ROUTE,
         type: 'click_perevod_fiz',
       },
       {
         id: 2,
-        title: 'Переводы юр. лицу',
+        title: 'Переводы юрлицу',
         Component: CompanyTransfersPage,
         path: COMPANY_TRANS_ROUTE,
         type: 'click_perevod_ur',

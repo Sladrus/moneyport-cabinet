@@ -6,14 +6,18 @@ import { ReactComponent as HelpIcon } from '../../assets/icons/header/help.svg';
 import { ReactComponent as UserIcon } from '../../assets/icons/header/user.svg';
 import { ReactComponent as ArrowDownIcon } from '../../assets/icons/arrows/arrow-down.svg';
 import { ReactComponent as BorderIcon } from '../../assets/icons/header/border.svg';
+import { ReactComponent as QuestionsIcon } from '../../assets/icons/header/questions.svg';
 
 import { AuthContext, DataContext } from '../../context/context';
 import Popup from 'reactjs-popup';
+import { QUESTIONS_ROUTE } from '../../utils/consts';
+import { useNavigate } from 'react-router-dom';
 
 const Header = ({ toogleMenu }) => {
   const [open, setOpen] = useState(false);
   const { user, onLogout } = useContext(AuthContext);
   const { clearData, chat, chatLoading, getChat } = useContext(DataContext);
+  const navigate = useNavigate();
 
   const handleHelp = async (e) => {
     e.preventDefault();
@@ -34,6 +38,14 @@ const Header = ({ toogleMenu }) => {
           <ToogleMenuIcon className="header-toogle-icon" />
         </div>
         <div className="header-content">
+          <div
+            onClick={() => navigate(QUESTIONS_ROUTE)}
+            className="header-content-questions"
+          >
+            <span>FAQ</span>
+            <QuestionsIcon className="header-content-bell-icon" />
+          </div>
+          <BorderIcon />
           <div onClick={handleHelp} className="header-content-questions">
             <span>Поддержка</span>
             <HelpIcon className="header-content-bell-icon" />

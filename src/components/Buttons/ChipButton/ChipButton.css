@@ -1,0 +1,22 @@
+.chip-button.standart {
+  display: flex;
+  padding: 6px 12px;
+  align-items: center;
+  gap: 6px;
+
+  border-radius: 100px;
+  border: 1px solid var(--MoneyPort-Grey-1, #f3f3f3);
+}
+
+.chip-button-text.standart {
+  color: var(--Primary-Primary, #408ef6);
+  text-align: center;
+
+  /* Body/B2 */
+  font-family: Mulish;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 142.857% */
+  letter-spacing: -0.28px;
+}

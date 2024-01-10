@@ -13,6 +13,10 @@ const RouteProvider = ({ children }) => {
     const route = menuItems.find((item) => item?.path === location?.pathname);
     console.log(route);
     if (route) setSelectedMenuItem(route.id);
+    else {
+      setSelectedMenuItem(null);
+      setSelectedSubItem(null);
+    }
   }, [location.pathname]);
 
   const value = {

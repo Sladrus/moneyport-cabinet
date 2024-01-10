@@ -1,9 +1,13 @@
 import { authBase } from '.';
 
 class AuthApi {
-  async login({ email, password }) {
+  async login({ email, password, client_id }) {
     try {
-      const response = await authBase.post('/login', { email, password });
+      const response = await authBase.post('/login', {
+        email,
+        password,
+        client_id,
+      });
       return response.data;
     } catch (e) {
       console.log(e);

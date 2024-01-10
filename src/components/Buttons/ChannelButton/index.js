@@ -13,7 +13,7 @@ const ChannelButton = ({ open }) => {
       </div>
       <div style={{ display: 'flex', flexDirection: 'column' }}>
         <span className="channel-button-title">@MONEYPORT</span>
-        <span className="channel-button-subtext">Наш канал в telegram</span>
+        <span className="channel-button-subtext">Наш канал в Telegram</span>
       </div>
     </div>
   );

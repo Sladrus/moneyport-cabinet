@@ -33,9 +33,9 @@ const AuthProvider = ({ children }) => {
     setUtmFromSearchParams('utm_term');
   };
 
-  const handleLogin = async ({ email, password }) => {
+  const handleLogin = async ({ email, password, client_id }) => {
     setLoading(true);
-    const data = await AuthApi.login({ email, password });
+    const data = await AuthApi.login({ email, password, client_id });
     if (data?.errors || data?.error) {
       setLoading(false);
       return {

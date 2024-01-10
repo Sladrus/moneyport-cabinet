@@ -139,7 +139,7 @@ const PreOrderPhysicalContent = () => {
                   <span style={{ fontWeight: '600', color: '#647081' }}>
                     Перевод на физ. лицо в Китай
                   </span>
-                  <p>от 15 000 CNY</p>
+                  <p>от 30 000 CNY</p>
                 </div>
               </div>
             </div>

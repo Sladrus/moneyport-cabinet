@@ -50,7 +50,7 @@ const HomeMenuItemButton = ({
           <div
             onClick={() => {
               if (!open) {
-                setSelectedSubItem({ id: 1, title: 'Перевод физ. лицу' });
+                setSelectedSubItem({ id: 1, title: 'Перевод физлицу' });
                 setSelectedMenuItem(3);
                 onClick(id, path);
               }

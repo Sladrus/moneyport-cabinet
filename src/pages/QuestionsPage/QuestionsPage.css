@@ -14,3 +14,9 @@
   align-items: flex-start;
   gap: 24px;
 }
+
+@media (max-width: 430px) {
+  .questions-page-content {
+    padding-bottom: 65px;
+  }
+}

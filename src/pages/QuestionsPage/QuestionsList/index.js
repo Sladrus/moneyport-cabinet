@@ -9,17 +9,27 @@ import { ReactComponent as YandexIcon } from '../../../assets/icons/map/yandex.s
 import { ReactComponent as TwoGisIcon } from '../../../assets/icons/map/2gis.svg';
 import { useNavigate } from 'react-router-dom';
 import { HISTORY_ROUTE } from '../../../utils/consts';
+import { DataContext } from '../../../context/context';
 
 const QuestionsList = () => {
   const navigate = useNavigate();
+
+  const { clearData, chat, chatLoading, getChat } = useContext(DataContext);
 
   const handleOpenLink = (link) => {
     window.open(link);
   };
 
+  const handleHelp = async (e) => {
+    e.preventDefault();
+    let link = chat;
+    if (!chat) link = await getChat('headbtn');
+    window.open(link?.chat_url || 'https://t.me/mpstart');
+  };
+
   const questions = [
     {
-      title: 'Какие комиссии',
+      title: 'Какие переводы возможны',
       Content: (
         <div>
           <p>
@@ -69,7 +79,7 @@ const QuestionsList = () => {
       ),
     },
     {
-      title: 'Как происходит процесс перевода',
+      title: 'Какие комиссии',
       Content: (
         <div>
           <p>
@@ -122,7 +132,11 @@ const QuestionsList = () => {
             </p>
             <p>
               Посмотреть все отзывы можно в нашем{' '}
-              <a href="https://t.me/moneyport" rel="noreferrer" target="_blank">
+              <a
+                href="https://t.me/+Pmg74tqAs1Q3ZGIy"
+                rel="noreferrer"
+                target="_blank"
+              >
                 телеграм-канале
               </a>{' '}
               по хештегу #отзывы. А также на:{' '}
@@ -265,7 +279,7 @@ const QuestionsList = () => {
           <ul>
             <li>перевод на физ. лицо в ЕС от 500 EUR</li>
             <li>перевод на физ. лицо в США от 500 USD</li>
-            <li>перевод на физ. лицо в Китай от 15 000 CNY</li>
+            <li>перевод на физ. лицо в Китай от 30 000 CNY</li>
           </ul>
           <p>Лимиты на переводы юрлицам:</p>
           <ul>
@@ -290,8 +304,18 @@ const QuestionsList = () => {
           </ul>
           <p>
             Если не нашли своего направления в выше указанных, уточните лимиты
-            по направлению у менеджера. Чтобы связаться с менеджером, нажмите
-            "Поддержка".
+            по направлению у менеджера. Чтобы связаться с менеджером, нажмите{' '}
+            <span
+              style={{
+                cursor: 'pointer',
+                color: 'blue',
+                textDecoration: 'underline',
+              }}
+              onClick={handleHelp}
+            >
+              "Поддержка"
+            </span>
+            .
           </p>
         </div>
       ),
@@ -327,10 +351,11 @@ const QuestionsList = () => {
             Для обсуждения задачи и расчета комиссии по направлению переходите в{' '}
             <span
               style={{
-                // cursor: 'pointer',
+                cursor: 'pointer',
                 color: 'blue',
                 textDecoration: 'underline',
               }}
+              onClick={handleHelp}
             >
               чат с менеджером
             </span>
@@ -362,8 +387,18 @@ const QuestionsList = () => {
               Европе (Чехия, Италия и Германия), Гонконга, США, Дубая, стран
               Азии. Вариантов много и они зависят от конкретной задачи: куда
               платить, за что и какой объем. Подробнее по данному направлению
-              уточняйте у менеджера. Связаться с менеджером можно, нажав
-              "Поддержка".
+              уточняйте у менеджера. Связаться с менеджером можно, нажав{' '}
+              <span
+                style={{
+                  cursor: 'pointer',
+                  color: 'blue',
+                  textDecoration: 'underline',
+                }}
+                onClick={handleHelp}
+              >
+                "Поддержка"
+              </span>
+              .
             </p>
             <p>
               Для крупных компаний, которые ввозят товар с уплатой НДС и всех
@@ -377,7 +412,18 @@ const QuestionsList = () => {
               в ВЭД, импорте, работе с НДС и тд. Платежи вы делаете на компанию,
               которая занимается экспортно-импортными операциями. Подробнее по
               данному направлению уточняйте у менеджера. Связаться с менеджером
-              можно, нажав "Поддержка".
+              можно, нажав{' '}
+              <span
+                style={{
+                  cursor: 'pointer',
+                  color: 'blue',
+                  textDecoration: 'underline',
+                }}
+                onClick={handleHelp}
+              >
+                "Поддержка"
+              </span>
+              .
             </p>
             <p>
               Часто спрашивают, а как поставщик зачтет платеж в пользу клиента и
@@ -387,8 +433,18 @@ const QuestionsList = () => {
               нет, то мы можем подписать контракт, в котором мы будем
               фигурировать в роли платежного агента, где есть клиент, платежный
               агент и поставщик. Если у вас какой-то особый случай, можем его
-              разобрать индивидуально. Связаться с менеджером можно, нажав
-              "Поддержка".
+              разобрать индивидуально. Связаться с менеджером можно, нажав{' '}
+              <span
+                style={{
+                  cursor: 'pointer',
+                  color: 'blue',
+                  textDecoration: 'underline',
+                }}
+                onClick={handleHelp}
+              >
+                "Поддержка"
+              </span>
+              .
             </p>
           </p>
         </div>

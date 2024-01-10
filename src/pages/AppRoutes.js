@@ -6,7 +6,7 @@ import ProtectedRoute from './ProtectedRoute';
 import Header from '../components/Header';
 import HomeMenu from './HomePage/HomeMenu';
 import NotAuthRoute from './NotAuthRoute';
-import { AUTH_ROUTE, QUESTIONS_ROUTE } from '../utils/consts';
+import { AUTH_ROUTE } from '../utils/consts';
 import DataProvider from '../providers/DataProvider';
 import AppBar from '../components/AppBar';
 import TabBar from '../components/TabBar';
@@ -62,7 +62,7 @@ const AppRoutes = () => {
                 })}
                 <Route
                   path="*"
-                  element={<Navigate to={QUESTIONS_ROUTE} replace />} //поменять
+                  element={<Navigate to={AUTH_ROUTE} replace />} //поменять
                 />
               </Routes>
               <NotAuthRoute>

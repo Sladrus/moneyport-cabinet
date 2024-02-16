@@ -42,7 +42,7 @@ const ShowDirectorForm = ({
             </div>
           )}
         </div>
-        <div className="stroke"></div>{' '}
+        <div className="stroke"></div>
         {shareholders?.length > 0 && (
           <div className="wrapper-2">
             <span className="title">Акционеры</span>

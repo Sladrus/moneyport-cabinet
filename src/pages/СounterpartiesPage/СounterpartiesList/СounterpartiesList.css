@@ -1,0 +1,9 @@
+.counterparties-page-list {
+  width: 100%;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+
+}

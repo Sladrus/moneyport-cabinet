@@ -13,59 +13,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { HISTORY_ROUTE } from '../../utils/consts';
 import Spinner from '../Spinner';
 
-// const history = [
-//   {
-//     id: 1,
-//     title: 'Рубли',
-//     code: 'RUB',
-//     balanceId: 'R39023',
-//     amount: 10000,
-//     icon: <RubIcon className="history-item-currency" />,
-//     type: 'in',
-//     date: new Date(),
-//   },
-//   {
-//     id: 2,
-//     title: 'Доллары',
-//     code: 'USD',
-//     balanceId: 'R39023',
-//     amount: 10000,
-//     icon: <UsdIcon className="history-item-currency" />,
-//     type: 'in',
-//     date: new Date(),
-//   },
-//   {
-//     id: 3,
-//     title: 'Евро',
-//     code: 'EUR',
-//     balanceId: 'R39023',
-//     amount: 10000,
-//     icon: <EurIcon className="history-item-currency" />,
-//     type: 'out',
-//     date: new Date(),
-//   },
-//   {
-//     id: 4,
-//     title: 'Tether',
-//     code: 'USDT',
-//     balanceId: 'R39023',
-//     amount: 10000,
-//     icon: <UsdtIcon className="history-item-currency" />,
-//     type: 'out',
-//     date: new Date(),
-//   },
-//   {
-//     id: 5,
-//     title: 'Дирхамы',
-//     code: 'AED',
-//     balanceId: 'R39023',
-//     amount: 10000,
-//     icon: <AedIcon className="history-item-currency" />,
-//     type: 'in',
-//     date: new Date(),
-//   },
-// ];
-
 const History = () => {
   const [open, setOpen] = useState(true);
   const { loading } = useContext(AuthContext);

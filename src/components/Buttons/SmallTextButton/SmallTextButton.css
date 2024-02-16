@@ -1,4 +1,10 @@
 .small-text-button {
+  display: flex;
+  align-items: center;
+  gap: 12px
+}
+
+.small-text-button span{
   color: var(--primary-primary, #408ef6);
   /* text-align: center; */
 

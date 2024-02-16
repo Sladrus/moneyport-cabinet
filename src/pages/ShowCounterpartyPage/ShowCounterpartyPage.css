@@ -1,0 +1,33 @@
+.show-counterparties-page {
+    height: 100%;
+    width: calc(100% - 48px);
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px 24px 24px 24px;
+    gap: 24px;
+  }
+  
+  .show-counterparties-page-content {
+    min-width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;  
+    gap: 24px;
+  }
+  
+  @media (max-width: 430px) {
+    .show-counterparties-page-content {
+      width: calc(100% - 96px);
+      height: calc(100% - 95px);
+    }
+    
+    .show-counterparties-page-content-button .large-button {
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  

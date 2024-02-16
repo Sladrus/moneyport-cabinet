@@ -11,6 +11,16 @@
   align-items: center;
 }
 
+.breadcrumbs-pathname {
+  display: flex;
+  align-items: center;
+}
+
+
+.breadcrumbs-pathname-value {
+  cursor: pointer;
+}
+
 .breadcrumbs-home {
   width: 14px;
   height: 14px;

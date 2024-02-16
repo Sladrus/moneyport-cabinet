@@ -4,6 +4,7 @@ import CompanyTransfersPage from '../CompanyTransfersPage';
 import {
   CASH_ROUTE,
   COMPANY_TRANS_ROUTE,
+  COUNTERPARTIES_ROUTE,
   PHYS_TRANS_ROUTE,
   RECEPTION_ROUTE,
 } from '../../utils/consts';
@@ -20,6 +21,10 @@ import PreOrderPhysicalContent from '../PhysicalTransfersPage/PreOrderPhysicalCo
 import PreOrderFromAbroadContent from '../ReceptionFromAbroadPage/PreOrderFromAbroadContent';
 import PreOrderCompanyContent from '../CompanyTransfersPage/PreOrderCompanyContent';
 import PreOrderCashContent from '../CashWithdrawPage/PreOrderCashContent';
+import SmallTextButton from '../../components/Buttons/SmallTextButton';
+import LargeTextButton from '../../components/Buttons/LargeTextButton';
+import { ReactComponent as SuitcaseIcon } from '../../assets/icons/counterparties/suitcase-2.svg';
+import { useNavigate } from 'react-router-dom';
 
 const tabs = [
   {
@@ -63,6 +68,8 @@ const TransfersPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedSubItem]);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     if (!selectedSubItem) {
       setSelectedSubItem({ id: 1, title: 'Перевод юрлицу' });
@@ -90,8 +97,22 @@ const TransfersPage = () => {
 
   return (
     <div className="transfers-page">
-      <div style={{ padding: '0 24px' }}>
+      <div
+        style={{
+          padding: '0 24px',
+          display: 'flex',
+          alignItems: 'end',
+          justifyContent: 'space-between',
+        }}
+      >
         <Breadcrumbs />
+        <div style={{ padding: '6px 0' }}>
+          <LargeTextButton
+            value={'Контрагенты'}
+            icon={<SuitcaseIcon />}
+            onClick={() => navigate(COUNTERPARTIES_ROUTE)}
+          />
+        </div>
       </div>
 
       <div className="transfers-page-content">

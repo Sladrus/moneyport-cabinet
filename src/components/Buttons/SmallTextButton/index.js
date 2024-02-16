@@ -1,10 +1,11 @@
 import React from 'react';
 import './SmallTextButton.css';
 
-const SmallTextButton = ({ value, onClick }) => {
+const SmallTextButton = ({ value, onClick, icon }) => {
   return (
     <div className="small-text-button" onClick={onClick}>
-      {value}
+      {icon}
+      <span>{value}</span>
     </div>
   );
 };

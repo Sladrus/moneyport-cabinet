@@ -33,7 +33,59 @@ class DataApi {
       return response.data;
     } catch (e) {
       console.log(e);
-      return e.response.data;
+      return e?.response?.data;
+    }
+  }
+
+  async getFile(name) {
+    try {
+      const response = await authBase({
+        url: `/counteragents/document/${name}`,
+        method: 'GET',
+        responseType: 'blob',
+      });
+      return response.data;
+    } catch (e) {
+      console.log(e);
+      return e?.response?.data;
+    }
+  }
+
+  async getCounterparties() {
+    try {
+      const response = await authBase.get(`/counteragents/list`);
+      return response?.data;
+    } catch (e) {
+      console.log(e);
+      return e?.response?.data;
+    }
+  }
+
+  async createCounterparties(body) {
+    try {
+      const response = await authBase.post(`/counteragents/create`, body, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      return response?.data;
+    } catch (e) {
+      console.log(e);
+      return e?.response?.data;
+    }
+  }
+
+  async editCounterparties(body) {
+    try {
+      const response = await authBase.post(`/counteragents/edit`, body, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      return response?.data;
+    } catch (e) {
+      console.log(e);
+      return e?.response?.data;
     }
   }
 
@@ -43,7 +95,7 @@ class DataApi {
       return response.data;
     } catch (e) {
       console.log(e);
-      return e.response.data;
+      return e?.response?.data;
     }
   }
 }

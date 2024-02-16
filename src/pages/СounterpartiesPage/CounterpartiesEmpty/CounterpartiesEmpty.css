@@ -1,0 +1,36 @@
+.counterparties-empty {
+    width: 420px;
+    margin: 32px 0;
+}
+
+.counterparties-empty .counterparties-empty-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.counterparties-empty-wrapper .counterparties-empty-title{
+    color: var(--Tech-Black, #031022);
+
+    /* Subtitle/S2 */
+    font-family: Mulish;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 22px; /* 137.5% */
+    letter-spacing: -0.32px;
+}
+
+.counterparties-empty-wrapper .counterparties-empty-text{
+    color: var(--Tech-Black, #031022);
+    text-align: center;
+    
+    /* Body/B2 */
+    font-family: Mulish;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 142.857% */
+    letter-spacing: -0.28px;
+}

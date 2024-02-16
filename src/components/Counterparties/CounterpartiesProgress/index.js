@@ -19,7 +19,9 @@ const CounterpartiesProgress = ({ progress }) => {
             />
           </div>
           <div className="div-wrapper">
-            <div className="text-wrapper-2">{progress}%</div>
+            <div className="text-wrapper-2">
+              {progress > 100 ? '100' : progress}%
+            </div>
           </div>
         </div>
       </div>

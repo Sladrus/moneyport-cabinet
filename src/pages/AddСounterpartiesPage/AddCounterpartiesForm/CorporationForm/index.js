@@ -60,6 +60,7 @@ const CorporationForm = ({ changeProgress, removeProgress, type }) => {
         errors={errors}
         setErrors={setErrors}
         changeProgress={changeProgress}
+        type={type}
       />
       <div style={{ width: '150px' }}>
         <LargeButton

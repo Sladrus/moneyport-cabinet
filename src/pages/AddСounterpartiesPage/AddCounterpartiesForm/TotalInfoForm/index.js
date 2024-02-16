@@ -13,22 +13,22 @@ const TotalInfoForm = ({
   errors,
   setErrors,
   changeProgress,
+  type,
 }) => {
   const handleName = (e) => {
-    changeProgress(name, e.target.value, 65);
+    changeProgress(name, e.target.value, type === 'corporation' ? 90 : 65);
     setName(e.target.value);
   };
 
   const handleCountry = (e) => {
-    changeProgress(country, e.target.value, 5);
+    changeProgress(country, e.target.value, type === 'corporation' ? 5 : 5);
     setCountry(e.target.value);
   };
 
   const handleSource = (e) => {
-    changeProgress(source, e.target.value, 5);
+    changeProgress(source, e.target.value, type === 'corporation' ? 5 : 5);
     setSource(e.target.value);
   };
-  
 
   return (
     <form className="corporation-form">
@@ -43,7 +43,7 @@ const TotalInfoForm = ({
             type="text"
             onChange={handleName}
             required={true}
-            badgeText={'+65%'}
+            badgeText={type === 'corporation' ? '+90%' : '+65%'}
             badgeColor={name ? 'green' : 'grey'}
           />
           <TextInput
@@ -53,7 +53,7 @@ const TotalInfoForm = ({
             placeholder={'Страна инкорпорации'}
             type="text"
             onChange={handleCountry}
-            badgeText={'+5%'}
+            badgeText={type === 'corporation' ? '+5%' : '+5%'}
             badgeColor={country ? 'green' : 'grey'}
           />
           <TextInput
@@ -65,7 +65,7 @@ const TotalInfoForm = ({
             }
             type="text"
             onChange={handleSource}
-            badgeText={'+5%'}
+            badgeText={type === 'corporation' ? '+5%' : '+5%'}
             badgeColor={source ? 'green' : 'grey'}
           />
         </div>

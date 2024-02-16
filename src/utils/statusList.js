@@ -17,6 +17,6 @@ export const statusList = [
   {
     value: 'RECHECK',
     color: 'orange',
-    text: 'Треубет уточнения',
+    text: 'Требует уточнения',
   },
 ];

@@ -15,7 +15,7 @@ const AddCounterpartiesForm = ({ changeProgress, removeProgress }) => {
 
   const options = [
     { value: 'corporation', label: 'Крупная корпорация' },
-    { value: 'small_business', label: 'Небольшой частный бизнес' },
+    { value: 'small_business', label: 'Малый бизнес' },
   ];
 
   const handleOptionChange = (newOption) => {

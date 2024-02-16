@@ -7,10 +7,12 @@ import DirectorsInformation from '../DirectorsInformation';
 import ActivitiesForm from '../ActivitiesForm';
 import { DataContext } from '../../../../context/context';
 import LargeButton from '../../../../components/Buttons/LargeButton';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { COUNTERPARTIES_ROUTE } from '../../../../utils/consts';
 
 const SmallBusinessForm = ({ changeProgress, removeProgress, type }) => {
   const { state } = useLocation();
+  const navigate = useNavigate();
 
   const [name, setName] = useState('');
   const [country, setCountry] = useState('');
@@ -26,7 +28,7 @@ const SmallBusinessForm = ({ changeProgress, removeProgress, type }) => {
   const [businessSource, setBusinessSource] = useState('');
 
   const [attachments, setAttachments] = useState([]);
-  console.log(state);
+
   useEffect(() => {
     if (!state) return;
 
@@ -55,7 +57,7 @@ const SmallBusinessForm = ({ changeProgress, removeProgress, type }) => {
     setDirectorDoc(state?.directorDocument ? state?.directorDocument : '');
 
     for (const item of state?.shareholders) {
-      changeProgress(null, item?.fullName, 5);
+      changeProgress('', item?.fullName, 5);
     }
     setOtherShareholders(
       state?.shareholders ? state?.shareholders : [{ fullName: '' }]
@@ -128,7 +130,10 @@ const SmallBusinessForm = ({ changeProgress, removeProgress, type }) => {
       ? await editCounterparties(body)
       : await createCounterparties(body);
     setErrors(errors);
-    if (!errors) removeProgress();
+    if (!errors) {
+      removeProgress();
+      navigate(COUNTERPARTIES_ROUTE);
+    }
   };
 
   return (

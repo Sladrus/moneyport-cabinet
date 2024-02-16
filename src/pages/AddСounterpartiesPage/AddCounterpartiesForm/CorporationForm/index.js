@@ -4,14 +4,16 @@ import './CorporationForm.css';
 import TotalInfoForm from '../TotalInfoForm';
 import LargeButton from '../../../../components/Buttons/LargeButton';
 import { DataContext } from '../../../../context/context';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { COUNTERPARTIES_ROUTE } from '../../../../utils/consts';
 
 const CorporationForm = ({ changeProgress, removeProgress, type }) => {
   const { state } = useLocation();
+  const navigate = useNavigate();
 
   const [name, setName] = useState('');
   const [country, setCountry] = useState('');
-  const [source, setSource] = useState( '');
+  const [source, setSource] = useState('');
 
   const [errors, setErrors] = useState();
 
@@ -40,7 +42,10 @@ const CorporationForm = ({ changeProgress, removeProgress, type }) => {
     };
     const { errors } = await createCounterparties(body);
     setErrors(errors);
-    if (!errors) removeProgress();
+    if (!errors) {
+      removeProgress();
+      navigate(COUNTERPARTIES_ROUTE);
+    }
   };
 
   return (

@@ -23,7 +23,7 @@ const DropdownItem = ({
     },
     multiple,
   });
-  console.log(files);
+
   const renderForm = () => {
     return (
       <div

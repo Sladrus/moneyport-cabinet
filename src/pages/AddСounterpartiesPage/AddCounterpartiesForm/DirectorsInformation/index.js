@@ -29,19 +29,20 @@ const DirectorsInformation = ({
 
   const handleDirectorNationality = (value) => {
     changeProgress(directorNationality, value, 5);
+
     setDirectorNationality(value);
     setDirectorDoc();
   };
 
   const handleDirectorDoc = (e) => {
     if (e.target.files[0]) {
-      changeProgress(directorDoc, e.target.files[0], 5);
+      // changeProgress(directorDoc, e.target.files[0], 5);
       setDirectorDoc(e.target.files[0]);
     }
   };
 
   const deleteDirectorDoc = () => {
-    changeProgress(directorDoc, null, 5);
+    // changeProgress(directorDoc, null, 5);
     setDirectorDoc();
   };
 
@@ -67,7 +68,7 @@ const DirectorsInformation = ({
 
   const handleDropDoc = (files) => {
     if (files) {
-      changeProgress(directorDoc, files[0], 5);
+      // changeProgress(directorDoc, files[0], 5);
       setDirectorDoc(files[0]);
     }
   };
@@ -112,8 +113,8 @@ const DirectorsInformation = ({
               }
               files={directorDoc}
               setFiles={setDirectorDoc}
-              badgeText={'+5%'}
-              badgeColor={directorDoc ? 'green' : 'grey'}
+              // badgeText={'+5%'}
+              // badgeColor={directorDoc ? 'green' : 'grey'}
               onChange={handleDirectorDoc}
               onDelete={deleteDirectorDoc}
               onDrop={handleDropDoc}

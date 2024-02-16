@@ -56,9 +56,9 @@ const SmallBusinessForm = ({ changeProgress, removeProgress, type }) => {
     changeProgress(directorDoc, state?.directorDocument, 5);
     setDirectorDoc(state?.directorDocument ? state?.directorDocument : '');
 
-    for (const item of state?.shareholders) {
-      changeProgress('', item?.fullName, 5);
-    }
+    // for (const item of state?.shareholders) {
+    //   changeProgress('', item?.fullName, 5);
+    // }
     setOtherShareholders(
       state?.shareholders ? state?.shareholders : [{ fullName: '' }]
     );

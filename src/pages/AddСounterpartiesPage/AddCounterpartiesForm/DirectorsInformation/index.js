@@ -56,7 +56,7 @@ const DirectorsInformation = ({
   };
 
   const handleShareholders = (e, index) => {
-    changeProgress(otherShareholders[index]['fullName'], e.target.value, 5);
+    // changeProgress(otherShareholders[index]['fullName'], e.target.value, 5);
 
     setOtherShareholders((prev) => {
       let newValue = [...prev];
@@ -132,8 +132,8 @@ const DirectorsInformation = ({
                 placeholder={'ФИО акционера с долей акций свыше 25%'}
                 type="text"
                 onChange={(e) => handleShareholders(e, index)}
-                badgeText={'+5%'}
-                badgeColor={item.fullName ? 'green' : 'grey'}
+                // badgeText={'+5%'}
+                // badgeColor={item.fullName ? 'green' : 'grey'}
               />
             );
           })}

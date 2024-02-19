@@ -31,7 +31,7 @@ const ResetPasswordPage = () => {
     e.preventDefault();
     const equal = await isPassEqual(password, finalPass);
     if (!equal) {
-      return setErrors({ finalPass: ['Passwords do not match'] });
+      return setErrors({ finalPass: ['Пароли не совпадают'] });
     }
     const { errors } = await onUpdatePassword({
       token,

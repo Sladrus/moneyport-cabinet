@@ -22,6 +22,8 @@
   .add-counterparties-page-content {
     width: calc(100% - 96px);
     height: calc(100% - 95px);
+    /* padding-bottom: 50px */
+
   }
   
   .add-counterparties-page-content-button .large-button {
@@ -29,4 +31,7 @@
     align-items: center;
     justify-content: center;
   }
+
 }
+
+

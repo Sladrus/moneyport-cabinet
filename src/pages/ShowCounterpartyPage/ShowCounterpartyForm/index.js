@@ -45,7 +45,7 @@ const ShowCounterpartyForm = ({
         businessSource={businessSource}
         attachments={attachments}
       />
-      <div style={{ width: '250px' }}>
+      <div className="add-button">
         <LargeButton
           variant="outlined"
           text="К списку контрагентов"

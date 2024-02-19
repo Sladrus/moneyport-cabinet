@@ -52,10 +52,19 @@ const Breadcrumbs = ({ path }) => {
           })}
         </div>
       </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '16px',
+          // maxWidth: '830px',
+        }}
+      >
         <span className="breadcrumbs-title">{route?.title}</span>
         {state?.status && (
-          <Badge color={statusItem.color} text={statusItem?.text} />
+          <div className="badge-block">
+            <Badge color={statusItem.color} text={statusItem?.text} />
+          </div>
         )}
       </div>
     </div>

@@ -175,7 +175,7 @@ const SmallBusinessForm = ({ changeProgress, removeProgress, type }) => {
           setErrors={setErrors}
         />
       </div>
-      <div style={{}}>
+      <div className="add-button">
         <LargeButton
           text={state ? 'Сохранить данные' : 'Добавить'}
           onClick={handleClick}

@@ -8,7 +8,6 @@ import './CounterpartiesItem.css';
 import LargeTextButton from '../../Buttons/LargeTextButton';
 import { useNavigate } from 'react-router-dom';
 import {
-  ADD_COUNTERPARTIES_ROUTE,
   EDIT_COUNTERPARTIES_ROUTE,
 } from '../../../utils/consts';
 import { statusList } from '../../../utils/statusList';
@@ -25,6 +24,13 @@ const CounterpartiesItem = ({ title, status, onClick, item }) => {
 
   return (
     <div className="counterparties-item" onClick={() => onClick(item)}>
+      <div className="top-badge">
+        <Badge
+          className="badge-instance"
+          color={statusItem.color}
+          text={statusItem.text}
+        />
+      </div>
       <div className="frame">
         <div className="div">
           <div className="div-1">
@@ -43,12 +49,22 @@ const CounterpartiesItem = ({ title, status, onClick, item }) => {
             )}
           </div>
         </div>
-
-        <Badge
-          className="badge-instance"
-          color={statusItem.color}
-          text={statusItem.text}
-        />
+        <div className="right-badge">
+          <Badge
+            className="badge-instance"
+            color={statusItem.color}
+            text={statusItem.text}
+          />
+        </div>
+      </div>
+      <div className="edit-button-wrapper-bottom">
+        {statusItem.value === 'RECHECK' && (
+          <LargeTextButton
+            value={'Редактировать данные'}
+            icon={<AddIcon />}
+            onClick={handleEdit}
+          />
+        )}
       </div>
     </div>
   );

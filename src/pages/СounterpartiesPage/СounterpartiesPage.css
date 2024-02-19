@@ -19,8 +19,12 @@
 }
 
 @media (max-width: 430px) {
-  .counterparties-page-list {
-    padding-bottom: 71px;
+  .counterparties-page-content .add-button {
+   width: 100% ;
+ }
+
+  .counterparties-page-content {
+    padding-bottom: 84px;
   }
 
   .counterparties-page-content {

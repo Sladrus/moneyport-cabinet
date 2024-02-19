@@ -62,7 +62,7 @@ const CorporationForm = ({ changeProgress, removeProgress, type }) => {
         changeProgress={changeProgress}
         type={type}
       />
-      <div style={{ width: '150px' }}>
+      <div className="add-button">
         <LargeButton
           text="Добавить"
           onClick={handleClick}

@@ -32,14 +32,14 @@ const СounterpartiesPage = () => {
         ) : counterparties?.length > 0 ? (
           <>
             <CounterpartiesList counterparties={counterparties} />
-            <div style={{ width: '150px' }}>
+            <div className="add-button">
               <LargeButton text="Добавить" onClick={handleClick} />
             </div>
           </>
         ) : (
           <>
             <CounterpartiesEmpty />
-            <div style={{ width: '150px' }}>
+            <div className="add-button">
               <LargeButton text="Добавить" onClick={handleClick} />
             </div>
           </>

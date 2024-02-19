@@ -25,6 +25,15 @@
   gap: 24px;
 }
 
+.counterparties-item:hover .suitcase-wrapper svg path {
+  fill: var(--primary-primary, #408ef6);
+}
+
+.counterparties-item:hover .suitcase-wrapper svg path {
+  fill: var(--primary-primary, #408ef6);
+}
+
+
 .counterparties-item .frame .div-1 {
   display: flex;
   align-items: center;  

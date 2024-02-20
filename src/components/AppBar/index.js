@@ -10,7 +10,7 @@ import MoneyportLogo from '../Icons/MoneyportLogo';
 import Popup from 'reactjs-popup';
 import { AuthContext, DataContext } from '../../context/context';
 import { useNavigate } from 'react-router-dom';
-import { QUESTIONS_ROUTE } from '../../utils/consts';
+import { HOME_ROUTE, QUESTIONS_ROUTE } from '../../utils/consts';
 
 const AppBar = () => {
   const navigate = useNavigate();
@@ -31,7 +31,11 @@ const AppBar = () => {
 
   return (
     <div className="home-appbar">
-      <MoneyportLogo width={'179px'} height={'29px'} />
+      <MoneyportLogo
+        width={'179px'}
+        height={'29px'}
+        onClick={() => navigate(HOME_ROUTE)}
+      />
       <div className="appbar-content">
         <QuestionsIcon
           onClick={() => navigate(QUESTIONS_ROUTE)}

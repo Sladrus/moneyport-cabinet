@@ -56,7 +56,15 @@
   letter-spacing: -0.64px;
 }
 
+.breadcrumbs-back {
+  display: none;
+}
+
 @media (max-width: 820px) {
+  .breadcrumbs-back {
+    display: block !important;
+  }
+
   .breadcrumbs-path {
     display: none;
   }

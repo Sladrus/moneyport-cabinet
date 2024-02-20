@@ -23,7 +23,7 @@ const CorporationForm = ({ changeProgress, removeProgress, type }) => {
   useEffect(() => {
     if (!state) return;
 
-    changeProgress(name, state?.name, 65);
+    changeProgress(name, state?.name, 90);
     setName(state?.name ? state?.name : '');
 
     changeProgress(country, state?.country, 5);
@@ -64,7 +64,7 @@ const CorporationForm = ({ changeProgress, removeProgress, type }) => {
       />
       <div className="add-button">
         <LargeButton
-          text="Добавить"
+          text={state ? 'Сохранить' : 'Добавить'}
           onClick={handleClick}
           loading={counterpartiesLoading}
         />

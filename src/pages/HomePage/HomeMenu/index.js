@@ -3,8 +3,12 @@ import './HomeMenu.css';
 import MoneyportLogo from '../../../components/Icons/MoneyportLogo';
 import ChannelButton from '../../../components/Buttons/ChannelButton';
 import HomeMenuList from './HomeMenuList';
+import { HOME_ROUTE } from '../../../utils/consts';
+import { useNavigate } from 'react-router-dom';
 
 const HomeMenu = ({ open }) => {
+  const navigate = useNavigate();
+
   return (
     <div className={`home-menu ${open === true ? 'open' : ''}`}>
       <div
@@ -21,6 +25,7 @@ const HomeMenu = ({ open }) => {
             width={open ? '161px' : '34px'}
             height={'26px'}
             open={open}
+            onClick={() => navigate(HOME_ROUTE)}
           />
         </div>
         <HomeMenuList open={open} />

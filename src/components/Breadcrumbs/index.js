@@ -9,6 +9,8 @@ import { RouteContext } from '../../context/context';
 import getAllPaths from '../../utils/getAllPaths';
 import Badge from '../Badge';
 import { statusList } from '../../utils/statusList';
+import SmallTextButton from '../Buttons/SmallTextButton';
+import { ReactComponent as BackIcon } from '../../assets/icons/arrows/back.svg';
 
 const Breadcrumbs = ({ path }) => {
   const { setSelectedMenuItem, location } = useContext(RouteContext);
@@ -30,6 +32,13 @@ const Breadcrumbs = ({ path }) => {
   };
   return (
     <div className="breadcrumbs">
+      <div className="breadcrumbs-back">
+        <SmallTextButton
+          value={'НАЗАД'}
+          icon={<BackIcon />}
+          onClick={() => navigate(-1)}
+        />
+      </div>
       <div className="breadcrumbs-path">
         <HomeIcon className="breadcrumbs-home" onClick={handleClick} />
         <div className="breadcrumbs-pathname">

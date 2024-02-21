@@ -24,3 +24,8 @@ export const COUNTERPARTIES_ROUTE = '/counterparties';
 export const ADD_COUNTERPARTIES_ROUTE = COUNTERPARTIES_ROUTE + '/add';
 export const EDIT_COUNTERPARTIES_ROUTE = COUNTERPARTIES_ROUTE + '/edit';
 export const SHOW_COUNTERPARTIES_ROUTE = COUNTERPARTIES_ROUTE + '/show';
+
+export const LANGUAGES = [
+  { label: 'RU', code: 'ru' },
+  { label: 'END', code: 'en' },
+];

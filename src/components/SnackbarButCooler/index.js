@@ -4,6 +4,7 @@ import { ReactComponent as InfoIcon } from '../../assets/icons/counterparties/in
 import './SnackbarButCooler.css';
 
 const SnackbarButCooler = ({ title, text }) => {
+  
   return (
     <div className="snackbar-but-cooler">
       <div className="wrapper">

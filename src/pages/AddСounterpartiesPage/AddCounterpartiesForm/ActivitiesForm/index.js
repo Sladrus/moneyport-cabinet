@@ -3,6 +3,7 @@ import React from 'react';
 import './ActivitiesForm.css';
 import TextInput from '../../../../components/TextInput';
 import DropdownItem from '../../../../components/DropdownItem';
+import { useTranslation } from 'react-i18next';
 
 const ActivitiesForm = ({
   businessDecs,
@@ -15,6 +16,8 @@ const ActivitiesForm = ({
   attachments,
   setAttachments,
 }) => {
+  const { i18n, t } = useTranslation();
+
   const handleBusinessDocs = (e) => {
     changeProgress(businessDecs, e.target.value, 5);
     setBusinessDesc(e.target.value);
@@ -51,13 +54,13 @@ const ActivitiesForm = ({
   return (
     <form className="corporation-form">
       <div className="corporation-form-wrapper">
-        <span className="title">Виды деятельности</span>
+        <span className="title">{t('activity')}</span>
         <div className="input-list">
           <TextInput
             value={businessDecs}
             errors={errors?.businessDescription}
             onClick={() => setErrors(null)}
-            placeholder={'Краткое описание природы бизнеса'}
+            placeholder={t('businessDesc')}
             type="text"
             onChange={handleBusinessDocs}
             // required={true}
@@ -68,16 +71,14 @@ const ActivitiesForm = ({
             value={businessSource}
             errors={errors?.businessSource}
             onClick={() => setErrors(null)}
-            placeholder={'Источники происхождения денежных средств'}
+            placeholder={t('businessSource')}
             type="text"
             onChange={handleBusinessSource}
             badgeText={'+5%'}
             badgeColor={businessSource ? 'green' : 'grey'}
           />
           <DropdownItem
-            text={
-              'Прикрепите подтверждающие документы: инвойсы, контракты или выписки с банковского счета'
-            }
+            text={t('attachments')}
             files={attachments}
             setFiles={setAttachments}
             multiple={true}

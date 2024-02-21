@@ -2,14 +2,17 @@ import React, { useEffect } from 'react';
 import { ReactComponent as CheckCircleIcon } from '../../../assets/icons/counterparties/check.svg';
 
 import './CounterpartiesProgress.css';
+import { useTranslation } from 'react-i18next';
 
 const CounterpartiesProgress = ({ progress }) => {
+  const { i18n, t } = useTranslation();
+
   return (
     <div className="frame">
       <div className="frame-wrapper">
         <div className="div">
           <CheckCircleIcon />
-          <div className="text-wrapper">Вероятность одобрения</div>
+          <div className="text-wrapper">{t('progress')}</div>
         </div>
         <div className="div-2">
           <div className="group">

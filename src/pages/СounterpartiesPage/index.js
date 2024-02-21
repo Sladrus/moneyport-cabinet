@@ -37,12 +37,7 @@ const СounterpartiesPage = () => {
             </div>
           </>
         ) : (
-          <>
-            <CounterpartiesEmpty />
-            <div className="add-button">
-              <LargeButton text="Добавить" onClick={handleClick} />
-            </div>
-          </>
+          <CounterpartiesEmpty onClick={handleClick} />
         )}
 
         {/*  */}

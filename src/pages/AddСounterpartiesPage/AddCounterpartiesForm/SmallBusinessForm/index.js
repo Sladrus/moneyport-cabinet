@@ -9,8 +9,11 @@ import { DataContext } from '../../../../context/context';
 import LargeButton from '../../../../components/Buttons/LargeButton';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { COUNTERPARTIES_ROUTE } from '../../../../utils/consts';
+import { useTranslation } from 'react-i18next';
 
 const SmallBusinessForm = ({ changeProgress, removeProgress, type }) => {
+  const { i18n, t } = useTranslation();
+
   const { state } = useLocation();
   const navigate = useNavigate();
 
@@ -177,7 +180,7 @@ const SmallBusinessForm = ({ changeProgress, removeProgress, type }) => {
       </div>
       <div className="add-button">
         <LargeButton
-          text={state ? 'Сохранить данные' : 'Добавить'}
+          text={state ? t('save') : t('create')}
           onClick={handleClick}
           loading={counterpartiesLoading}
         />

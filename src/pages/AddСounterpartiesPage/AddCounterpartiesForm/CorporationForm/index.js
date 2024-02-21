@@ -6,8 +6,11 @@ import LargeButton from '../../../../components/Buttons/LargeButton';
 import { DataContext } from '../../../../context/context';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { COUNTERPARTIES_ROUTE } from '../../../../utils/consts';
+import { useTranslation } from 'react-i18next';
 
 const CorporationForm = ({ changeProgress, removeProgress, type }) => {
+  const { i18n, t } = useTranslation();
+
   const { state } = useLocation();
   const navigate = useNavigate();
 
@@ -64,7 +67,7 @@ const CorporationForm = ({ changeProgress, removeProgress, type }) => {
       />
       <div className="add-button">
         <LargeButton
-          text={state ? 'Сохранить' : 'Добавить'}
+          text={state ? t('save') : t('create')}
           onClick={handleClick}
           loading={counterpartiesLoading}
         />

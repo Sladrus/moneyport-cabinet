@@ -6,6 +6,7 @@ import FileButton from '../FileButton';
 import { DataContext } from '../../context/context';
 import Badge from '../Badge';
 import { useDropzone } from 'react-dropzone';
+import { useTranslation } from 'react-i18next';
 
 const DropdownItem = ({
   text,
@@ -17,6 +18,8 @@ const DropdownItem = ({
   onDelete,
   onDrop,
 }) => {
+  const { i18n, t } = useTranslation();
+
   const { getRootProps, getInputProps } = useDropzone({
     onDrop: (acceptedFiles) => {
       onDrop(acceptedFiles);
@@ -34,8 +37,8 @@ const DropdownItem = ({
         <UploadIcon />
         <div className="text-wrapper-2">
           <span>
-            <label className="upload-text">Выберите файл</label> или перетащите
-            сюда
+            <label className="upload-text">{t('selectFile')}</label>
+            {t('orDragHere')}
           </span>
         </div>
         <input

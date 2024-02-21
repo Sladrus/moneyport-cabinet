@@ -6,6 +6,7 @@ import SmallTextButton from '../../../../components/Buttons/SmallTextButton';
 import { ReactComponent as AddIcon } from '../../../../assets/icons/counterparties/plus.svg';
 import TextSelect from '../../../../components/TextSelect';
 import DropdownItem from '../../../../components/DropdownItem';
+import { useTranslation } from 'react-i18next';
 
 const DirectorsInformation = ({
   directorName,
@@ -20,7 +21,9 @@ const DirectorsInformation = ({
   setErrors,
   changeProgress,
 }) => {
-  const nationalities = ['Русский', 'Другая'];
+  const { i18n, t } = useTranslation();
+
+  const nationalities = [t('russian'), t('other')];
 
   const handleDirectorName = (e) => {
     changeProgress(directorName, e.target.value, 5);
@@ -82,13 +85,13 @@ const DirectorsInformation = ({
   return (
     <form className="corporation-form">
       <div className="corporation-form-wrapper">
-        <span className="title">Персональный состав органа управления</span>
+        <span className="title">{t('personalComposition')}</span>
         <div className="input-list">
           <TextInput
             value={directorName}
             errors={errors?.directorFullName}
             onClick={() => setErrors(null)}
-            placeholder={'ФИО директора'}
+            placeholder={t('directorName')}
             type="text"
             onChange={handleDirectorName}
             badgeText={'+5%'}
@@ -99,22 +102,18 @@ const DirectorsInformation = ({
             value={directorNationality}
             errors={errors?.directorNationality}
             onClick={() => setErrors(null)}
-            placeholder={'Национальность директора'}
+            placeholder={t('directorNationality')}
             type="text"
             onChange={handleDirectorNationality}
             badgeText={'+5%'}
             badgeColor={directorNationality ? 'green' : 'grey'}
             options={nationalities}
           />
-          {directorNationality === 'Русский' && (
+          {directorNationality === t('russian') && (
             <DropdownItem
-              text={
-                'Прикрепите нероссийский документ (паспорт, водительское удостоверение или ВНЖ)'
-              }
+              text={t('attachDirectorDocument')}
               files={directorDoc}
               setFiles={setDirectorDoc}
-              // badgeText={'+5%'}
-              // badgeColor={directorDoc ? 'green' : 'grey'}
               onChange={handleDirectorDoc}
               onDelete={deleteDirectorDoc}
               onDrop={handleDropDoc}
@@ -130,7 +129,7 @@ const DirectorsInformation = ({
                   errors?.shareholders[index]
                 }
                 onClick={() => setErrors(null)}
-                placeholder={'ФИО акционера с долей акций свыше 25%'}
+                placeholder={t('addShareholderName')}
                 type="text"
                 onChange={(e) => handleShareholders(e, index)}
                 // badgeText={'+5%'}
@@ -140,7 +139,7 @@ const DirectorsInformation = ({
           })}
 
           <SmallTextButton
-            value={'Добавить акционера'}
+            value={t('addShareholder')}
             icon={<AddIcon />}
             onClick={handleAddInput}
           />

@@ -5,8 +5,11 @@ import RadioButtons from '../../../components/RadioButtons';
 import CorporationForm from './CorporationForm';
 import SmallBusinessForm from './SmallBusinessForm';
 import { useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const AddCounterpartiesForm = ({ changeProgress, removeProgress }) => {
+  const { i18n, t } = useTranslation();
+
   const { state } = useLocation();
 
   const [selectedOption, setSelectedOption] = useState(
@@ -14,8 +17,8 @@ const AddCounterpartiesForm = ({ changeProgress, removeProgress }) => {
   );
 
   const options = [
-    { value: 'corporation', label: 'Крупная корпорация' },
-    { value: 'small_business', label: 'Малый бизнес' },
+    { value: 'corporation', label: t('corporation') },
+    { value: 'small_business', label: t('smallBusiness') },
   ];
 
   const handleOptionChange = (newOption) => {

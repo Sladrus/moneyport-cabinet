@@ -6,8 +6,11 @@ import CounterpartiesProgress from '../../components/Counterparties/Counterparti
 import AddCounterpartiesForm from './AddCounterpartiesForm';
 import SnackbarButCooler from '../../components/SnackbarButCooler';
 import { useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const AddСounterpartiesPage = () => {
+  const { i18n, t } = useTranslation();
+
   const [progress, setProgress] = useState(0);
   const { state } = useLocation();
 
@@ -30,10 +33,8 @@ const AddСounterpartiesPage = () => {
       <div className="add-counterparties-page-content">
         {state && (
           <SnackbarButCooler
-            title={'Требуется информация'}
-            text={
-              state?.recheckReason
-            }
+            title={t('needInformation')}
+            text={state?.recheckReason}
           />
         )}
         <CounterpartiesProgress progress={progress} />

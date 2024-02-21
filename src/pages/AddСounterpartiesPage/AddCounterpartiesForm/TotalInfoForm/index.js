@@ -2,6 +2,7 @@ import React from 'react';
 
 import './TotalInfoForm.css';
 import TextInput from '../../../../components/TextInput';
+import { useTranslation } from 'react-i18next';
 
 const TotalInfoForm = ({
   name,
@@ -15,6 +16,8 @@ const TotalInfoForm = ({
   changeProgress,
   type,
 }) => {
+  const { i18n, t } = useTranslation();
+
   const handleName = (e) => {
     changeProgress(name, e.target.value, type === 'corporation' ? 90 : 65);
     setName(e.target.value);
@@ -30,16 +33,18 @@ const TotalInfoForm = ({
     setSource(e.target.value);
   };
 
+  // i18n.changeLanguage('ru');
+
   return (
     <form className="corporation-form">
       <div className="corporation-form-wrapper">
-        <span className="title">Общие данные</span>
+        <span className="title">{t('general')}</span>
         <div className="input-list">
           <TextInput
             value={name}
             errors={errors?.name}
             onClick={() => setErrors(null)}
-            placeholder={'Название юр. лица'}
+            placeholder={t('legalEntity')}
             type="text"
             onChange={handleName}
             required={true}
@@ -50,7 +55,7 @@ const TotalInfoForm = ({
             value={country}
             errors={errors?.country}
             onClick={() => setErrors(null)}
-            placeholder={'Страна инкорпорации'}
+            placeholder={t('country')}
             type="text"
             onChange={handleCountry}
             badgeText={type === 'corporation' ? '+5%' : '+5%'}
@@ -60,9 +65,7 @@ const TotalInfoForm = ({
             value={source}
             errors={errors?.contactUrl}
             onClick={() => setErrors(null)}
-            placeholder={
-              'Ссылка на сайт / Активную соц.сеть / Публичный каталог с отзывами'
-            }
+            placeholder={t('link')}
             type="text"
             onChange={handleSource}
             badgeText={type === 'corporation' ? '+5%' : '+5%'}

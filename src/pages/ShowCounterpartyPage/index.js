@@ -11,7 +11,6 @@ import { useTranslation } from 'react-i18next';
 const ShowCounterpartyPage = () => {
   const { i18n, t } = useTranslation();
 
-  const { counterparties } = useContext(DataContext);
   const { state } = useLocation();
   return (
     <div className="show-counterparties-page">

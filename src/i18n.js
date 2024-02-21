@@ -11,6 +11,7 @@ i18n.use(initReactI18next).init({
     en: {
       translation: {
         russian: 'Russian',
+        shareholders: 'Shareholders',
         other: 'Other',
         progress: 'Probability of counterparty approval',
         corporation: 'Large corporation',
@@ -23,6 +24,7 @@ i18n.use(initReactI18next).init({
         directorName: 'First and last name of director',
         directorNationality: `Director's nationality`,
         attachDirectorDocument: `Attach a non-Russian document (passport, driver's license or residence permit)`,
+        directorDoc: `Non-Russian document (passport, driver's license or residence permit)`,
         addShareholder: 'Add a beneficiary',
         addShareholderName: 'First and last name of 25%+ beneficiaries',
         selectFile: 'Select file',
@@ -32,14 +34,20 @@ i18n.use(initReactI18next).init({
         businessSource: 'Source of Funds',
         attachments:
           'Attach supporting documents: invoices, contracts or bank statements',
+        attachmentsText:
+          'Supporting documents: invoices, contracts or bank statements',
         save: 'Save',
         create: 'Create',
         needInformation: 'Information required',
+        companySize: 'Company size',
+        emptyField: 'Empty field',
+        goBack: 'Go Back',
       },
     },
     ru: {
       translation: {
         russian: 'Русский',
+        shareholders: 'Акционеры',
         other: 'Другая',
         progress: 'Вероятность одобрения контрагента',
         corporation: 'Крупная корпорация',
@@ -52,6 +60,7 @@ i18n.use(initReactI18next).init({
         directorName: 'ФИО директора',
         directorNationality: 'Национальность директора',
         attachDirectorDocument: `Прикрепите нероссийский документ (паспорт, водительское удостоверение или ВНЖ)`,
+        directorDoc: `Нероссийский документ (паспорт, водительское удостоверение или ВНЖ)`,
         addShareholder: 'Добавить акционера',
         addShareholderName: 'ФИО акционера с долей акций свыше 25%',
         selectFile: 'Выберите файл ',
@@ -61,9 +70,14 @@ i18n.use(initReactI18next).init({
         businessSource: 'Источник происхождения денежных средств',
         attachments:
           'Прикрепите подтверждающие документы: инвойсы, контракты или выписки с банковского счета',
+        attachmentsText:
+          'Подтверждающие документы: инвойсы, контракты или выписки с банковского счета',
         save: 'Сохранить данные',
         create: 'Добавить',
         needInformation: 'Требуется информация',
+        companySize: 'Размер компании',
+        emptyField: 'Не указано',
+        goBack: 'К списку контрагентов',
       },
     },
   },

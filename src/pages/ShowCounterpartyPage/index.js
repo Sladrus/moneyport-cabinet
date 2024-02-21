@@ -6,8 +6,11 @@ import './ShowCounterpartyPage.css';
 import { DataContext } from '../../context/context';
 import { useLocation } from 'react-router-dom';
 import SnackbarButCooler from '../../components/SnackbarButCooler';
+import { useTranslation } from 'react-i18next';
 
 const ShowCounterpartyPage = () => {
+  const { i18n, t } = useTranslation();
+
   const { counterparties } = useContext(DataContext);
   const { state } = useLocation();
   return (
@@ -16,7 +19,7 @@ const ShowCounterpartyPage = () => {
       <div className="show-counterparties-page-content">
         {state?.recheckReason && (
           <SnackbarButCooler
-            title={'Требуется информация'}
+            title={t('needInformation')}
             text={state?.recheckReason}
           />
         )}

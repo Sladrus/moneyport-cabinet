@@ -8,6 +8,7 @@ import ShowActivityForm from './ShowActivityForm';
 import { useNavigate } from 'react-router-dom';
 import { COUNTERPARTIES_ROUTE } from '../../../utils/consts';
 import SnackbarButCooler from '../../../components/SnackbarButCooler';
+import { useTranslation } from 'react-i18next';
 
 const ShowCounterpartyForm = ({
   name,
@@ -24,6 +25,7 @@ const ShowCounterpartyForm = ({
   attachments,
 }) => {
   const navigate = useNavigate();
+  const { i18n, t } = useTranslation();
 
   return (
     <div className="show-counterparties-form">
@@ -48,7 +50,7 @@ const ShowCounterpartyForm = ({
       <div className="add-button">
         <LargeButton
           variant="outlined"
-          text="К списку контрагентов"
+          text={t('goBack')}
           onClick={() => navigate(COUNTERPARTIES_ROUTE)}
         />
       </div>

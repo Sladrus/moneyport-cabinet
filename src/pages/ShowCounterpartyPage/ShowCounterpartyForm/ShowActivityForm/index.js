@@ -3,41 +3,37 @@ import React from 'react';
 import './ShowActivityForm.css';
 import TextInput from '../../../../components/TextInput';
 import FileButton from '../../../../components/FileButton';
+import { useTranslation } from 'react-i18next';
 
 const ShowActivityForm = ({
   businessDescription,
   businessSource,
   attachments,
 }) => {
+  const { i18n, t } = useTranslation();
+
   return (
     <form className="show-activity-form">
       <div className="show-activity-form-wrapper">
         <div className="wrapper-1">
-          <span className="title">Виды деятельности</span>
+          <span className="title">{t('activity')}</span>
           <div className="info">
             <div className="text-block">
-              <span className="text-wrapper-1">
-                Краткое описание природы бизнеса
-              </span>
+              <span className="text-wrapper-1">{t('businessDesc')}</span>
               <span className="text-wrapper-2">
-                {businessDescription || 'Не указано'}
+                {businessDescription || t('emptyField')}
               </span>
             </div>
             <div className="text-block">
-              <span className="text-wrapper-1">
-                Источник происхождения денежных средств
-              </span>
+              <span className="text-wrapper-1">{t('businessSource')}</span>
               <span className="text-wrapper-2">
-                {businessSource || 'Не указано'}
+                {businessSource || t('emptyField')}
               </span>
             </div>
           </div>
           {attachments?.length > 0 && (
             <div className="file">
-              <span className="text-wrapper-1">
-                Подтверждающие документы: инвойсы, контракты или выписки с
-                банковского счета
-              </span>
+              <span className="text-wrapper-1">{t('attachmentsText')}</span>
               {attachments?.map((item, index) => {
                 return <FileButton key={index} text={item} />;
               })}

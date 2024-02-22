@@ -3,7 +3,7 @@
 }
 
 .counterparties-empty .counterparties-empty-wrapper {
-    width: 420px;
+    max-width: 420px;
     margin: 32px auto;
     display: flex;
     flex-direction: column;

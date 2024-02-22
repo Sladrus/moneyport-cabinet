@@ -73,7 +73,7 @@ const Breadcrumbs = ({ path }) => {
       </div>
       <div
         style={{
-          width: '100%',
+          // width: 'calc(100% - 24px)',
           display: 'flex',
           alignItems: 'center',
           gap: '16px',

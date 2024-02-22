@@ -1,5 +1,5 @@
 .breadcrumbs {
-  width: 100%;;
+  width: 100%;
   display: flex;
   /* padding: 0px 24px; */
   flex-direction: column;
@@ -68,6 +68,10 @@
 
   .breadcrumbs-path {
     display: none;
+  }
+
+  .language-switch {
+    display: none !important;
   }
 }
 

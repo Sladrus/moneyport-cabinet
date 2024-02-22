@@ -24,7 +24,7 @@
 
 .frame-wrapper .text-wrapper {
     margin-top: -1px;
-    white-space: nowrap;
+    /* white-space: nowrap; */
     width: fit-content;
     color: var(--Tech-Black, #031022);
     font-family: 'Mulish';

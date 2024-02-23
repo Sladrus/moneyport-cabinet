@@ -65,12 +65,11 @@
   .breadcrumbs-title {
     color: var(--Tech-Black, #031022);
 
-    /* Headline/H3 */
     font-family: Mulish;
     font-size: 26px;
     font-style: normal;
     font-weight: 700;
-    line-height: 32px; /* 123.077% */
+    line-height: 32px; 
     letter-spacing: -0.52px;
   }
 
@@ -81,10 +80,10 @@
   .breadcrumbs-path {
     display: none;
   }
-
+/* 
   .language-switch {
     display: none !important;
-  }
+  } */
 }
 
 @media (max-width: 430px) {

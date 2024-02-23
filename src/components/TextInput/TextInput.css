@@ -76,9 +76,10 @@
   letter-spacing: -0.28px;
 
 
-  width: calc(100% - 32px);
+  width: 80%;
   white-space: nowrap;
   overflow: hidden;
+  text-overflow: ellipsis;
   text-wrap: ellipsis;
 }
 

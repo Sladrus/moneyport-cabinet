@@ -80,14 +80,12 @@
   .breadcrumbs-path {
     display: none;
   }
-/* 
-  .language-switch {
-    display: none !important;
-  } */
-}
 
-@media (max-width: 430px) {
   .badge-block {
     display: none;
   }
+}
+
+@media (max-width: 430px) {
+
 }

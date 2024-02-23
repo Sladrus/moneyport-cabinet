@@ -22,6 +22,12 @@ const ShowCounterpartyPage = () => {
             text={state?.recheckReason}
           />
         )}
+        {state?.failReason && (
+          <SnackbarButCooler
+            title={t('failInformation')}
+            text={state?.failReason}
+          />
+        )}
         <ShowCounterpartyForm {...state} />
       </div>
     </div>

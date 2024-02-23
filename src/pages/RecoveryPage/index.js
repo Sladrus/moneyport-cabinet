@@ -26,7 +26,7 @@ const RecoveryPage = () => {
     setComplete(result);
     setErrors(errors);
   };
-  console.log(isComplete);
+
   return (
     <div className="recovery-page">
       <div className="recovery-page-header">

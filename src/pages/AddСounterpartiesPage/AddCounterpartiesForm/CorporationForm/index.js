@@ -20,7 +20,7 @@ const CorporationForm = ({ changeProgress, removeProgress, type }) => {
 
   const [errors, setErrors] = useState();
 
-  const { counterpartiesLoading, createCounterparties } =
+  const { counterpartiesLoading, createCounterparties, editCounterparties } =
     useContext(DataContext);
 
   useEffect(() => {
@@ -38,12 +38,15 @@ const CorporationForm = ({ changeProgress, removeProgress, type }) => {
 
   const handleClick = async () => {
     const body = {
+      counterAgentId: state?.id,
       name: name,
       type: type,
       country: country,
       contactUrl: source,
     };
-    const { errors } = await createCounterparties(body);
+    const { errors } = state
+      ? await editCounterparties(body)
+      : await createCounterparties(body);
     setErrors(errors);
     if (!errors) {
       removeProgress();

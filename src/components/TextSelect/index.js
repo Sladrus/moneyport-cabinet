@@ -7,8 +7,10 @@ import { ReactComponent as ArrowUpIcon } from '../../assets/icons/arrows/select-
 
 import './TextSelect.css';
 import Popup from 'reactjs-popup';
+import Badge from '../Badge';
 
 const TextSelect = ({
+  className = 'popup',
   value,
   errors,
   onClick,
@@ -17,25 +19,48 @@ const TextSelect = ({
   type,
   disabled,
   options,
+  badgeText,
+  badgeColor,
 }) => {
   const [showPass, setShowPass] = useState(false);
   const [open, setOpen] = useState(false);
+  const [width, setWidth] = useState();
 
   const ref = useRef();
+  const observedDiv = useRef();
+
   const closeTooltip = () => ref.current.close();
 
+  useEffect(() => {
+    if (!observedDiv?.current) {
+      return;
+    }
+
+    const resizeObserver = new ResizeObserver(() => {
+      if (observedDiv?.current?.offsetWidth !== width) {
+        setWidth(observedDiv?.current?.offsetWidth);
+      }
+    });
+
+    resizeObserver.observe(observedDiv.current);
+    return function cleanup() {
+      resizeObserver.disconnect();
+    };
+  }, [observedDiv?.current]);
+
   return (
-    <div className="input">
+    <div className="input" ref={observedDiv}>
       <div
         onClick={onClick}
         className={`input-body ${open ? 'open' : ''} ${
           errors ? 'reject' : ''
         } ${disabled ? 'disabled' : ''}`}
       >
-        <div>
+        <div style={{ width: '100%', display: 'flex' }}>
           <div
             style={{
-              width: '120px',
+              width: '100%',
+              minWidth: '120px',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'start',
@@ -43,13 +68,18 @@ const TextSelect = ({
             }}
           >
             <Popup
+              className={className}
               ref={ref}
               position="bottom left"
               on="click"
               onOpen={() => setOpen(true)}
               onClose={() => setOpen(false)}
               offsetY={1}
-              contentStyle={{ borderRadius: 0, padding: 0 }}
+              contentStyle={{
+                borderRadius: 0,
+                padding: 0,
+                width: width,
+              }}
               arrow={false}
               trigger={
                 <div
@@ -86,6 +116,15 @@ const TextSelect = ({
 
             <label className={value && 'filled'}>{placeholder}</label>
           </div>
+        </div>
+        <div className="input-badge">
+          {badgeText && (
+            <Badge
+              className="badge-instance"
+              color={badgeColor}
+              text={badgeText}
+            />
+          )}
         </div>
         {!errors && type === 'password' && (
           <>

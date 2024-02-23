@@ -12,9 +12,13 @@
 }
 
 .large-button.outlined {
+  width: 100%;
+
   display: inline-flex;
   padding: 14px 32px;
-  align-items: center;
+  align-items: center;  
+  justify-content: center;
+
   gap: 12px;
 
   border-radius: 16px;

@@ -1,0 +1,124 @@
+.counterparties-item {
+  align-items: flex-start;
+  gap: 8px;
+  flex-direction: column;
+
+  background-color: var(--techwhite);
+  border-radius: 16px;
+  box-shadow: var(--frame);
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+  position: relative;
+  width: calc(100% - 32px);
+  cursor: pointer;
+}
+
+.counterparties-item .frame {
+  /* height: 40px; */
+  
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 0 0 auto;
+  position: relative;  
+  gap: 24px;
+}
+
+.counterparties-item:hover .suitcase-wrapper svg path {
+  fill: var(--primary-primary, #408ef6);
+}
+
+.counterparties-item:hover .suitcase-wrapper svg path {
+  fill: var(--primary-primary, #408ef6);
+}
+
+
+.counterparties-item .frame .div-1 {
+  display: flex;
+  align-items: center;  
+  gap: 16px;
+}
+
+.counterparties-item .frame .div {
+  display: flex;
+  align-items: center;  
+  gap: 16px;
+}
+
+.counterparties-item .suitcase-wrapper {
+  align-items: flex-start;
+  background-color: var(--techgrey-border);
+  border: 1px solid;
+  border-color: var(--techgrey-light);
+  border-radius: 70px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 10px;
+  padding: 8px;
+  position: relative;
+}
+
+.counterparties-item .suitcase-instance {
+  height: 24px !important;
+  position: relative !important;
+  width: 24px !important;
+}
+
+.counterparties-item .text-wrapper {
+  color: var(--techblack);
+  font-family: var(--subtitle-s2-font-family);
+  font-size: var(--subtitle-s2-font-size);
+  font-style: var(--subtitle-s2-font-style);
+  font-weight: var(--subtitle-s2-font-weight);
+  letter-spacing: var(--subtitle-s2-letter-spacing);
+  line-height: var(--subtitle-s2-line-height);
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 350px;
+}
+
+.counterparties-item .badge-instance {
+  flex: 0 0 auto !important;
+}
+
+.counterparties-item .frame .div .edit-button-wrapper {
+  /* width: 350px; */
+}
+
+.counterparties-item .edit-button-wrapper-bottom {
+  display: none;
+}
+
+.counterparties-item .top-badge {
+  display: none;
+}
+
+@media (max-width: 830px) {
+  .counterparties-item .right-badge {
+    display: none;
+  }
+
+  .counterparties-item .top-badge {
+    display: block !important;
+  }
+
+  .edit-button-wrapper {
+    display: none;
+  }
+
+  .counterparties-item .edit-button-wrapper-bottom {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+  }
+
+  .counterparties-item .text-wrapper {
+    /* max-width: 250px; */
+    white-space: wrap;
+
+  }
+}

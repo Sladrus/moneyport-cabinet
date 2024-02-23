@@ -23,12 +23,19 @@ import {
   RECOVERY_ROUTE,
   RESET_ROUTE,
   QUESTIONS_ROUTE,
+  COUNTERPARTIES_ROUTE,
+  ADD_COUNTERPARTIES_ROUTE,
+  SHOW_COUNTERPARTIES_ROUTE,
+  EDIT_COUNTERPARTIES_ROUTE,
 } from './utils/consts';
 import BalancesPage from './pages/BalancesPage';
 import TransfersPage from './pages/TransfersPage';
 import RecoveryPage from './pages/RecoveryPage';
 import ResetPasswordPage from './pages/ResetPasswordPage';
 import QuestionsPage from './pages/QuestionsPage';
+import СounterpartiesPage from './pages/СounterpartiesPage';
+import AddСounterpartiesPage from './pages/AddСounterpartiesPage';
+import ShowCounterpartyPage from './pages/ShowCounterpartyPage';
 
 export const authRoutes = [
   {
@@ -89,6 +96,30 @@ export const authRoutes = [
     title: 'Частые вопросы',
     path: QUESTIONS_ROUTE,
     Component: QuestionsPage,
+    type: 'auth',
+  },
+  {
+    title: 'Контрагенты',
+    path: COUNTERPARTIES_ROUTE,
+    Component: СounterpartiesPage,
+    type: 'auth',
+  },
+  {
+    title: 'Добавление контрагента',
+    path: ADD_COUNTERPARTIES_ROUTE,
+    Component: AddСounterpartiesPage,
+    type: 'auth',
+  },
+  {
+    title: 'Редактирование контрагента',
+    path: EDIT_COUNTERPARTIES_ROUTE,
+    Component: AddСounterpartiesPage,
+    type: 'auth',
+  },
+  {
+    title: '',
+    path: SHOW_COUNTERPARTIES_ROUTE,
+    Component: ShowCounterpartyPage,
     type: 'auth',
   },
 ];

@@ -23,18 +23,12 @@ const AuthForm = ({ className }) => {
     window.ym(92731458, 'getClientID', function (clientID) {
       client_id = clientID;
     });
-    console.log(client_id);
     const { errors } = await onLogin({ email, password, client_id });
     setErrors(errors);
   };
 
   const navigate = useNavigate();
   const location = useLocation();
-  // let client_id;
-  // window.ym(92731458, 'getClientID', function (clientID) {
-  //   client_id = clientID;
-  // });
-  // console.log(client_id);
 
   return (
     <div className={className}>

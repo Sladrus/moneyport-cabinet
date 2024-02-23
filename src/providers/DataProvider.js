@@ -21,6 +21,9 @@ const DataProvider = ({ children }) => {
   const [history, setHistory] = useState(null);
   const [historyLoading, setHistoryLoading] = useState(false);
 
+  const [counterparties, setCounterparties] = useState(null);
+  const [counterpartiesLoading, setCounterpartiesLoading] = useState(false);
+
   const getBalances = async ({ type, limit, page }) => {
     setBalancesLoading(true);
     const data = await DataApi.getBalances({ type, limit, page });
@@ -93,6 +96,45 @@ const DataProvider = ({ children }) => {
     setChat(null);
   };
 
+  const getFile = async (name) => {
+    return await DataApi.getFile(name);
+  };
+
+  const getCounterparties = async () => {
+    setCounterpartiesLoading(true);
+    const data = await DataApi.getCounterparties();
+    setCounterparties(data);
+    setCounterpartiesLoading(false);
+  };
+
+  const createCounterparties = async (body) => {
+    setCounterpartiesLoading(true);
+    const data = await DataApi.createCounterparties(body);
+    if (data?.errors || data?.error) {
+      setCounterpartiesLoading(false);
+      return {
+        result: false,
+        errors: data?.errors || { error: [data?.error] },
+      };
+    }
+    setCounterpartiesLoading(false);
+    return { result: true, errors: null };
+  };
+
+  const editCounterparties = async (body) => {
+    setCounterpartiesLoading(true);
+    const data = await DataApi.editCounterparties(body);
+    if (data?.errors || data?.error) {
+      setCounterpartiesLoading(false);
+      return {
+        result: false,
+        errors: data?.errors || { error: [data?.error] },
+      };
+    }
+    setCounterpartiesLoading(false);
+    return { result: true, errors: null };
+  };
+
   const value = {
     balancesLoading,
     balances,
@@ -115,6 +157,13 @@ const DataProvider = ({ children }) => {
     order,
     setOrder,
     setChatOrder,
+    getFile,
+    getCounterparties,
+    counterparties,
+    counterpartiesLoading,
+    setCounterpartiesLoading,
+    createCounterparties,
+    editCounterparties,
   };
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;

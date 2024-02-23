@@ -4,6 +4,7 @@ import { ReactComponent as ClosedEyeIcon } from '../../assets/icons/input/closed
 import { ReactComponent as OpenedEyeIcon } from '../../assets/icons/input/opened-eye.svg';
 
 import './TextInput.css';
+import Badge from '../Badge';
 
 const TextInput = ({
   value,
@@ -13,6 +14,9 @@ const TextInput = ({
   placeholder,
   type,
   disabled,
+  required,
+  badgeText,
+  badgeColor,
 }) => {
   const [showPass, setShowPass] = useState(false);
 
@@ -40,7 +44,19 @@ const TextInput = ({
             onChange={onChange}
             disabled={disabled}
           />
-          <label className={value && 'filled'}>{placeholder}</label>
+          <label className={value && 'filled'}>
+            {placeholder}
+            {required && <span className="required">*</span>}
+          </label>
+        </div>
+        <div className="input-badge">
+          {badgeText && (
+            <Badge
+              className="badge-instance"
+              color={badgeColor}
+              text={badgeText}
+            />
+          )}
         </div>
         {!errors && type === 'password' && (
           <>

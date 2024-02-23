@@ -1,0 +1,25 @@
+.show-counterparties-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    padding-bottom: 24px;
+}
+
+.add-button {
+    width: 250px;
+}
+
+@media (max-width: 430px) {
+
+.show-counterparties-form {
+    padding-bottom: 97px;
+}
+
+.show-counterparties-form .add-button {
+    width: 100%;
+}
+
+}
+  

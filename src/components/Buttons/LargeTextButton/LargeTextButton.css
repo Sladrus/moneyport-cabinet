@@ -1,4 +1,7 @@
 .large-text-button {
+  display: flex;
+  align-items: center;
+  gap: 12px
 }
 
 .large-text-button span {

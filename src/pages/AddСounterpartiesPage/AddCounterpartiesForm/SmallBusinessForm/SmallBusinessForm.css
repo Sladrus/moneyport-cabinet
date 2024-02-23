@@ -1,0 +1,13 @@
+.small-business-form {
+    width: 100%;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+}
+
+@media (max-width: 430px) {
+    .add-corporations-form .add-button {
+        width: 100%;
+    }
+}

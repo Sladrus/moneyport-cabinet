@@ -48,3 +48,10 @@
     line-height: 16px;
     letter-spacing: -0.24px;
 }   
+
+
+@media (max-width: 820px) {
+    .language-switch .div .text-wrapper {
+      display: none;
+    }
+  }

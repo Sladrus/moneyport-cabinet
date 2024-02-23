@@ -5,8 +5,11 @@ import { ReactComponent as TrashIcon } from '../../assets/icons/dropdown/trash.s
 import './FileButton.css';
 import SmallTextButton from '../Buttons/SmallTextButton';
 import { DataContext } from '../../context/context';
+import { useLocation } from 'react-router-dom';
 
 const FileButton = ({ text, onDelete }) => {
+  const { state } = useLocation();
+
   const { getFile } = useContext(DataContext);
 
   const handleClick = () => {
@@ -33,7 +36,7 @@ const FileButton = ({ text, onDelete }) => {
       <SmallTextButton
         value={text}
         icon={<PaperClip />}
-        onClick={handleClick}
+        onClick={state && handleClick}
       />
       {onDelete && <TrashIcon onClick={() => onDelete(text)} />}
     </div>

@@ -1,17 +1,17 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from "react";
 
-import './Header.css';
-import { ReactComponent as ToogleMenuIcon } from '../../assets/icons/menu/toogle.svg';
-import { ReactComponent as HelpIcon } from '../../assets/icons/header/help.svg';
-import { ReactComponent as UserIcon } from '../../assets/icons/header/user.svg';
-import { ReactComponent as ArrowDownIcon } from '../../assets/icons/arrows/arrow-down.svg';
-import { ReactComponent as BorderIcon } from '../../assets/icons/header/border.svg';
-import { ReactComponent as QuestionsIcon } from '../../assets/icons/header/questions.svg';
+import "./Header.css";
+import { ReactComponent as ToogleMenuIcon } from "../../assets/icons/menu/toogle.svg";
+import { ReactComponent as HelpIcon } from "../../assets/icons/header/help.svg";
+import { ReactComponent as UserIcon } from "../../assets/icons/header/user.svg";
+import { ReactComponent as ArrowDownIcon } from "../../assets/icons/arrows/arrow-down.svg";
+import { ReactComponent as BorderIcon } from "../../assets/icons/header/border.svg";
+import { ReactComponent as QuestionsIcon } from "../../assets/icons/header/questions.svg";
 
-import { AuthContext, DataContext } from '../../context/context';
-import Popup from 'reactjs-popup';
-import { QUESTIONS_ROUTE } from '../../utils/consts';
-import { useNavigate } from 'react-router-dom';
+import { AuthContext, DataContext } from "../../context/context";
+import Popup from "reactjs-popup";
+import { QUESTIONS_ROUTE } from "../../utils/consts";
+import { useNavigate } from "react-router-dom";
 
 const Header = ({ toogleMenu }) => {
   const [open, setOpen] = useState(false);
@@ -21,9 +21,9 @@ const Header = ({ toogleMenu }) => {
 
   const handleHelp = async (e) => {
     e.preventDefault();
-    let link = chat;
-    if (!chat) link = await getChat('headbtn');
-    window.open(link?.chat_url || 'https://t.me/mpstart');
+    // let link = chat;
+    // if (!chat) link = await getChat('headbtn');
+    window.open("https://t.me/mpstart");
   };
 
   const handleLogout = async () => {
@@ -59,7 +59,7 @@ const Header = ({ toogleMenu }) => {
             mouseLeaveDelay={100}
             mouseEnterDelay={0}
             offsetY={8}
-            contentStyle={{ padding: '4px 0', border: 'none' }}
+            contentStyle={{ padding: "4px 0", border: "none" }}
             arrow={false}
             trigger={
               <div>
@@ -71,7 +71,7 @@ const Header = ({ toogleMenu }) => {
                   <span>{user?.name}</span>
                   <ArrowDownIcon
                     className={`header-content-profile-arrow ${
-                      open ? 'expanded' : 'closed'
+                      open ? "expanded" : "closed"
                     }`}
                   />
                 </div>

@@ -1,15 +1,15 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from "react";
 
-import './QuestionsList.css';
-import QuestionsAccordion from '../../../components/QuestionsAccordion';
-import ChipButton from '../../../components/Buttons/ChipButton';
+import "./QuestionsList.css";
+import QuestionsAccordion from "../../../components/QuestionsAccordion";
+import ChipButton from "../../../components/Buttons/ChipButton";
 
-import { ReactComponent as GoogleIcon } from '../../../assets/icons/map/goggle.svg';
-import { ReactComponent as YandexIcon } from '../../../assets/icons/map/yandex.svg';
-import { ReactComponent as TwoGisIcon } from '../../../assets/icons/map/2gis.svg';
-import { useNavigate } from 'react-router-dom';
-import { HISTORY_ROUTE } from '../../../utils/consts';
-import { DataContext } from '../../../context/context';
+import { ReactComponent as GoogleIcon } from "../../../assets/icons/map/goggle.svg";
+import { ReactComponent as YandexIcon } from "../../../assets/icons/map/yandex.svg";
+import { ReactComponent as TwoGisIcon } from "../../../assets/icons/map/2gis.svg";
+import { useNavigate } from "react-router-dom";
+import { HISTORY_ROUTE } from "../../../utils/consts";
+import { DataContext } from "../../../context/context";
 
 const QuestionsList = () => {
   const navigate = useNavigate();
@@ -23,13 +23,13 @@ const QuestionsList = () => {
   const handleHelp = async (e) => {
     e.preventDefault();
     let link = chat;
-    if (!chat) link = await getChat('headbtn');
-    window.open(link?.chat_url || 'https://t.me/mpstart');
+    if (!chat) link = await getChat("headbtn");
+    window.open(link?.chat_url || "https://t.me/mpstart");
   };
 
   const questions = [
     {
-      title: 'Какие переводы возможны',
+      title: "Какие переводы возможны",
       Content: (
         <div>
           <p>
@@ -79,7 +79,7 @@ const QuestionsList = () => {
       ),
     },
     {
-      title: 'Какие комиссии',
+      title: "Какие комиссии",
       Content: (
         <div>
           <p>
@@ -88,18 +88,15 @@ const QuestionsList = () => {
           </p>
           <p>
             Комиссия за перевод зависит от направления платежа, суммы и
-            регулярности. Например, в направлении "Отправляете наличные RUB в
-            Москве и хотите получить платеж в USD или EUR за рубежом" комиссия
-            составит до 5.5% к бирже. В эту комиссию уже включены все расходы на
-            прием, конвертацию и отправку. Переходите в чат-кассу с менеджером
-            (все операции по переводу мы проводим в чат-кассе клиента) и опишите
-            вашу задачу.
+            регулярности. Переходите в чат-кассу с менеджером (все операции по
+            переводу мы проводим в чат-кассе клиента), опишите вашу задачу и
+            менеджер рассчитает курс перевода.
           </p>
         </div>
       ),
     },
     {
-      title: 'Какие гарантии',
+      title: "Какие гарантии",
       Content: (
         <div>
           <p>
@@ -117,9 +114,9 @@ const QuestionsList = () => {
       ),
     },
     {
-      title: 'Почему можно доверять MoneyPort',
+      title: "Почему можно доверять MoneyPort",
       Content: (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
           <div>
             <p>
               Доверие к MoneyPort базируется на репутации. Люди выбирают
@@ -131,49 +128,49 @@ const QuestionsList = () => {
               для разных людей. После сделок мы просим клиентов оставить отзыв.
             </p>
             <p>
-              Посмотреть все отзывы можно в нашем{' '}
+              Посмотреть все отзывы можно в нашем{" "}
               <a
                 href="https://t.me/+Pmg74tqAs1Q3ZGIy"
                 rel="noreferrer"
                 target="_blank"
               >
                 телеграм-канале
-              </a>{' '}
-              по хештегу #отзывы. А также на:{' '}
+              </a>{" "}
+              по хештегу #отзывы. А также на:{" "}
             </p>
           </div>
           <div
             style={{
-              display: 'flex',
-              gap: '6px',
-              alignItems: 'center',
-              flexWrap: 'wrap',
+              display: "flex",
+              gap: "6px",
+              alignItems: "center",
+              flexWrap: "wrap",
             }}
           >
             <ChipButton
-              text={'Google Карты'}
+              text={"Google Карты"}
               icon={<GoogleIcon />}
               onClick={() =>
                 handleOpenLink(
-                  'https://www.google.ru/maps/place/Moneyport/@55.749734,37.5355733,17z/data=!4m6!3m5!1s0x46b5393b0a06535d:0xe180853218240595!8m2!3d55.749731!4d37.5381482!16s%2Fg%2F11stvh5dz7?entry=ttu'
+                  "https://www.google.ru/maps/place/Moneyport/@55.749734,37.5355733,17z/data=!4m6!3m5!1s0x46b5393b0a06535d:0xe180853218240595!8m2!3d55.749731!4d37.5381482!16s%2Fg%2F11stvh5dz7?entry=ttu"
                 )
               }
             />
             <ChipButton
-              text={'Яндекс Карты'}
+              text={"Яндекс Карты"}
               icon={<YandexIcon />}
               onClick={() =>
                 handleOpenLink(
-                  'https://yandex.ru/maps/org/moneyport/209315553724/?display-text=moneyport&ll=37.537434%2C55.749633&mode=search&sctx=ZAAAAAgBEAAaKAoSCZ5eKcsQz0JAEdOgaB7A4EtAEhIJ3gIJih8j9z8RUS%2F4NCcv3j8iBgABAgMEBSgKOABA1QFIAWoCcnWdAc3MTD2gAQCoAQC9AXW6szvCAQa8w7fhiwbqAQDyAQD4AQCCAgltb25leXBvcnSKAgCSAgCaAgxkZXNrdG9wLW1hcHM%3D&sll=37.537434%2C55.749633&sspn=0.022595%2C0.007370&text=moneyport&z=16'
+                  "https://yandex.ru/maps/org/moneyport/209315553724/?display-text=moneyport&ll=37.537434%2C55.749633&mode=search&sctx=ZAAAAAgBEAAaKAoSCZ5eKcsQz0JAEdOgaB7A4EtAEhIJ3gIJih8j9z8RUS%2F4NCcv3j8iBgABAgMEBSgKOABA1QFIAWoCcnWdAc3MTD2gAQCoAQC9AXW6szvCAQa8w7fhiwbqAQDyAQD4AQCCAgltb25leXBvcnSKAgCSAgCaAgxkZXNrdG9wLW1hcHM%3D&sll=37.537434%2C55.749633&sspn=0.022595%2C0.007370&text=moneyport&z=16"
                 )
               }
             />
             <ChipButton
-              text={'2ГИС'}
+              text={"2ГИС"}
               icon={<TwoGisIcon />}
               onClick={() =>
                 handleOpenLink(
-                  'https://2gis.ru/moscow/firm/70000001075777302/tab/reviews'
+                  "https://2gis.ru/moscow/firm/70000001075777302/tab/reviews"
                 )
               }
             />
@@ -199,7 +196,7 @@ const QuestionsList = () => {
       ),
     },
     {
-      title: 'Какие сроки',
+      title: "Какие сроки",
       Content: (
         <div>
           <p>
@@ -222,7 +219,7 @@ const QuestionsList = () => {
       ),
     },
     {
-      title: 'Как происходит процесс перевода',
+      title: "Как происходит процесс перевода",
       Content: (
         <div>
           <p>
@@ -247,16 +244,16 @@ const QuestionsList = () => {
             Все коммуникация по переводам осуществляется в вашей личной
             чат-кассе. Чат-касса - это закрытая группа в Telegram с вами,
             менеджером и ботом Бухгалтером. Бот Бухгалтер подскажет актуальный
-            курс и проведет необходимые операции с балансом.{' '}
+            курс и проведет необходимые операции с балансом.{" "}
           </p>
           <p>
             Вся история операций по балансу отображается в вашем личном кабинете
-            на странице{' '}
+            на странице{" "}
             <span
               style={{
-                cursor: 'pointer',
-                color: 'blue',
-                textDecoration: 'underline',
+                cursor: "pointer",
+                color: "blue",
+                textDecoration: "underline",
               }}
               onClick={() => navigate(HISTORY_ROUTE)}
             >
@@ -269,7 +266,7 @@ const QuestionsList = () => {
       ),
     },
     {
-      title: 'Лимиты по переводам',
+      title: "Лимиты по переводам",
       Content: (
         <div>
           <p>
@@ -304,12 +301,12 @@ const QuestionsList = () => {
           </ul>
           <p>
             Если не нашли своего направления в выше указанных, уточните лимиты
-            по направлению у менеджера. Чтобы связаться с менеджером, нажмите{' '}
+            по направлению у менеджера. Чтобы связаться с менеджером, нажмите{" "}
             <span
               style={{
-                cursor: 'pointer',
-                color: 'blue',
-                textDecoration: 'underline',
+                cursor: "pointer",
+                color: "blue",
+                textDecoration: "underline",
               }}
               onClick={handleHelp}
             >
@@ -321,7 +318,7 @@ const QuestionsList = () => {
       ),
     },
     {
-      title: 'Как получить оплату от иностранного контрагента',
+      title: "Как получить оплату от иностранного контрагента",
       Content: (
         <div>
           <p>
@@ -330,7 +327,7 @@ const QuestionsList = () => {
             юр.лица из РФ.
           </p>
           <img
-            style={{ width: '100%', margin: '8px 0', borderRadius: '16px' }}
+            style={{ width: "100%", margin: "8px 0", borderRadius: "16px" }}
             src="https://i.imgur.com/5wzxyEp.jpg"
             alt="usdeur"
           ></img>
@@ -344,16 +341,16 @@ const QuestionsList = () => {
               софта
             </li>
             <li>Производителям любых товаров</li>
-            <li>Выводы с Google Adsense и других партнерских систем</li>{' '}
+            <li>Выводы с Google Adsense и других партнерских систем</li>{" "}
             <li>Экспортерам сельхозпродукции.</li>
           </ul>
           <p>
-            Для обсуждения задачи и расчета комиссии по направлению переходите в{' '}
+            Для обсуждения задачи и расчета комиссии по направлению переходите в{" "}
             <span
               style={{
-                cursor: 'pointer',
-                color: 'blue',
-                textDecoration: 'underline',
+                cursor: "pointer",
+                color: "blue",
+                textDecoration: "underline",
               }}
               onClick={handleHelp}
             >
@@ -365,7 +362,7 @@ const QuestionsList = () => {
       ),
     },
     {
-      title: 'Оплата инвойсов',
+      title: "Оплата инвойсов",
       Content: (
         <div>
           <p>
@@ -387,12 +384,12 @@ const QuestionsList = () => {
               Европе (Чехия, Италия и Германия), Гонконга, США, Дубая, стран
               Азии. Вариантов много и они зависят от конкретной задачи: куда
               платить, за что и какой объем. Подробнее по данному направлению
-              уточняйте у менеджера. Связаться с менеджером можно, нажав{' '}
+              уточняйте у менеджера. Связаться с менеджером можно, нажав{" "}
               <span
                 style={{
-                  cursor: 'pointer',
-                  color: 'blue',
-                  textDecoration: 'underline',
+                  cursor: "pointer",
+                  color: "blue",
+                  textDecoration: "underline",
                 }}
                 onClick={handleHelp}
               >
@@ -412,12 +409,12 @@ const QuestionsList = () => {
               в ВЭД, импорте, работе с НДС и тд. Платежи вы делаете на компанию,
               которая занимается экспортно-импортными операциями. Подробнее по
               данному направлению уточняйте у менеджера. Связаться с менеджером
-              можно, нажав{' '}
+              можно, нажав{" "}
               <span
                 style={{
-                  cursor: 'pointer',
-                  color: 'blue',
-                  textDecoration: 'underline',
+                  cursor: "pointer",
+                  color: "blue",
+                  textDecoration: "underline",
                 }}
                 onClick={handleHelp}
               >
@@ -433,12 +430,12 @@ const QuestionsList = () => {
               нет, то мы можем подписать контракт, в котором мы будем
               фигурировать в роли платежного агента, где есть клиент, платежный
               агент и поставщик. Если у вас какой-то особый случай, можем его
-              разобрать индивидуально. Связаться с менеджером можно, нажав{' '}
+              разобрать индивидуально. Связаться с менеджером можно, нажав{" "}
               <span
                 style={{
-                  cursor: 'pointer',
-                  color: 'blue',
-                  textDecoration: 'underline',
+                  cursor: "pointer",
+                  color: "blue",
+                  textDecoration: "underline",
                 }}
                 onClick={handleHelp}
               >
@@ -451,7 +448,7 @@ const QuestionsList = () => {
       ),
     },
     {
-      title: 'Что если перевод заблокирует банк',
+      title: "Что если перевод заблокирует банк",
       Content: (
         <div>
           <p>
@@ -468,7 +465,7 @@ const QuestionsList = () => {
       ),
     },
     {
-      title: 'С какими странами мы не работаем',
+      title: "С какими странами мы не работаем",
       Content: (
         <div>
           <p>Украина, Северная Корея, Иран, ЮАР.</p>
@@ -476,7 +473,7 @@ const QuestionsList = () => {
       ),
     },
     {
-      title: 'Принимаем/отправляем на брокерские счета?',
+      title: "Принимаем/отправляем на брокерские счета?",
       Content: (
         <div>
           <p>Нет, с брокерскими счетами не работаем.</p>

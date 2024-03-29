@@ -1,13 +1,16 @@
-import { authBase } from '.';
+import Cookies from "js-cookie";
+import { authBase } from ".";
 
 class AuthApi {
   async login({ email, password, client_id }) {
     try {
-      const response = await authBase.post('/login', {
+      const response = await authBase.post("/login", {
         email,
         password,
         client_id,
       });
+      console.log(Cookies.get("XSRF-TOKEN"));
+
       return response.data;
     } catch (e) {
       console.log(e);
@@ -17,7 +20,7 @@ class AuthApi {
 
   async checkAuth() {
     try {
-      const response = await authBase.get('/check-token');
+      const response = await authBase.get("/check-token");
       return response.data;
     } catch (e) {
       console.log(e);
@@ -26,7 +29,7 @@ class AuthApi {
 
   async register({ name, email, phone, password, client_id, utms }) {
     try {
-      const response = await authBase.post('/register', {
+      const response = await authBase.post("/register", {
         name,
         email,
         phone,
@@ -43,7 +46,7 @@ class AuthApi {
 
   async checkReset({ token }) {
     try {
-      const response = await authBase.post('/check-reset-token', {
+      const response = await authBase.post("/check-reset-token", {
         token,
       });
       return response.data;
@@ -55,7 +58,7 @@ class AuthApi {
 
   async updatePassword({ token, email, password }) {
     try {
-      const response = await authBase.post('/new-password ', {
+      const response = await authBase.post("/new-password ", {
         token,
         email,
         password,
@@ -69,13 +72,13 @@ class AuthApi {
 
   async refresh() {
     new Promise((resolve) => {
-      setTimeout(() => resolve('2342f2f1d131rf12'), 250);
+      setTimeout(() => resolve("2342f2f1d131rf12"), 250);
     });
   }
 
   async recoveryPass({ email }) {
     try {
-      const response = await authBase.post('/reset-password', { email });
+      const response = await authBase.post("/reset-password", { email });
       return response.data;
     } catch (e) {
       console.log(e);
@@ -85,7 +88,7 @@ class AuthApi {
 
   async logout() {
     try {
-      const response = await authBase.get('/logout');
+      const response = await authBase.get("/logout");
       return response.data;
     } catch (e) {
       console.log(e);

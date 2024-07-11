@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { ReactComponent as ErrorIcon } from '../../assets/icons/input/rejection.svg';
-import { ReactComponent as ClosedEyeIcon } from '../../assets/icons/input/closed-eye.svg';
-import { ReactComponent as OpenedEyeIcon } from '../../assets/icons/input/opened-eye.svg';
+import React, { useState } from "react";
+import { ReactComponent as ErrorIcon } from "../../assets/icons/input/rejection.svg";
+import { ReactComponent as ClosedEyeIcon } from "../../assets/icons/input/closed-eye.svg";
+import { ReactComponent as OpenedEyeIcon } from "../../assets/icons/input/opened-eye.svg";
 
-import './TextInput.css';
-import Badge from '../Badge';
+import "./TextInput.css";
+import Badge from "../Badge";
 
 const TextInput = ({
   value,
@@ -17,6 +17,7 @@ const TextInput = ({
   required,
   badgeText,
   badgeColor,
+  onKeyDown,
 }) => {
   const [showPass, setShowPass] = useState(false);
 
@@ -24,27 +25,28 @@ const TextInput = ({
     <div className="input">
       <div
         onClick={onClick}
-        className={`input-body ${errors ? 'reject' : ''} ${
-          disabled ? 'disabled' : ''
+        className={`input-body ${errors ? "reject" : ""} ${
+          disabled ? "disabled" : ""
         }`}
       >
         <div
           style={{
-            width: '100%',
-            height: '54px',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'start',
-            alignItems: 'start',
+            width: "100%",
+            height: "54px",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "start",
+            alignItems: "start",
           }}
         >
           <input
-            type={showPass ? 'text' : type}
+            type={showPass ? "text" : type}
             value={value}
             onChange={onChange}
+            onKeyDown={onKeyDown}
             disabled={disabled}
           />
-          <label className={value && 'filled'}>
+          <label className={value && "filled"}>
             {placeholder}
             {required && <span className="required">*</span>}
           </label>
@@ -58,7 +60,7 @@ const TextInput = ({
             />
           )}
         </div>
-        {!errors && type === 'password' && (
+        {!errors && type === "password" && (
           <>
             {showPass ? (
               <OpenedEyeIcon

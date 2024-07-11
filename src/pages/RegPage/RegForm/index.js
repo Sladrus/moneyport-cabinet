@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./RegForm.css";
 import TextInput from "../../../components/TextInput";
 import LargeButton from "../../../components/Buttons/LargeButton";
@@ -63,6 +63,10 @@ const RegForm = ({ className }) => {
     pixelContainer.appendChild(imgElement);
   };
 
+  const getInputNumbersValue = (input) => {
+    return input.value.replace(/\D/g, "");
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const equal = await isPassEqual(password, finalPass);
@@ -73,11 +77,84 @@ const RegForm = ({ className }) => {
     window.ym(92731458, "getClientID", function (clientID) {
       client_id = clientID;
     });
-    const { errors } = await onReg({ name, email, phone, password, client_id });
+    const { errors } = await onReg({
+      name,
+      email,
+      phone: phone?.replace(/\D/g, ""),
+      password,
+      client_id,
+    });
     if (!errors) {
       insertFbPixelScript();
     }
     setErrors(errors);
+  };
+
+  const onPhoneInput = (e) => {
+    const input = e.target;
+    let inputNumbersValue = getInputNumbersValue(input);
+    const selectionStart = input.selectionStart;
+    let formattedInputValue = "";
+
+    if (!inputNumbersValue) {
+      input.value = "";
+      return setPhone(input.value);
+    }
+
+    if (input.value.length !== selectionStart) {
+      if (e.data && /\D/g.test(e.data)) {
+        input.value = inputNumbersValue;
+        setPhone(input.value);
+      }
+      return;
+    }
+
+    if (["7", "8", "9"].indexOf(inputNumbersValue[0]) > -1) {
+      if (inputNumbersValue[0] === "9")
+        inputNumbersValue = "7" + inputNumbersValue;
+      const firstSymbols = inputNumbersValue[0] === "8" ? "8" : "+7";
+      formattedInputValue = firstSymbols + " ";
+      if (inputNumbersValue.length > 1) {
+        formattedInputValue += "(" + inputNumbersValue.substring(1, 4);
+      }
+      if (inputNumbersValue.length >= 5) {
+        formattedInputValue += ") " + inputNumbersValue.substring(4, 7);
+      }
+      if (inputNumbersValue.length >= 8) {
+        formattedInputValue += "-" + inputNumbersValue.substring(7, 9);
+      }
+      if (inputNumbersValue.length >= 10) {
+        formattedInputValue += "-" + inputNumbersValue.substring(9, 11);
+      }
+    } else {
+      formattedInputValue = "+" + inputNumbersValue.substring(0, 16);
+    }
+    input.value = formattedInputValue;
+    setPhone(input.value);
+  };
+
+  const onPhoneKeyDown = (e) => {
+    const inputValue = e.target.value.replace(/\D/g, "");
+    if (e.keyCode === 8 && inputValue.length === 1) {
+      console.log(e?.target?.value);
+      e.target.value = "";
+      setPhone("");
+    }
+    setPhone(inputValue);
+  };
+
+  const onPhonePaste = (e) => {
+    const input = e.target;
+    const inputNumbersValue = getInputNumbersValue(input);
+    const pasted = e.clipboardData || window.clipboardData;
+    if (pasted) {
+      const pastedText = pasted.getData("Text");
+      if (/\D/g.test(pastedText)) {
+        input.value = inputNumbersValue;
+        setPhone(input?.vaue);
+        return;
+      }
+    }
   };
 
   return (
@@ -103,12 +180,19 @@ const RegForm = ({ className }) => {
           // disabled={loading}
         />
         <TextInput
+          className="mask-phone"
           value={phone}
           errors={errors?.phone}
           onClick={() => setErrors(null)}
           placeholder={"Мобильный телефон"}
           type="text"
-          onChange={(e) => setPhone(e.target.value)}
+          onKeyDown={(e) => {
+            onPhoneKeyDown(e);
+          }}
+          onChange={(e) => {
+            onPhoneInput(e);
+            onPhonePaste(e);
+          }}
           // disabled={loading}
         />
         <TextInput

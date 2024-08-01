@@ -77,6 +77,7 @@ const RegForm = ({ className }) => {
     window.ym(92731458, "getClientID", function (clientID) {
       client_id = clientID;
     });
+
     const { errors } = await onReg({
       name,
       email,

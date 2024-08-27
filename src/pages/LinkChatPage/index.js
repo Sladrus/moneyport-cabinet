@@ -50,7 +50,7 @@ const LinkChatPage = () => {
     });
     const { result, errors } = await handleLinkChat({
       name,
-      phone,
+      phone: phone?.replace(/\D/g, ""),
       token,
       email,
       password,

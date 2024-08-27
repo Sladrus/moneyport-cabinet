@@ -1,152 +1,160 @@
-import AuthPage from './pages/AuthPage';
-import CashWithdrawPage from './pages/CashWithdrawPage';
-import CompanyTransfersPage from './pages/CompanyTransfersPage';
-import ExchangePage from './pages/ExchangePage';
-import HomePage from './pages/HomePage';
-import HistoryPage from './pages/HistoryPage';
-import PhysicalTransfersPage from './pages/PhysicalTransfersPage';
-import ReceptionFromAbroadPage from './pages/ReceptionFromAbroadPage';
-import RegPage from './pages/RegPage';
+import AuthPage from "./pages/AuthPage";
+import CashWithdrawPage from "./pages/CashWithdrawPage";
+import CompanyTransfersPage from "./pages/CompanyTransfersPage";
+import ExchangePage from "./pages/ExchangePage";
+import HistoryPage from "./pages/HistoryPage";
+import HomePage from "./pages/HomePage";
+import PhysicalTransfersPage from "./pages/PhysicalTransfersPage";
+import ReceptionFromAbroadPage from "./pages/ReceptionFromAbroadPage";
+import RegPage from "./pages/RegPage";
 
+import AddСounterpartiesPage from "./pages/AddСounterpartiesPage";
+import BalancesPage from "./pages/BalancesPage";
+import LinkChatPage from "./pages/LinkChatPage";
+import QuestionsPage from "./pages/QuestionsPage";
+import RecoveryPage from "./pages/RecoveryPage";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
+import ShowCounterpartyPage from "./pages/ShowCounterpartyPage";
+import TransfersPage from "./pages/TransfersPage";
+import СounterpartiesPage from "./pages/СounterpartiesPage";
 import {
-  AUTH_ROUTE,
-  HOME_ROUTE,
-  PHYS_TRANS_ROUTE,
-  COMPANY_TRANS_ROUTE,
-  RECEPTION_ROUTE,
-  EXCHANGE_ROUTE,
-  REG_ROUTE,
-  CASH_ROUTE,
-  HISTORY_ROUTE,
-  BALANCES_ROUTE,
-  TRANSFERS_ROUTE,
-  RECOVERY_ROUTE,
-  RESET_ROUTE,
-  QUESTIONS_ROUTE,
-  COUNTERPARTIES_ROUTE,
   ADD_COUNTERPARTIES_ROUTE,
-  SHOW_COUNTERPARTIES_ROUTE,
+  AUTH_ROUTE,
+  BALANCES_ROUTE,
+  CASH_ROUTE,
+  COMPANY_TRANS_ROUTE,
+  COUNTERPARTIES_ROUTE,
   EDIT_COUNTERPARTIES_ROUTE,
-} from './utils/consts';
-import BalancesPage from './pages/BalancesPage';
-import TransfersPage from './pages/TransfersPage';
-import RecoveryPage from './pages/RecoveryPage';
-import ResetPasswordPage from './pages/ResetPasswordPage';
-import QuestionsPage from './pages/QuestionsPage';
-import СounterpartiesPage from './pages/СounterpartiesPage';
-import AddСounterpartiesPage from './pages/AddСounterpartiesPage';
-import ShowCounterpartyPage from './pages/ShowCounterpartyPage';
+  EXCHANGE_ROUTE,
+  HISTORY_ROUTE,
+  HOME_ROUTE,
+  LINK_CHAT_ROUTE,
+  PHYS_TRANS_ROUTE,
+  QUESTIONS_ROUTE,
+  RECEPTION_ROUTE,
+  RECOVERY_ROUTE,
+  REG_ROUTE,
+  RESET_ROUTE,
+  SHOW_COUNTERPARTIES_ROUTE,
+  TRANSFERS_ROUTE,
+} from "./utils/consts";
 
 export const authRoutes = [
   {
-    title: 'Главная',
+    title: "Главная",
     path: HOME_ROUTE,
     Component: HomePage,
-    type: 'auth',
+    type: "auth",
   },
   {
-    title: 'Переводы физлицу',
+    title: "Переводы физлицу",
     path: PHYS_TRANS_ROUTE,
     Component: PhysicalTransfersPage,
-    type: 'auth',
+    type: "auth",
   },
   {
-    title: 'Переводы юрлицу',
+    title: "Переводы юрлицу",
     path: COMPANY_TRANS_ROUTE,
     Component: CompanyTransfersPage,
-    type: 'auth',
+    type: "auth",
   },
   {
-    title: 'Прием из-за рубежа',
+    title: "Прием из-за рубежа",
     path: RECEPTION_ROUTE,
     Component: ReceptionFromAbroadPage,
-    type: 'auth',
+    type: "auth",
   },
   {
-    title: 'Переводы',
+    title: "Переводы",
     path: TRANSFERS_ROUTE,
     Component: TransfersPage,
-    type: 'auth',
+    type: "auth",
   },
   {
-    title: 'Обмен криптовалют',
+    title: "Обмен криптовалют",
     path: EXCHANGE_ROUTE,
     Component: ExchangePage,
-    type: 'auth',
+    type: "auth",
   },
   {
-    title: 'Выдача наличных',
+    title: "Выдача наличных",
     path: CASH_ROUTE,
     Component: CashWithdrawPage,
-    type: 'auth',
+    type: "auth",
   },
   {
-    title: 'История операций',
+    title: "История операций",
     path: HISTORY_ROUTE,
     Component: HistoryPage,
-    type: 'auth',
+    type: "auth",
   },
   {
-    title: 'Мои счета',
+    title: "Мои счета",
     path: BALANCES_ROUTE,
     Component: BalancesPage,
-    type: 'auth',
+    type: "auth",
   },
   {
-    title: 'Частые вопросы',
+    title: "Частые вопросы",
     path: QUESTIONS_ROUTE,
     Component: QuestionsPage,
-    type: 'auth',
+    type: "auth",
   },
   {
-    title: 'Контрагенты',
+    title: "Контрагенты",
     path: COUNTERPARTIES_ROUTE,
     Component: СounterpartiesPage,
-    type: 'auth',
+    type: "auth",
   },
   {
-    title: 'Добавление контрагента',
+    title: "Добавление контрагента",
     path: ADD_COUNTERPARTIES_ROUTE,
     Component: AddСounterpartiesPage,
-    type: 'auth',
+    type: "auth",
   },
   {
-    title: 'Редактирование контрагента',
+    title: "Редактирование контрагента",
     path: EDIT_COUNTERPARTIES_ROUTE,
     Component: AddСounterpartiesPage,
-    type: 'auth',
+    type: "auth",
   },
   {
-    title: '',
+    title: "",
     path: SHOW_COUNTERPARTIES_ROUTE,
     Component: ShowCounterpartyPage,
-    type: 'auth',
+    type: "auth",
   },
 ];
 
 export const publicRoutes = [
   {
-    title: 'Авторизация',
+    title: "Авторизация",
     path: AUTH_ROUTE,
     Component: AuthPage,
-    type: 'public',
+    type: "public",
   },
   {
-    title: 'Регистрация',
+    title: "Регистрация",
     path: REG_ROUTE,
     Component: RegPage,
-    type: 'public',
+    type: "public",
   },
   {
-    title: 'Восстановлние пароля',
+    title: "Восстановлние пароля",
     path: RECOVERY_ROUTE,
     Component: RecoveryPage,
-    type: 'public',
+    type: "public",
   },
   {
-    title: 'Восстановлние пароля',
+    title: "Восстановлние пароля",
     path: RESET_ROUTE,
     Component: ResetPasswordPage,
-    type: 'public',
+    type: "public",
+  },
+  {
+    title: "Привязка чат-кассы",
+    path: LINK_CHAT_ROUTE,
+    Component: LinkChatPage,
+    type: "public",
   },
 ];

@@ -70,6 +70,23 @@ class AuthApi {
     }
   }
 
+  async updateUser({ token, email, name, phone, ym_client_id, password }) {
+    try {
+      const response = await authBase.post("/update-user ", {
+        name,
+        phone,
+        token,
+        email,
+        ym_client_id,
+        password,
+      });
+      return response.data;
+    } catch (e) {
+      console.log(e);
+      return e?.response?.data;
+    }
+  }
+
   async refresh() {
     new Promise((resolve) => {
       setTimeout(() => resolve("2342f2f1d131rf12"), 250);

@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
-import { AuthContext } from '../context/context';
-import { AUTH_ROUTE, HOME_ROUTE } from '../utils/consts';
-import AuthApi from '../http/AuthApi';
-import { publicRoutes } from '../routes';
-import { sendMetric } from '../utils/sendMetric';
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { AuthContext } from "../context/context";
+import AuthApi from "../http/AuthApi";
+import { publicRoutes } from "../routes";
+import { AUTH_ROUTE, HOME_ROUTE } from "../utils/consts";
+import { sendMetric } from "../utils/sendMetric";
 
 const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
@@ -26,11 +26,11 @@ const AuthProvider = ({ children }) => {
   };
 
   const setUtms = () => {
-    setUtmFromSearchParams('utm_source');
-    setUtmFromSearchParams('utm_medium');
-    setUtmFromSearchParams('utm_campaign');
-    setUtmFromSearchParams('utm_content');
-    setUtmFromSearchParams('utm_term');
+    setUtmFromSearchParams("utm_source");
+    setUtmFromSearchParams("utm_medium");
+    setUtmFromSearchParams("utm_campaign");
+    setUtmFromSearchParams("utm_content");
+    setUtmFromSearchParams("utm_term");
   };
 
   const handleLogin = async ({ email, password, client_id }) => {
@@ -44,8 +44,8 @@ const AuthProvider = ({ children }) => {
       };
     }
 
-    sessionStorage.setItem('token', data?.access_token);
-    sessionStorage.setItem('refresh', data?.refresh_token);
+    sessionStorage.setItem("token", data?.access_token);
+    sessionStorage.setItem("refresh", data?.refresh_token);
 
     setUser(data?.user);
     setLoading(false);
@@ -74,23 +74,23 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     const utms = {
       source:
-        searchParams.get('utm_source') ||
-        localStorage.getItem('utm_source') ||
-        '',
+        searchParams.get("utm_source") ||
+        localStorage.getItem("utm_source") ||
+        "",
       medium:
-        searchParams.get('utm_medium') ||
-        localStorage.getItem('utm_medium') ||
-        '',
+        searchParams.get("utm_medium") ||
+        localStorage.getItem("utm_medium") ||
+        "",
       campaign:
-        searchParams.get('utm_campaign') ||
-        localStorage.getItem('utm_campaign') ||
-        '',
+        searchParams.get("utm_campaign") ||
+        localStorage.getItem("utm_campaign") ||
+        "",
       content:
-        searchParams.get('utm_content') ||
-        localStorage.getItem('utm_content') ||
-        '',
+        searchParams.get("utm_content") ||
+        localStorage.getItem("utm_content") ||
+        "",
       term:
-        searchParams.get('utm_term') || localStorage.getItem('utm_term') || '',
+        searchParams.get("utm_term") || localStorage.getItem("utm_term") || "",
     };
     const data = await AuthApi.register({
       name,
@@ -108,10 +108,10 @@ const AuthProvider = ({ children }) => {
       };
     }
 
-    sessionStorage.setItem('token', data?.access_token);
+    sessionStorage.setItem("token", data?.access_token);
 
     setUser(data?.user);
-    sendMetric('reachGoal', 'firstreg');
+    sendMetric("reachGoal", "firstreg");
     setLoading(false);
     navigate({ pathname: HOME_ROUTE, search: location.search });
     return { result: true, errors: null };
@@ -124,23 +124,23 @@ const AuthProvider = ({ children }) => {
     setLoading(false);
     navigate({ pathname: AUTH_ROUTE, search: location.search });
     await AuthApi.logout();
-    sessionStorage.removeItem('token');
+    sessionStorage.removeItem("token");
   };
 
   const handleCheckAuth = async () => {
-    if (!sessionStorage.getItem('token')) return;
+    if (!sessionStorage.getItem("token")) return;
     setLoading(true);
     const user = await AuthApi.checkAuth();
     if (!user) {
       setLoading(false);
 
-      const pathParts = location.pathname.split('/').filter((p) => p);
+      const pathParts = location.pathname.split("/").filter((p) => p);
 
       const isPublicRoute = publicRoutes.some((route) => {
-        const routeParts = route.path.split('/').filter((p) => p);
+        const routeParts = route.path.split("/").filter((p) => p);
 
         return routeParts.every((part, index) => {
-          if (part.startsWith(':')) {
+          if (part.startsWith(":")) {
             return true;
           }
           return part === pathParts[index];
@@ -161,6 +161,31 @@ const AuthProvider = ({ children }) => {
   const handleRecoveryPass = async ({ email }) => {
     setLoading(true);
     const data = await AuthApi.recoveryPass({ email });
+    if (data?.errors) {
+      setLoading(false);
+      return { result: false, errors: data?.errors };
+    }
+    setLoading(false);
+    return { result: true, errors: null };
+  };
+
+  const handleLinkChat = async ({
+    name,
+    email,
+    phone,
+    password,
+    ym_client_id,
+    token,
+  }) => {
+    setLoading(true);
+    const data = await AuthApi.updateUser({
+      email,
+      name,
+      phone,
+      password,
+      ym_client_id,
+      token,
+    });
     if (data?.errors) {
       setLoading(false);
       return { result: false, errors: data?.errors };
@@ -207,6 +232,7 @@ const AuthProvider = ({ children }) => {
     onCheck: handleCheckAuth,
     onRecovery: handleRecoveryPass,
     onCheckReset: handleCheckResetToken,
+    handleLinkChat,
     onUpdatePassword: handleUpdatePassword,
     isPassEqual,
   };

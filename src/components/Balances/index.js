@@ -31,7 +31,7 @@ const Balances = () => {
   // }, []);
 
   useEffect(() => {
-    getBalances({ variables: { user_id: Number(user?.id) } });
+    getBalances({ variables: {} });
     // getBalances({ limit, page });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

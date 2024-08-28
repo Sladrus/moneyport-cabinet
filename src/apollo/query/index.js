@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const GET_BALANCES_QUERY = gql`
-  query getBalances($next_cursor: String, $user_id: ID!) {
-    balances(next_cursor: $next_cursor, user_id: $user_id) {
+  query getBalances($next_cursor: String) {
+    balances(next_cursor: $next_cursor) {
       data {
         sum
         currency {
@@ -21,10 +21,10 @@ export const GET_BALANCES_QUERY = gql`
 `;
 
 export const GET_PAYMENTS_QUERY = gql`
-  query getPayments($next_cursor: String, $user_id: ID!) {
+  query getPayments($next_cursor: String) {
     payments(
       next_cursor: $next_cursor
-      user_id: $user_id
+      // user_id: $user_id
       per_page: 20
       pagination_type: "cursor"
     ) {

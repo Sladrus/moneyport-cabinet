@@ -68,7 +68,6 @@ const ApiProvider = ({ children }) => {
       const errors = forgotPasswordError?.graphQLErrors?.find(
         (error) => error?.code === 422
       )?.validation;
-
       handleForgotPassword(errors);
     }
   }, [forgotPasswordData, forgotPasswordError]);

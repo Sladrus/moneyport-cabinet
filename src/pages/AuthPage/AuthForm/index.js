@@ -1,30 +1,42 @@
-import React, { useState } from "react";
-import "./AuthForm.css";
-import TextInput from "../../../components/TextInput";
-import SmallTextButton from "../../../components/Buttons/SmallTextButton";
+import React, { useContext, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { ReactComponent as Logo } from "../../../assets/logo/logo.svg";
 import LargeButton from "../../../components/Buttons/LargeButton";
 import LargeTextButton from "../../../components/Buttons/LargeTextButton";
-import { useContext } from "react";
-import { AuthContext } from "../../../context/context";
-import { useLocation, useNavigate } from "react-router-dom";
+import SmallTextButton from "../../../components/Buttons/SmallTextButton";
+import TextInput from "../../../components/TextInput";
+import { ApiContext, AuthContext } from "../../../context/context";
+import AuthApi from "../../../http/AuthApi";
 import { RECOVERY_ROUTE, REG_ROUTE } from "../../../utils/consts";
-import { ReactComponent as Logo } from "../../../assets/logo/logo.svg";
+import "./AuthForm.css";
 
 const AuthForm = ({ className }) => {
-  const { loading, onLogin } = useContext(AuthContext);
+  const { login, loginLoading } = useContext(ApiContext);
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState(null);
+  const { errors, setErrors } = useContext(AuthContext);
+
+  const [email, setEmail] = useState("1");
+  const [password, setPassword] = useState("12345678");
+  // const [errors, setErrors] = useState(null);
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    let client_id;
-    window.ym(92731458, "getClientID", function (clientID) {
-      client_id = clientID;
+    // let client_id;
+    // window.ym(92731458, "getClientID", function (clientID) {
+    //   client_id = clientID;
+    // });
+    // const { errors } = await onLogin({ email, password, client_id });
+    await AuthApi.getCsrfCookie();
+
+    await login({
+      variables: {
+        input: {
+          login: email,
+          password: password,
+        },
+      },
     });
-    const { errors } = await onLogin({ email, password, client_id });
-    setErrors(errors);
+    // setErrors(errors);
   };
 
   const navigate = useNavigate();
@@ -36,7 +48,7 @@ const AuthForm = ({ className }) => {
       <form onSubmit={handleLogin}>
         <TextInput
           value={email}
-          errors={errors?.email}
+          errors={errors && errors["input.email"]}
           onClick={() => setErrors(null)}
           placeholder={"E-mail"}
           type="text"
@@ -54,7 +66,7 @@ const AuthForm = ({ className }) => {
         >
           <TextInput
             value={password}
-            errors={errors?.password || errors?.error}
+            errors={errors && errors["input.password"]}
             onClick={() => setErrors(null)}
             placeholder={"Пароль"}
             type="password"
@@ -84,7 +96,7 @@ const AuthForm = ({ className }) => {
             text={"Войти"}
             variant="standart"
             // onClick={() => handleLogin()}
-            loading={loading}
+            loading={loginLoading}
           />
 
           <div style={{ display: "flex", alignItems: "center" }}>

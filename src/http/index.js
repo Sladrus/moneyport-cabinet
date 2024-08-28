@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 
 let refreshingFunc = undefined;
 
@@ -30,9 +30,15 @@ export const authBase = axios.create({
   withCredentials: true,
 });
 
+export const csrfBase = axios.create({
+  baseURL: BASE_URL,
+  withCredentials: true,
+  withXSRFToken: true,
+});
+
 authBase.interceptors.request.use(
   (config) => {
-    const token = sessionStorage.getItem('token'); // Assuming you store the token in localStorage
+    const token = sessionStorage.getItem("token"); // Assuming you store the token in localStorage
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -59,8 +65,8 @@ authBase.interceptors.response.use(
 
         const { access_token, refresh_token } = await refreshingFunc;
 
-        sessionStorage.setItem('token', access_token);
-        sessionStorage.setItem('refresh', refresh_token);
+        sessionStorage.setItem("token", access_token);
+        sessionStorage.setItem("refresh", refresh_token);
 
         originalRequest.headers.Authorization = `Bearer ${access_token}`;
 
@@ -72,7 +78,7 @@ authBase.interceptors.response.use(
           }
         }
       } catch (error) {
-        sessionStorage.removeItem('token');
+        sessionStorage.removeItem("token");
 
         window.location = `${window.location.origin}/login`;
       } finally {

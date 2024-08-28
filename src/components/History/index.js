@@ -1,32 +1,40 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from "react";
 
-import './History.css';
+import "./History.css";
 
-import { ReactComponent as ArrowDownIcon } from '../../assets/icons/arrows/arrow-down.svg';
+import { ReactComponent as ArrowDownIcon } from "../../assets/icons/arrows/arrow-down.svg";
 
-import HistoryItem from './HistoryItem';
-import LargeTextButton from '../Buttons/LargeTextButton';
-import { AuthContext, DataContext, RouteContext } from '../../context/context';
-import Skeleton from 'react-loading-skeleton';
-import EmptyHistory from './EmptyHistory';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { HISTORY_ROUTE } from '../../utils/consts';
-import Spinner from '../Spinner';
+import { useLocation, useNavigate } from "react-router-dom";
+import {
+  ApiContext,
+  AuthContext,
+  DataContext,
+  RouteContext,
+} from "../../context/context";
+import { HISTORY_ROUTE } from "../../utils/consts";
+import LargeTextButton from "../Buttons/LargeTextButton";
+import Spinner from "../Spinner";
+import EmptyHistory from "./EmptyHistory";
+import HistoryItem from "./HistoryItem";
 
 const History = () => {
   const [open, setOpen] = useState(true);
-  const { loading } = useContext(AuthContext);
+  const { history } = useContext(DataContext);
+  const { user } = useContext(AuthContext);
 
-  const { shortHistory, shortHistoryLoading, getShortHistory } =
-    useContext(DataContext);
+  const { getPayments, getPaymentsLoading } = useContext(ApiContext);
   const { setSelectedMenuItem } = useContext(RouteContext);
 
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
-    getShortHistory({ page: 1, limit: 10 });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    if (!history?.length > 0)
+      getPayments({
+        variables: {
+          user_id: Number(user?.id),
+        },
+      });
   }, []);
 
   const handleClick = () => {
@@ -35,43 +43,32 @@ const History = () => {
   };
 
   return (
-    <div className={`history ${open ? 'expanded' : 'closed'}`}>
+    <div className={`history ${open ? "expanded" : "closed"}`}>
       <div className="history-title">
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
           <span>История операций</span>
-          <LargeTextButton value={'Все'} onClick={handleClick} />
+          <LargeTextButton value={"Все"} onClick={handleClick} />
         </div>
         <div
-          style={{ display: 'flex', alignItems: 'center' }}
+          style={{ display: "flex", alignItems: "center" }}
           onClick={() => setOpen(!open)}
         >
           <ArrowDownIcon
-            className={`history-title-arrow ${open ? 'expanded' : 'closed'}`}
+            className={`history-title-arrow ${open ? "expanded" : "closed"}`}
           />
         </div>
       </div>
-      <div className={`history-list ${open ? 'expanded' : 'closed'}`}>
-        {shortHistoryLoading && !shortHistory?.data?.length ? (
+      <div className={`history-list ${open ? "expanded" : "closed"}`}>
+        {getPaymentsLoading && !history?.length ? (
           <div className="skeleton">
             {/* <Skeleton inline count={5} height={68} borderRadius={16} /> */}
             <Spinner />
           </div>
-        ) : shortHistory?.data?.length ? (
-          shortHistory?.data?.map(
-            ({ id, title, val, icon, symbol, type, create_date }) => {
-              return (
-                <HistoryItem
-                  key={id}
-                  title={title}
-                  amount={val}
-                  icon={icon}
-                  code={symbol}
-                  type={type}
-                  date={create_date}
-                />
-              );
-            }
-          )
+        ) : history?.length ? (
+          history?.map((item, index) => {
+            if (index >= 3) return;
+            return <HistoryItem key={index} {...item} />;
+          })
         ) : (
           <EmptyHistory />
         )}

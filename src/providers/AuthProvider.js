@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
-import { AuthContext } from '../context/context';
-import { AUTH_ROUTE, HOME_ROUTE } from '../utils/consts';
-import AuthApi from '../http/AuthApi';
-import { publicRoutes } from '../routes';
-import { sendMetric } from '../utils/sendMetric';
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { AuthContext } from "../context/context";
+import AuthApi from "../http/AuthApi";
+import { publicRoutes } from "../routes";
+import { AUTH_ROUTE, HOME_ROUTE } from "../utils/consts";
+import { sendMetric } from "../utils/sendMetric";
 
 const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
@@ -15,42 +15,37 @@ const AuthProvider = ({ children }) => {
 
   const [searchParams] = useSearchParams();
 
+  const [errors, setErrors] = useState();
+  const [isComplete, setIsComplete] = useState(false);
+
   useEffect(() => {
     setUtms();
-    handleCheckAuth();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // handleCheckAuth();
   }, []);
+
+  useEffect(() => {
+    // handleCheckAuth();
+    if (!user) navigate(AUTH_ROUTE);
+  }, [user]);
 
   const setUtmFromSearchParams = (utm) => {
     if (searchParams.get(utm)) localStorage.setItem(utm, searchParams.get(utm));
   };
 
   const setUtms = () => {
-    setUtmFromSearchParams('utm_source');
-    setUtmFromSearchParams('utm_medium');
-    setUtmFromSearchParams('utm_campaign');
-    setUtmFromSearchParams('utm_content');
-    setUtmFromSearchParams('utm_term');
+    setUtmFromSearchParams("utm_source");
+    setUtmFromSearchParams("utm_medium");
+    setUtmFromSearchParams("utm_campaign");
+    setUtmFromSearchParams("utm_content");
+    setUtmFromSearchParams("utm_term");
   };
 
-  const handleLogin = async ({ email, password, client_id }) => {
-    setLoading(true);
-    const data = await AuthApi.login({ email, password, client_id });
-    if (data?.errors || data?.error) {
-      setLoading(false);
-      return {
-        result: false,
-        errors: data?.errors || { error: [data?.error] },
-      };
+  const handleLogin = async (user, errors) => {
+    if (errors) {
+      return setErrors(errors);
     }
-
-    sessionStorage.setItem('token', data?.access_token);
-    sessionStorage.setItem('refresh', data?.refresh_token);
-
-    setUser(data?.user);
-    setLoading(false);
+    setUser(user);
     navigate({ pathname: HOME_ROUTE, search: location.search });
-    return { result: true, errors: null };
   };
 
   const isPassEqual = async (password, finalPass) => {
@@ -64,57 +59,13 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  const handleRegistration = async ({
-    name,
-    email,
-    phone,
-    password,
-    client_id,
-  }) => {
-    setLoading(true);
-    const utms = {
-      source:
-        searchParams.get('utm_source') ||
-        localStorage.getItem('utm_source') ||
-        '',
-      medium:
-        searchParams.get('utm_medium') ||
-        localStorage.getItem('utm_medium') ||
-        '',
-      campaign:
-        searchParams.get('utm_campaign') ||
-        localStorage.getItem('utm_campaign') ||
-        '',
-      content:
-        searchParams.get('utm_content') ||
-        localStorage.getItem('utm_content') ||
-        '',
-      term:
-        searchParams.get('utm_term') || localStorage.getItem('utm_term') || '',
-    };
-    const data = await AuthApi.register({
-      name,
-      email,
-      phone,
-      password,
-      client_id,
-      utms,
-    });
-    if (data?.errors || data?.error) {
-      setLoading(false);
-      return {
-        result: false,
-        errors: data?.errors || { error: [data?.error] },
-      };
+  const handleRegistration = async (user, errors) => {
+    if (errors) {
+      return setErrors(errors);
     }
-
-    sessionStorage.setItem('token', data?.access_token);
-
-    setUser(data?.user);
-    sendMetric('reachGoal', 'firstreg');
-    setLoading(false);
+    setUser(user);
+    sendMetric("reachGoal", "firstreg");
     navigate({ pathname: HOME_ROUTE, search: location.search });
-    return { result: true, errors: null };
   };
 
   const handleLogout = async () => {
@@ -124,23 +75,23 @@ const AuthProvider = ({ children }) => {
     setLoading(false);
     navigate({ pathname: AUTH_ROUTE, search: location.search });
     await AuthApi.logout();
-    sessionStorage.removeItem('token');
+    sessionStorage.removeItem("token");
   };
 
   const handleCheckAuth = async () => {
-    if (!sessionStorage.getItem('token')) return;
+    if (!sessionStorage.getItem("token")) return;
     setLoading(true);
     const user = await AuthApi.checkAuth();
     if (!user) {
       setLoading(false);
 
-      const pathParts = location.pathname.split('/').filter((p) => p);
+      const pathParts = location.pathname.split("/").filter((p) => p);
 
       const isPublicRoute = publicRoutes.some((route) => {
-        const routeParts = route.path.split('/').filter((p) => p);
+        const routeParts = route.path.split("/").filter((p) => p);
 
         return routeParts.every((part, index) => {
-          if (part.startsWith(':')) {
+          if (part.startsWith(":")) {
             return true;
           }
           return part === pathParts[index];
@@ -158,15 +109,11 @@ const AuthProvider = ({ children }) => {
       navigate({ pathname: HOME_ROUTE, search: location.search });
   };
 
-  const handleRecoveryPass = async ({ email }) => {
-    setLoading(true);
-    const data = await AuthApi.recoveryPass({ email });
-    if (data?.errors) {
-      setLoading(false);
-      return { result: false, errors: data?.errors };
+  const handleForgotPassword = async (errors) => {
+    if (errors) {
+      return setErrors(errors);
     }
-    setLoading(false);
-    return { result: true, errors: null };
+    setIsComplete(true);
   };
 
   const handleCheckResetToken = async ({ token }) => {
@@ -201,14 +148,19 @@ const AuthProvider = ({ children }) => {
   const value = {
     user,
     loading,
-    onLogin: handleLogin,
+    handleLogin,
     onLogout: handleLogout,
-    onReg: handleRegistration,
+    handleRegistration,
     onCheck: handleCheckAuth,
-    onRecovery: handleRecoveryPass,
+    handleForgotPassword,
     onCheckReset: handleCheckResetToken,
     onUpdatePassword: handleUpdatePassword,
     isPassEqual,
+    errors,
+    setErrors,
+    isComplete,
+    setIsComplete,
+    searchParams,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

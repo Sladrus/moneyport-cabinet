@@ -1,17 +1,17 @@
-import React, { useContext } from 'react';
+import React, { useContext } from "react";
 
-import './ReceptionFromAbroadPage.css';
-import LargeButton from '../../components/Buttons/LargeButton';
-import { openInNewTab } from '../../utils/window';
-import { DataContext } from '../../context/context';
-import QRCode from 'react-qr-code';
+import QRCode from "react-qr-code";
+import LargeButton from "../../components/Buttons/LargeButton";
+import { DataContext } from "../../context/context";
+import { openInNewTab } from "../../utils/window";
+import "./ReceptionFromAbroadPage.css";
 
 const ReceptionFromAbroadPage = () => {
   const { chat, order, setChatOrder } = useContext(DataContext);
 
   const handleClick = () => {
-    setChatOrder(order);
-    openInNewTab(chat?.chat_url, 'go_to_chat_perevod_priem_from_abroad');
+    // setChatOrder(order);
+    openInNewTab(chat?.group_url, "go_to_chat_perevod_priem_from_abroad");
   };
 
   return (
@@ -20,12 +20,12 @@ const ReceptionFromAbroadPage = () => {
         <div className="reception-page-content-body">
           <div
             style={{
-              width: '100%',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'flex-start',
-              gap: '16px',
-              alignSelf: 'stretch',
+              width: "100%",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start",
+              gap: "16px",
+              alignSelf: "stretch",
             }}
           >
             <div className="reception-page-content-body-title">
@@ -34,11 +34,11 @@ const ReceptionFromAbroadPage = () => {
             <div className="reception-page-content-body-text">
               <div
                 style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'flex-start',
-                  gap: '12px',
-                  flex: '1 0 0',
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "flex-start",
+                  gap: "12px",
+                  flex: "1 0 0",
                 }}
               >
                 <span>
@@ -59,13 +59,13 @@ const ReceptionFromAbroadPage = () => {
                 </span>
               </div>
               <div className="reception-page-content-body-qr">
-                <QRCode value={chat?.chat_url || ''} size={153} />
+                <QRCode value={chat?.group_url || ""} size={153} />
               </div>
             </div>
           </div>
         </div>
         <div className="reception-page-content-button">
-          <LargeButton text={'Перейти в чат-кассу'} onClick={handleClick} />
+          <LargeButton text={"Перейти в чат-кассу"} onClick={handleClick} />
         </div>
       </div>
     </div>

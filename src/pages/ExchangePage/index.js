@@ -1,13 +1,13 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from "react";
 
-import './ExchangePage.css';
-import LargeButton from '../../components/Buttons/LargeButton';
-import Breadcrumbs from '../../components/Breadcrumbs';
-import { DataContext, RouteContext } from '../../context/context';
-import { openInNewTab } from '../../utils/window';
-import QRCode from 'react-qr-code';
-import Spinner from '../../components/Spinner';
-import PreOrderExchangeContent from './PreOrderExchangeContent';
+import "./ExchangePage.css";
+import LargeButton from "../../components/Buttons/LargeButton";
+import Breadcrumbs from "../../components/Breadcrumbs";
+import { DataContext, RouteContext } from "../../context/context";
+import { openInNewTab } from "../../utils/window";
+import QRCode from "react-qr-code";
+import Spinner from "../../components/Spinner";
+import PreOrderExchangeContent from "./PreOrderExchangeContent";
 
 const ExchangePage = () => {
   const { order, setOrder, setChatOrder, chat, chatLoading, getChat } =
@@ -15,8 +15,8 @@ const ExchangePage = () => {
   const { selectedMenuItem } = useContext(RouteContext);
 
   const handleClick = () => {
-    setChatOrder(order);
-    openInNewTab(chat?.chat_url, 'go_to_chat_cryptoexchange');
+    // setChatOrder(order);
+    openInNewTab(chat?.group_url, "go_to_chat_cryptoexchange");
   };
 
   useEffect(() => {
@@ -27,25 +27,25 @@ const ExchangePage = () => {
   if (chat?.error) {
     return (
       <div className="exchange-page">
-        <div style={{ padding: '0 24px' }}>
+        <div style={{ padding: "0 24px" }}>
           <Breadcrumbs />
         </div>
         <div className="exchange-page-error">
           <span>
-            Произошла ошибка. Свяжитесь с{' '}
-            <a href={'https://t.me/mpstart'} rel="noreferrer" target="_blank">
+            Произошла ошибка. Свяжитесь с{" "}
+            <a href={"https://t.me/mpstart"} rel="noreferrer" target="_blank">
               https://t.me/mpstart
-            </a>{' '}
+            </a>{" "}
             для получения помощи.
           </span>
-        </div>{' '}
+        </div>{" "}
       </div>
     );
   }
 
   return (
     <div className="exchange-page">
-      <div style={{ padding: '0 24px' }}>
+      <div style={{ padding: "0 24px" }}>
         <Breadcrumbs />
       </div>
       {order ? (
@@ -58,12 +58,12 @@ const ExchangePage = () => {
             <div className="exchange-page-content-body">
               <div
                 style={{
-                  width: '100%',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'flex-start',
-                  gap: '16px',
-                  alignSelf: 'stretch',
+                  width: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "flex-start",
+                  gap: "16px",
+                  alignSelf: "stretch",
                 }}
               >
                 <div className="exchange-page-content-body-title">
@@ -72,11 +72,11 @@ const ExchangePage = () => {
                 <div className="exchange-page-content-body-text">
                   <div
                     style={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'flex-start',
-                      gap: '12px',
-                      flex: '1 0 0',
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "flex-start",
+                      gap: "12px",
+                      flex: "1 0 0",
                     }}
                   >
                     <span>
@@ -91,21 +91,18 @@ const ExchangePage = () => {
                     </span>
                   </div>
                   <div className="exchange-page-content-body-qr">
-                    <QRCode value={chat?.chat_url || ''} size={153} />
+                    <QRCode value={chat?.group_url || ""} size={153} />
                   </div>
                 </div>
               </div>
             </div>
             <div className="exchange-page-content-button">
-              <LargeButton
-                text={'Перейти в чат-кассу'}
-                onClick={handleClick}
-              />
+              <LargeButton text={"Перейти в чат-кассу"} onClick={handleClick} />
             </div>
           </div>
         )
       ) : (
-        <div style={{ padding: '0 24px' }}>
+        <div style={{ padding: "0 24px" }}>
           <PreOrderExchangeContent />
         </div>
       )}

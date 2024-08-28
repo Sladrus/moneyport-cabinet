@@ -1,26 +1,38 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from "react";
 
-import './Balances.css';
-import BalanceItem from './BalanceItem';
+import BalanceItem from "./BalanceItem";
+import "./Balances.css";
 
-import { ReactComponent as ArrowDownIcon } from '../../assets/icons/arrows/arrow-down.svg';
-import { AuthContext, DataContext, RouteContext } from '../../context/context';
-import Skeleton from 'react-loading-skeleton';
-import LargeTextButton from '../Buttons/LargeTextButton';
-import { useNavigate } from 'react-router-dom';
-import { BALANCES_ROUTE } from '../../utils/consts';
-import Spinner from '../Spinner';
+import { useNavigate } from "react-router-dom";
+import { ReactComponent as ArrowDownIcon } from "../../assets/icons/arrows/arrow-down.svg";
+import {
+  ApiContext,
+  AuthContext,
+  DataContext,
+  RouteContext,
+} from "../../context/context";
+import { BALANCES_ROUTE } from "../../utils/consts";
+import LargeTextButton from "../Buttons/LargeTextButton";
+import EmptyBalances from "../History/EmptyBalances";
+import Spinner from "../Spinner";
 
 const Balances = () => {
   const [open, setOpen] = useState(true);
-  const { loading } = useContext(AuthContext);
-  const { shortBalances, shortBalancesLoading, getShortBalances } =
-    useContext(DataContext);
+  const { getBalances, getBalancesLoading } = useContext(ApiContext);
+  const { balances } = useContext(DataContext);
   const { setSelectedMenuItem, location } = useContext(RouteContext);
+  const { user } = useContext(AuthContext);
+
   const navigate = useNavigate();
 
+  // useEffect(() => {
+  //   getShortBalances({ type: 'short' });
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
+
   useEffect(() => {
-    getShortBalances({ type: 'short' });
+    getBalances({ variables: { user_id: Number(user?.id) } });
+    // getBalances({ limit, page });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -30,39 +42,31 @@ const Balances = () => {
   };
 
   return (
-    <div className={`balances ${open ? 'expanded' : 'closed'}`}>
+    <div className={`balances ${open ? "expanded" : "closed"}`}>
       <div className="balances-title">
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
           <span>Мои счета</span>
-          <LargeTextButton value={'Все'} onClick={handleClick} />
+          <LargeTextButton value={"Все"} onClick={handleClick} />
         </div>
         <div
-          style={{ display: 'flex', alignItems: 'center' }}
+          style={{ display: "flex", alignItems: "center" }}
           onClick={() => setOpen(!open)}
         >
           <ArrowDownIcon
-            className={`balances-title-arrow ${open ? 'expanded' : 'closed'}`}
+            className={`balances-title-arrow ${open ? "expanded" : "closed"}`}
           />
         </div>
       </div>
       <div className={`balances-list`}>
-        {shortBalancesLoading && !shortBalances?.data?.length ? (
+        {getBalancesLoading && !balances?.length ? (
           <Spinner />
+        ) : balances?.length ? (
+          balances?.map((balance, index) => {
+            if (index >= 3) return;
+            return <BalanceItem open={open} key={index} {...balance} />;
+          })
         ) : (
-          shortBalances?.data?.map(
-            ({ id, title, amount, code, sign }, index) => {
-              return (
-                <BalanceItem
-                  open={open}
-                  key={index}
-                  title={title}
-                  amount={amount}
-                  sign={sign}
-                  code={code}
-                />
-              );
-            }
-          )
+          !getBalancesLoading && <EmptyBalances />
         )}
       </div>
     </div>

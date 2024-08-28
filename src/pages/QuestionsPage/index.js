@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
+import React from "react";
 
-import './QuestionsPage.css';
+import "./QuestionsPage.css";
 
-import Breadcrumbs from '../../components/Breadcrumbs';
-import QuestionsList from './QuestionsList';
+import Breadcrumbs from "../../components/Breadcrumbs";
+import QuestionsList from "./QuestionsList";
 // import LargeButton from '../../components/Buttons/LargeButton';
 
 const QuestionsPage = () => {
@@ -14,11 +14,6 @@ const QuestionsPage = () => {
       <div className="questions-page-content">
         <Breadcrumbs />
         <QuestionsList />
-        {/* {balances?.nextPage && (
-          <div className="balances-page-content-button">
-            <LargeButton text={'Показать еще'} variant="outlined" />
-          </div>
-        )} */}
       </div>
     </div>
   );

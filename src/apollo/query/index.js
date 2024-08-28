@@ -24,7 +24,6 @@ export const GET_PAYMENTS_QUERY = gql`
   query getPayments($next_cursor: String) {
     payments(
       next_cursor: $next_cursor
-      // user_id: $user_id
       per_page: 20
       pagination_type: "cursor"
     ) {

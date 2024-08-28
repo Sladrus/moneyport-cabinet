@@ -17,7 +17,7 @@ const HistoryList = () => {
     if (!history?.length > 0)
       getPayments({
         variables: {
-          user_id: Number(user?.id),
+          // user_id: Number(user?.id),
         },
       });
   }, []);

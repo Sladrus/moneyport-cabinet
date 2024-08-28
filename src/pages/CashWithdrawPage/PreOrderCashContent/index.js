@@ -24,7 +24,7 @@ const PreOrderCashContent = () => {
     getChat({
       variables: {
         input: {
-          user_id: Number(user?.id),
+          // user_id: Number(user?.id),
           pre_order: JSON.stringify({
             currency,
             amount: String(amount),

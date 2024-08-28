@@ -15,7 +15,7 @@ const HistoryPage = () => {
     if (!history?.length > 0)
       getPayments({
         variables: {
-          user_id: Number(user?.id),
+          // user_id: Number(user?.id),
         },
       });
   }, []);
@@ -25,7 +25,7 @@ const HistoryPage = () => {
     if (historyPagination?.next_cursor)
       getPayments({
         variables: {
-          user_id: Number(user?.id),
+          // user_id: Number(user?.id),
           next_cursor: historyPagination?.next_cursor,
         },
       });

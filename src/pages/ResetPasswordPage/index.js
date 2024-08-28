@@ -1,61 +1,58 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from "react";
 
-import './ResetPasswordPage.css';
+import "./ResetPasswordPage.css";
 
-import TextInput from '../../components/TextInput';
-import { AuthContext } from '../../context/context';
-import LargeButton from '../../components/Buttons/LargeButton';
-import { ReactComponent as Logo } from '../../assets/logo/logo.svg';
-import { ReactComponent as ArrowLeft } from '../../assets/icons/arrows/arrow-left.svg';
+import { ReactComponent as ArrowLeft } from "../../assets/icons/arrows/arrow-left.svg";
+import { ReactComponent as Logo } from "../../assets/logo/logo.svg";
+import LargeButton from "../../components/Buttons/LargeButton";
+import TextInput from "../../components/TextInput";
+import { ApiContext, AuthContext } from "../../context/context";
 
-import { AUTH_ROUTE } from '../../utils/consts';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { AUTH_ROUTE } from "../../utils/consts";
 
 const ResetPasswordPage = () => {
-  const { loading, onCheckReset, onUpdatePassword, isPassEqual } =
-    useContext(AuthContext);
+  const {
+    loading,
+    onCheckReset,
+    handleResetPassword,
+    isPassEqual,
+    errors,
+    setErrors,
+    isComplete,
+    setIsComplete,
+  } = useContext(AuthContext);
+
+  const { resetPassword } = useContext(ApiContext);
 
   const navigate = useNavigate();
   const location = useLocation();
 
   const { token } = useParams();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [finalPass, setFinalPass] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [finalPass, setFinalPass] = useState("");
 
-  const [errors, setErrors] = useState(null);
-  const [isComplete, setComplete] = useState(false);
+  // const [errors, setErrors] = useState(null);
+  // const [isComplete, setComplete] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const equal = await isPassEqual(password, finalPass);
     if (!equal) {
-      return setErrors({ finalPass: ['Пароли не совпадают'] });
+      return setErrors({ finalPass: ["Пароли не совпадают"] });
     }
-    const { errors } = await onUpdatePassword({
-      token,
-      email,
-      password,
-    });
-
-    setErrors(errors);
+    resetPassword({ variables: { input: { token, email, password } } });
+    // setErrors(errors);
   };
-
-  useEffect(() => {
-    onCheckReset({ token }).then(({ result, errors }) => {
-      setErrors(errors);
-      setComplete(result);
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <div className="recovery-page">
       <div className="recovery-page-header">
-        <div style={{ display: 'flex', alignItems: 'center', gap: '32px' }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "32px" }}>
           <ArrowLeft
-            style={{ cursor: 'pointer' }}
+            style={{ cursor: "pointer" }}
             onClick={() =>
               navigate({ pathname: AUTH_ROUTE, search: location.search })
             }
@@ -63,25 +60,26 @@ const ResetPasswordPage = () => {
           <Logo className="logo" />
         </div>
       </div>
-      {isComplete ? (
+      {isComplete && !errors && <>Пароль успешно изменен</>}
+      {!isComplete ? (
         <form className="recovery-page-form">
           <span className="recovery-page-form-title">
             Восстановление пароля
           </span>
           <div
             style={{
-              width: '100%',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'flex-start',
-              gap: '24px',
+              width: "100%",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start",
+              gap: "24px",
             }}
           >
-            <div style={{ width: '100%' }}>
+            <div style={{ width: "100%" }}>
               <TextInput
                 value={email}
-                errors={errors?.email}
-                placeholder={'E-mail'}
+                errors={errors && errors["input.email"]}
+                placeholder={"E-mail"}
                 type="text"
                 onClick={() => setErrors(null)}
                 onChange={(e) => setEmail(e.target.value)}
@@ -89,8 +87,8 @@ const ResetPasswordPage = () => {
               />
               <TextInput
                 value={password}
-                errors={errors?.password}
-                placeholder={'Пароль'}
+                errors={errors && errors["input.password"]}
+                placeholder={"Пароль"}
                 type="password"
                 onClick={() => setErrors(null)}
                 onChange={(e) => setPassword(e.target.value)}
@@ -99,7 +97,7 @@ const ResetPasswordPage = () => {
               <TextInput
                 value={finalPass}
                 errors={errors?.finalPass}
-                placeholder={'Пароль еще раз'}
+                placeholder={"Пароль еще раз"}
                 type="password"
                 onClick={() => setErrors(null)}
                 onChange={(e) => setFinalPass(e.target.value)}
@@ -108,7 +106,7 @@ const ResetPasswordPage = () => {
             </div>
 
             <LargeButton
-              text={'Продолжить'}
+              text={"Продолжить"}
               variant="standart"
               onClick={handleSubmit}
               loading={loading}

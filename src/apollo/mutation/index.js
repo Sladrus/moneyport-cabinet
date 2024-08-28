@@ -36,6 +36,18 @@ export const FORGOT_PASSWORD_MUTATION = gql`
   }
 `;
 
+export const RESET_PASSWORD_MUTATION = gql`
+  mutation resetPassword($input: resetPasswordInput!) {
+    resetPassword(input: $input) {
+      operation_status {
+        status
+        message
+        code
+      }
+    }
+  }
+`;
+
 export const GET_CHAT_MUTATION = gql`
   mutation getChat($input: chatInput) {
     getChat(input: $input) {

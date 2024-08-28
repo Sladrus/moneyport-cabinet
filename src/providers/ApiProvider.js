@@ -6,13 +6,18 @@ import {
   GET_CHAT_MUTATION,
   LOGIN_MUTATION,
   REGISTRATION_MUTATION,
+  RESET_PASSWORD_MUTATION,
 } from "../apollo/mutation";
 import { GET_BALANCES_QUERY, GET_PAYMENTS_QUERY } from "../apollo/query";
 import { ApiContext, AuthContext, DataContext } from "../context/context";
 
 const ApiProvider = ({ children }) => {
-  const { handleLogin, handleRegistration, handleForgotPassword } =
-    useContext(AuthContext);
+  const {
+    handleLogin,
+    handleRegistration,
+    handleForgotPassword,
+    handleResetPassword,
+  } = useContext(AuthContext);
 
   const { handleGetBalances, handleGetPayments, handleGetChat } =
     useContext(DataContext);
@@ -71,6 +76,26 @@ const ApiProvider = ({ children }) => {
       handleForgotPassword(errors);
     }
   }, [forgotPasswordData, forgotPasswordError]);
+
+  const [
+    resetPassword,
+    {
+      loading: resetPasswordLoading,
+      data: resetPasswordData,
+      error: resetPasswordError,
+    },
+  ] = useMutation(RESET_PASSWORD_MUTATION, {
+    client: publicClient,
+  });
+
+  useEffect(() => {
+    if (resetPasswordData || resetPasswordError) {
+      const errors = resetPasswordError?.graphQLErrors?.find(
+        (error) => error?.code === 422
+      )?.validation;
+      handleResetPassword(errors);
+    }
+  }, [resetPasswordData, resetPasswordError]);
 
   const [
     getBalances,
@@ -132,7 +157,6 @@ const ApiProvider = ({ children }) => {
       console.log(getChatData);
     }
     if (getChatError) {
-      // handleGetChat(getChatError);
       console.log(getChatError);
     }
   }, [getChatData, getChatError]);
@@ -144,6 +168,8 @@ const ApiProvider = ({ children }) => {
     registrationLoading,
     forgotPassword,
     forgotPasswordLoading,
+    resetPassword,
+    resetPasswordLoading,
     getBalances,
     getBalancesLoading,
     getPayments,

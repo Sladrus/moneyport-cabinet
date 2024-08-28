@@ -23,10 +23,10 @@ const AuthProvider = ({ children }) => {
     // handleCheckAuth();
   }, []);
 
-  useEffect(() => {
-    // handleCheckAuth();
-    if (!user) navigate(AUTH_ROUTE);
-  }, [user]);
+  // useEffect(() => {
+  //   // handleCheckAuth();
+  //   if (!user) navigate(AUTH_ROUTE);
+  // }, [user]);
 
   const setUtmFromSearchParams = (utm) => {
     if (searchParams.get(utm)) localStorage.setItem(utm, searchParams.get(utm));
@@ -130,19 +130,23 @@ const AuthProvider = ({ children }) => {
     return { result: true, errors: null };
   };
 
-  const handleUpdatePassword = async ({ token, email, password }) => {
-    setLoading(true);
-    const data = await AuthApi.updatePassword({ token, email, password });
-    if (data?.errors || data?.error) {
-      setLoading(false);
-      return {
-        result: false,
-        errors: data?.errors || { error: [data?.error] },
-      };
+  const handleResetPassword = async (errors) => {
+    if (errors) {
+      return setErrors(errors);
     }
-    setLoading(false);
-    navigate({ pathname: AUTH_ROUTE, search: location.search });
-    return { result: true, errors: null };
+    setIsComplete(true);
+    // setLoading(true);
+    // const data = await AuthApi.updatePassword({ token, email, password });
+    // if (data?.errors || data?.error) {
+    //   setLoading(false);
+    //   return {
+    //     result: false,
+    //     errors: data?.errors || { error: [data?.error] },
+    //   };
+    // }
+    // setLoading(false);
+    // navigate({ pathname: AUTH_ROUTE, search: location.search });
+    // return { result: true, errors: null };
   };
 
   const value = {
@@ -154,7 +158,7 @@ const AuthProvider = ({ children }) => {
     onCheck: handleCheckAuth,
     handleForgotPassword,
     onCheckReset: handleCheckResetToken,
-    onUpdatePassword: handleUpdatePassword,
+    handleResetPassword,
     isPassEqual,
     errors,
     setErrors,

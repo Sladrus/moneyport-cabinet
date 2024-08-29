@@ -42,8 +42,6 @@ const AuthForm = ({ className }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  console.log(errors);
-
   return (
     <div className={className}>
       <Logo className="logo" />

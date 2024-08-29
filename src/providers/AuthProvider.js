@@ -110,6 +110,7 @@ const AuthProvider = ({ children }) => {
   };
 
   const handleForgotPassword = async (errors) => {
+    console.log(errors);
     if (errors) {
       return setErrors(errors);
     }

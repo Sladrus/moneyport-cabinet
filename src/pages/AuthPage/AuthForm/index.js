@@ -42,13 +42,17 @@ const AuthForm = ({ className }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  console.log(errors);
+
   return (
     <div className={className}>
       <Logo className="logo" />
       <form onSubmit={handleLogin}>
         <TextInput
           value={email}
-          errors={errors && errors["input.email"]}
+          errors={
+            (errors && errors["input.email"]) || (errors && [errors?.message])
+          }
           onClick={() => setErrors(null)}
           placeholder={"E-mail"}
           type="text"

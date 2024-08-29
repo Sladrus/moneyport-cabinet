@@ -204,7 +204,7 @@ const RegForm = ({ className }) => {
       <form onSubmit={handleSubmit}>
         <TextInput
           value={name}
-          errors={errors && errors?.name}
+          errors={errors && errors["input.name"]}
           onClick={() => setErrors(null)}
           placeholder={"ФИО"}
           type="text"
@@ -213,7 +213,7 @@ const RegForm = ({ className }) => {
         />
         <TextInput
           value={email}
-          errors={errors && errors?.email}
+          errors={errors && errors["input.email"]}
           onClick={() => setErrors(null)}
           placeholder={"E-mail"}
           type="text"
@@ -223,7 +223,7 @@ const RegForm = ({ className }) => {
         <TextInput
           className="mask-phone"
           value={phone}
-          errors={errors && errors?.phone}
+          errors={errors && errors["input.phone"]}
           onClick={() => setErrors(null)}
           placeholder={"Мобильный телефон"}
           type="text"
@@ -238,7 +238,7 @@ const RegForm = ({ className }) => {
         />
         <TextInput
           value={password}
-          errors={errors && errors?.password}
+          errors={errors && errors["input.password"]}
           onClick={() => setErrors(null)}
           placeholder={"Пароль"}
           type="password"

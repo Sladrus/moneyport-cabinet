@@ -29,9 +29,11 @@ const ApiProvider = ({ children }) => {
 
   useEffect(() => {
     if (loginData || loginError) {
-      const errors = loginError?.graphQLErrors?.find(
-        (error) => error?.code === 422
-      )?.validation;
+      console.log(loginError?.graphQLErrors);
+      const errors =
+        loginError?.graphQLErrors?.find((error) => error?.code === 422)
+          ?.validation ||
+        loginError?.graphQLErrors?.find((error) => error?.code === 500);
       handleLogin(loginData?.login?.user, errors);
     }
   }, [loginData, loginError]);

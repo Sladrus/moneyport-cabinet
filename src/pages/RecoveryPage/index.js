@@ -39,7 +39,7 @@ const RecoveryPage = () => {
   useEffect(() => {
     setIsComplete(false);
   }, []);
-  console.log(isComplete);
+
   return (
     <div className="recovery-page">
       <div className="recovery-page-header">

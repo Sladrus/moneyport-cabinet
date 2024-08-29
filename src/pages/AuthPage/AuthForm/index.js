@@ -49,7 +49,7 @@ const AuthForm = ({ className }) => {
         <TextInput
           value={email}
           errors={
-            (errors && errors["input.email"]) || (errors && [errors?.message])
+            (errors && errors["input.login"]) || (errors && [errors?.message])
           }
           onClick={() => setErrors(null)}
           placeholder={"E-mail"}

@@ -84,11 +84,11 @@ const RegForm = ({ className }) => {
     window.ym(92731458, "getClientID", function (clientID) {
       ym_client_id = clientID;
     });
-    const params = {};
-    searchParams.forEach((value, key) => {
+    const allParameters = new URLSearchParams(location.search);
+    allParameters.forEach((value, key) => {
       params[key] = value;
     });
-    console.log(JSON.stringify(params, null, 2));
+    console.log(JSON.stringify(allParameters, null, 2));
 
     const source = {
       utm_source:
@@ -109,7 +109,7 @@ const RegForm = ({ className }) => {
         null,
       utm_term:
         searchParams.get("utm_term") || localStorage.getItem("utm_term") || "",
-      all_parameters: JSON.stringify(params, null, 2),
+      all_parameters: JSON.stringify(allParameters, null, 2),
       ym_client_id: ym_client_id ? ym_client_id : null,
     };
 

@@ -86,7 +86,7 @@ const RegForm = ({ className }) => {
     });
     const allParameters = new URLSearchParams(location.search);
     allParameters.forEach((value, key) => {
-      params[key] = value;
+      allParameters[key] = value;
     });
     console.log(JSON.stringify(allParameters, null, 2));
 

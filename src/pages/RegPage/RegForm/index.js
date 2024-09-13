@@ -88,7 +88,6 @@ const RegForm = ({ className }) => {
     allParameters.forEach((value, key) => {
       allParameters[key] = value;
     });
-    console.log(JSON.stringify(allParameters, null, 2));
 
     const source = {
       utm_source:

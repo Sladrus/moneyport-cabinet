@@ -15,8 +15,8 @@ const AuthForm = ({ className }) => {
 
   const { errors, setErrors } = useContext(AuthContext);
 
-  const [email, setEmail] = useState("1");
-  const [password, setPassword] = useState("12345678");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   // const [errors, setErrors] = useState(null);
 
   const handleLogin = async (e) => {

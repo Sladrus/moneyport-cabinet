@@ -4,6 +4,7 @@ import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import AppBar from "../components/AppBar";
 import Header from "../components/Header";
 import TabBar from "../components/TabBar";
+import ApiProvider from "../providers/ApiProvider";
 import AuthProvider from "../providers/AuthProvider";
 import DataProvider from "../providers/DataProvider";
 import RouteProvider from "../providers/RouteProvider";
@@ -22,71 +23,73 @@ const AppRoutes = () => {
 
   return (
     <HelmetProvider>
-      <AuthProvider>
-        <RouteProvider>
-          <div className="wrapper">
-            <Helmet>
-              <link
-                rel="canonical"
-                href={`https://app.moneyport.ru${location?.pathname}`}
-              />
-            </Helmet>
-            <DataProvider>
-              <NotAuthRoute>
-                <HomeMenu open={open} />
-              </NotAuthRoute>
-              <div className="wrapper-scroll">
-                <ScrollToTop />
-                <NotAuthRoute>
-                  <AppBar />
-                  <Header
-                    toogleMenu={() => {
-                      setOpen(!open);
-                    }}
+      <DataProvider>
+        <AuthProvider>
+          <ApiProvider>
+            <RouteProvider>
+              <div className="wrapper">
+                <Helmet>
+                  <link
+                    rel="canonical"
+                    href={`https://app.moneyport.ru${location?.pathname}`}
                   />
-                </NotAuthRoute>
-                <Routes>
-                  {publicRoutes.map(({ path, Component }) => {
-                    return (
-                      <Route
-                        index
-                        key={path}
-                        path={path}
-                        element={<Component />}
-                        exact
-                      />
-                    );
-                  })}
-                  {authRoutes.map(({ path, Component, nestedRoutes }) => {
-                    return (
-                      <Route
-                        key={path}
-                        path={path}
-                        element={
-                          <ProtectedRoute>
-                            <Component
-                              path={path}
-                              nestedRoutes={nestedRoutes}
-                            />
-                          </ProtectedRoute>
-                        }
-                        exact
-                      />
-                    );
-                  })}
-                  <Route
-                    path="*"
-                    element={<Navigate to={AUTH_ROUTE} replace />} //поменять
-                  />
-                </Routes>
+                </Helmet>
                 <NotAuthRoute>
-                  <TabBar />
+                  <HomeMenu open={open} />
                 </NotAuthRoute>
+                <div className="wrapper-scroll">
+                  <ScrollToTop />
+                  <NotAuthRoute>
+                    <AppBar />
+                    <Header
+                      toogleMenu={() => {
+                        setOpen(!open);
+                      }}
+                    />
+                  </NotAuthRoute>
+                  <Routes>
+                    {publicRoutes.map(({ path, Component }) => {
+                      return (
+                        <Route
+                          index
+                          key={path}
+                          path={path}
+                          element={<Component />}
+                          exact
+                        />
+                      );
+                    })}
+                    {authRoutes.map(({ path, Component, nestedRoutes }) => {
+                      return (
+                        <Route
+                          key={path}
+                          path={path}
+                          element={
+                            <ProtectedRoute>
+                              <Component
+                                path={path}
+                                nestedRoutes={nestedRoutes}
+                              />
+                            </ProtectedRoute>
+                          }
+                          exact
+                        />
+                      );
+                    })}
+                    <Route
+                      path="*"
+                      element={<Navigate to={AUTH_ROUTE} replace />} //поменять
+                    />
+                  </Routes>
+                  <NotAuthRoute>
+                    <TabBar />
+                  </NotAuthRoute>
+                </div>
               </div>
-            </DataProvider>
-          </div>
-        </RouteProvider>
-      </AuthProvider>
+            </RouteProvider>
+          </ApiProvider>
+        </AuthProvider>
+      </DataProvider>
     </HelmetProvider>
   );
 };

@@ -1,7 +1,10 @@
-import Cookies from "js-cookie";
-import { authBase } from ".";
+import { authBase, csrfBase } from ".";
 
 class AuthApi {
+  async getCsrfCookie() {
+    await csrfBase.get("/sanctum/csrf-cookie");
+  }
+
   async login({ email, password, client_id }) {
     try {
       const response = await authBase.post("/login", {
@@ -9,7 +12,6 @@ class AuthApi {
         password,
         client_id,
       });
-      console.log(Cookies.get("XSRF-TOKEN"));
 
       return response.data;
     } catch (e) {

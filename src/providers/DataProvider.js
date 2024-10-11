@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { DataContext } from '../context/context';
-import DataApi from '../http/DataApi';
-import { sendMetric } from '../utils/sendMetric';
+import React, { useState } from "react";
+import { DataContext } from "../context/context";
+import DataApi from "../http/DataApi";
 
 const DataProvider = ({ children }) => {
   const [chat, setChat] = useState(null);
@@ -12,27 +11,32 @@ const DataProvider = ({ children }) => {
   const [shortBalances, setShortBalances] = useState(null);
   const [shortBalancesLoading, setShortBalancesLoading] = useState(false);
 
-  const [balances, setBalances] = useState(null);
+  const [balances, setBalances] = useState([]);
+  const [balancesPagination, setBalancesPagination] = useState(null);
   const [balancesLoading, setBalancesLoading] = useState(false);
 
   const [shortHistory, setShortHistory] = useState(null);
   const [shortHistoryLoading, setShortHistoryLoading] = useState(false);
 
-  const [history, setHistory] = useState(null);
+  const [history, setHistory] = useState([]);
+  const [historyPagination, setHistoryPagination] = useState(null);
+
   const [historyLoading, setHistoryLoading] = useState(false);
 
   const [counterparties, setCounterparties] = useState(null);
   const [counterpartiesLoading, setCounterpartiesLoading] = useState(false);
 
-  const getBalances = async ({ type, limit, page }) => {
-    setBalancesLoading(true);
-    const data = await DataApi.getBalances({ type, limit, page });
-    if (!data) return setBalancesLoading(false);
+  const handleGetBalances = async (data, pagination) => {
     setBalances(data);
-    setBalancesLoading(false);
+    setBalancesPagination(pagination);
+    // setBalancesLoading(true);
+    // const data = await DataApi.getBalances({ type, limit, page });
+    // if (!data) return setBalancesLoading(false);
+    // setBalances(data);
+    // setBalancesLoading(false);
   };
 
-  const getShortBalances = async ({ type = 'short' }) => {
+  const getShortBalances = async ({ type = "short" }) => {
     setShortBalancesLoading(true);
     const data = await DataApi.getBalances({ type });
     if (!data) return setShortBalancesLoading(false);
@@ -40,17 +44,20 @@ const DataProvider = ({ children }) => {
     setShortBalancesLoading(false);
   };
 
-  const getHistory = async ({ page, limit }) => {
-    setHistoryLoading(true);
-    const data = await DataApi.getHistory({ page, limit });
-    if (!data) return setHistoryLoading(false);
-    if (history && page !== 1) {
-      setHistory({ ...history, data: [...history.data, ...data.data] });
-    } else {
-      setHistory(data);
-    }
-    setHistoryLoading(false);
-    return data;
+  const handleGetPayments = async (data, pagination) => {
+    // setHistoryLoading(true);
+    // const data = await DataApi.getHistory({ page, limit });
+    // if (!data) return setHistoryLoading(false);
+    // if (history && page !== 1) {
+    //   setHistory({ ...history, data: [...history.data, ...data.data] });
+    // } else {
+
+    setHistory((prev) => [...prev, ...data]);
+    setHistoryPagination(pagination);
+
+    // }
+    // setHistoryLoading(false);
+    // return data;
   };
 
   const getShortHistory = async ({ page = 1, limit = 10 }) => {
@@ -63,24 +70,8 @@ const DataProvider = ({ children }) => {
     // return data;
   };
 
-  const getChat = async (
-    source = 'lk',
-    amount = null,
-    currency = null,
-    type = null
-  ) => {
-    if (chat) return;
-    setChatLoading(true);
-    const data = await DataApi.getChat(source, amount, currency, type);
-
-    // if (data?.error) {
-    //   setChatLoading(false);
-    //   return;
-    // }
-
+  const handleGetChat = (data) => {
     setChat(data);
-    setChatLoading(false);
-    return data;
   };
 
   const setChatOrder = async (order) => {
@@ -138,21 +129,22 @@ const DataProvider = ({ children }) => {
   const value = {
     balancesLoading,
     balances,
-    getBalances,
+    handleGetBalances,
     shortBalancesLoading,
     shortBalances,
     getShortBalances,
     historyLoading,
     setHistoryLoading,
     history,
-    getHistory,
+    historyPagination,
+    handleGetPayments,
     shortHistory,
     shortHistoryLoading,
     setHistory,
     getShortHistory,
     chatLoading,
     chat,
-    getChat,
+    handleGetChat,
     clearData,
     order,
     setOrder,

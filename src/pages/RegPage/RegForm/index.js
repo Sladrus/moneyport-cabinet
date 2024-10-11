@@ -1,21 +1,23 @@
-import React, { useEffect, useRef, useState } from "react";
-import "./RegForm.css";
-import TextInput from "../../../components/TextInput";
+import React, { useContext, useRef, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { ReactComponent as Logo } from "../../../assets/logo/logo.svg";
 import LargeButton from "../../../components/Buttons/LargeButton";
 import LargeTextButton from "../../../components/Buttons/LargeTextButton";
-import { useContext } from "react";
-import { AuthContext } from "../../../context/context";
 import CheckBox from "../../../components/CheckBox";
-import { useLocation, useNavigate } from "react-router-dom";
+import TextInput from "../../../components/TextInput";
+import { ApiContext, AuthContext } from "../../../context/context";
+import AuthApi from "../../../http/AuthApi";
 import { AUTH_ROUTE } from "../../../utils/consts";
-import { ReactComponent as Logo } from "../../../assets/logo/logo.svg";
+import "./RegForm.css";
 
 const randomNumberInRange = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
 const RegForm = ({ className }) => {
-  const { loading, onReg, isPassEqual } = useContext(AuthContext);
+  const { isPassEqual, errors, setErrors, searchParams } =
+    useContext(AuthContext);
+  const { registration, registrationLoading } = useContext(ApiContext);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState(``);
@@ -25,7 +27,7 @@ const RegForm = ({ className }) => {
 
   const [checked, setChecked] = useState(false);
 
-  const [errors, setErrors] = useState(null);
+  // const [errors, setErrors] = useState(null);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -69,26 +71,71 @@ const RegForm = ({ className }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!checked) return;
     const equal = await isPassEqual(password, finalPass);
     if (!equal) {
-      return setErrors({ finalPass: ["Пароли не совпадают"] });
+      return setErrors((prev) => ({
+        ...prev,
+        finalPass: ["Пароли не совпадают"],
+      }));
     }
-    let client_id;
+    await AuthApi.getCsrfCookie();
+    let ym_client_id;
     window.ym(92731458, "getClientID", function (clientID) {
-      client_id = clientID;
+      ym_client_id = clientID;
+    });
+    const allParameters = new URLSearchParams(location.search);
+    allParameters.forEach((value, key) => {
+      allParameters[key] = value;
     });
 
-    const { errors } = await onReg({
-      name,
-      email,
-      phone: phone?.replace(/\D/g, ""),
-      password,
-      client_id,
+    const source = {
+      utm_source:
+        searchParams.get("utm_source") ||
+        localStorage.getItem("utm_source") ||
+        null,
+      utm_medium:
+        searchParams.get("utm_medium") ||
+        localStorage.getItem("utm_medium") ||
+        null,
+      utm_campaign:
+        searchParams.get("utm_campaign") ||
+        localStorage.getItem("utm_campaign") ||
+        null,
+      utm_content:
+        searchParams.get("utm_content") ||
+        localStorage.getItem("utm_content") ||
+        null,
+      utm_term:
+        searchParams.get("utm_term") || localStorage.getItem("utm_term") || "",
+      all_parameters: JSON.stringify(allParameters, null, 2),
+      ym_client_id: ym_client_id ? ym_client_id : null,
+    };
+
+    registration({
+      variables: {
+        input: {
+          name,
+          email,
+          phone: "+" + phone?.replace(/\D/g, ""),
+          password,
+          password_confirmation: finalPass,
+          source: source,
+        },
+      },
     });
+
+    // const { errors } = await onReg({
+    //   name,
+    //   email,
+    //   phone: phone?.replace(/\D/g, ""),
+    //   password,
+    //   client_id,
+    // });
     if (!errors) {
       insertFbPixelScript();
     }
-    setErrors(errors);
+    // setErrors(errors);
   };
 
   const onPhoneInput = (e) => {
@@ -137,7 +184,6 @@ const RegForm = ({ className }) => {
   const onPhoneKeyDown = (e) => {
     const inputValue = e.target.value.replace(/\D/g, "");
     if (e.keyCode === 8 && inputValue.length === 1) {
-      console.log(e?.target?.value);
       e.target.value = "";
       setPhone("");
     }
@@ -164,7 +210,7 @@ const RegForm = ({ className }) => {
       <form onSubmit={handleSubmit}>
         <TextInput
           value={name}
-          errors={errors?.name}
+          errors={errors && errors["input.name"]}
           onClick={() => setErrors(null)}
           placeholder={"ФИО"}
           type="text"
@@ -173,7 +219,7 @@ const RegForm = ({ className }) => {
         />
         <TextInput
           value={email}
-          errors={errors?.email}
+          errors={errors && errors["input.email"]}
           onClick={() => setErrors(null)}
           placeholder={"E-mail"}
           type="text"
@@ -183,7 +229,7 @@ const RegForm = ({ className }) => {
         <TextInput
           className="mask-phone"
           value={phone}
-          errors={errors?.phone}
+          errors={errors && errors["input.phone"]}
           onClick={() => setErrors(null)}
           placeholder={"Мобильный телефон"}
           type="text"
@@ -198,7 +244,7 @@ const RegForm = ({ className }) => {
         />
         <TextInput
           value={password}
-          errors={errors?.password}
+          errors={errors && errors["input.password"]}
           onClick={() => setErrors(null)}
           placeholder={"Пароль"}
           type="password"
@@ -208,7 +254,7 @@ const RegForm = ({ className }) => {
 
         <TextInput
           value={finalPass}
-          errors={errors?.finalPass}
+          errors={errors && errors?.finalPass}
           onClick={() => setErrors(null)}
           placeholder={"Пароль еще раз"}
           type="password"
@@ -243,7 +289,7 @@ const RegForm = ({ className }) => {
             text={"Регистрация"}
             onClick={handleSubmit}
             variant="standart"
-            loading={loading}
+            loading={registrationLoading}
             disabled={!checked}
           />
 

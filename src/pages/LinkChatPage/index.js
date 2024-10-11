@@ -57,7 +57,7 @@ const LinkChatPage = () => {
       variables: {
         input: {
           name,
-          phone: phone?.replace(/\D/g, ""),
+          phone: "+" + phone?.replace(/\D/g, ""),
           token,
           email,
           password,

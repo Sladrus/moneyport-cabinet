@@ -1,39 +1,53 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import './PreOrderFromAbroadContent.css';
+import "./PreOrderFromAbroadContent.css";
 
-import LargeButton from '../../../components/Buttons/LargeButton';
-import { openInNewTab } from '../../../utils/window';
-import { useContext } from 'react';
-import { DataContext } from '../../../context/context';
-import TextInput from '../../../components/TextInput';
-import TextSelect from '../../../components/TextSelect';
-import { currencies } from '../../../utils/currencies';
-import { sendMetric } from '../../../utils/sendMetric';
+import { useContext } from "react";
+import LargeButton from "../../../components/Buttons/LargeButton";
+import TextInput from "../../../components/TextInput";
+import TextSelect from "../../../components/TextSelect";
+import { ApiContext, AuthContext, DataContext } from "../../../context/context";
+import { currencies } from "../../../utils/currencies";
+import { sendMetric } from "../../../utils/sendMetric";
 
 const PreOrderFromAbroadContent = () => {
-  const { chat, setOrder, getChat } = useContext(DataContext);
+  const { chat, setOrder } = useContext(DataContext);
+  const { getChat, getChatLoading } = useContext(ApiContext);
+  const { user } = useContext(AuthContext);
+
   const [amount, setAmount] = useState(1000);
-  const [currency, setCurrency] = useState('USD');
+  const [currency, setCurrency] = useState("USD");
 
   const handleClick = () => {
-    sendMetric('reachGoal', 'click_perevod_priem_from_abroad_start');
-    setOrder({ amount, currency,type: 'from_abroad', id: 3 });
-    getChat('lk',amount, currency, 'from_abroad');
+    sendMetric("reachGoal", "click_perevod_priem_from_abroad_start");
+    setOrder({ amount, currency, type: "from_abroad", id: 3 });
+    getChat({
+      variables: {
+        input: {
+          // user_id: Number(user?.id),
+          pre_order: JSON.stringify({
+            currency,
+            amount: String(amount),
+            type: "Прием из-за рубежа",
+          }),
+        },
+      },
+    });
   };
+
   return (
     <div className="reception-page-order">
       <div className="reception-page-order-content">
         <div className="reception-page-order-content-body">
           <div
             style={{
-              width: '100%',
-              height: '100%',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'flex-start',
-              gap: '16px',
-              alignSelf: 'stretch',
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start",
+              gap: "16px",
+              alignSelf: "stretch",
             }}
           >
             <div className="reception-page-content-body-title">
@@ -42,24 +56,24 @@ const PreOrderFromAbroadContent = () => {
             <div className="reception-page-content-order-body-text">
               <div
                 style={{
-                  height: '100%',
-                  display: 'flex',
-                  flexDirection: 'row',
-                  alignItems: 'start',
-                  gap: '16px',
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "start",
+                  gap: "16px",
                 }}
               >
                 <div
                   style={{
-                    display: 'flex',
-                    width: '100%',
-                    flexDirection: 'column',
-                    alignItems: 'start',
+                    display: "flex",
+                    width: "100%",
+                    flexDirection: "column",
+                    alignItems: "start",
                   }}
                 >
                   <TextInput
                     value={amount}
-                    placeholder={'Сумма'}
+                    placeholder={"Сумма"}
                     onChange={(e) => setAmount(e.target.value)}
                   />
                   {/* <span>Минимальная сумма 500$</span> */}
@@ -67,7 +81,7 @@ const PreOrderFromAbroadContent = () => {
                 <div>
                   <TextSelect
                     value={currency}
-                    placeholder={'Валюта'}
+                    placeholder={"Валюта"}
                     onChange={(value) => setCurrency(value)}
                     options={currencies}
                   />
@@ -79,12 +93,12 @@ const PreOrderFromAbroadContent = () => {
         <div className="reception-page-order-content-body">
           <div
             style={{
-              width: '100%',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'flex-start',
-              gap: '16px',
-              alignSelf: 'stretch',
+              width: "100%",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start",
+              gap: "16px",
+              alignSelf: "stretch",
             }}
           >
             <div className="reception-page-content-body-title">
@@ -93,61 +107,61 @@ const PreOrderFromAbroadContent = () => {
             <div className="reception-page-content-body-text">
               <div
                 style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'flex-start',
-                  gap: '12px',
-                  flex: '1 0 0',
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "flex-start",
+                  gap: "12px",
+                  flex: "1 0 0",
                 }}
               >
                 <div
                   style={{
-                    width: '100%',
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
                   }}
                 >
-                  <span style={{ fontWeight: '600', color: '#647081' }}>
+                  <span style={{ fontWeight: "600", color: "#647081" }}>
                     Прием от физ. лица США
                   </span>
                   <p>от 1 000 USD</p>
                 </div>
                 <div
                   style={{
-                    width: '100%',
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
                   }}
                 >
-                  <span style={{ fontWeight: '600', color: '#647081' }}>
+                  <span style={{ fontWeight: "600", color: "#647081" }}>
                     Прием от юр. лица США
                   </span>
                   <p>от 3 000 USD</p>
                 </div>
                 <div
                   style={{
-                    width: '100%',
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
                   }}
                 >
-                  <span style={{ fontWeight: '600', color: '#647081' }}>
+                  <span style={{ fontWeight: "600", color: "#647081" }}>
                     Прием от физ. лица ЕС
                   </span>
                   <p>от 1 000 EUR</p>
                 </div>
                 <div
                   style={{
-                    width: '100%',
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
                   }}
                 >
-                  <span style={{ fontWeight: '600', color: '#647081' }}>
+                  <span style={{ fontWeight: "600", color: "#647081" }}>
                     Прием от юр. лица ЕС
                   </span>
                   <p>от 3 000 EUR</p>
@@ -158,7 +172,11 @@ const PreOrderFromAbroadContent = () => {
         </div>
       </div>
       <div className="reception-page-order-content-button">
-        <LargeButton text={'Начать перевод'} onClick={handleClick} />
+        <LargeButton
+          disabled={getChatLoading}
+          text={"Начать перевод"}
+          onClick={handleClick}
+        />
       </div>
     </div>
   );

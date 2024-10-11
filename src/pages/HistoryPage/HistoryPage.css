@@ -1,5 +1,5 @@
 .history-page {
-  height: 100%;
+  /* height: 100%; */
   width: calc(100% - 48px);
   display: inline-flex;
   flex-direction: column;
@@ -27,7 +27,7 @@
 .history-page-content-hello {
   color: var(--tech-grey-medium, #a8b1be);
 
-  font-family: 'Mulish';
+  font-family: "Mulish";
   font-size: 14px;
   font-style: normal;
   font-weight: 700;
@@ -38,7 +38,7 @@
 .history-page-content-head {
   color: var(--tech-black, #031022);
 
-  font-family: 'Mulish';
+  font-family: "Mulish";
   font-size: 32px;
   font-style: normal;
   font-weight: 700;
@@ -73,7 +73,7 @@
 .history-page-content-body-title span {
   color: var(--tech-black, #031022);
 
-  font-family: 'Mulish';
+  font-family: "Mulish";
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
@@ -90,7 +90,7 @@
 
   color: var(--tech-black, #031022);
 
-  font-family: 'Mulish';
+  font-family: "Mulish";
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -103,6 +103,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-top: 24px;
 }
 
 .history-page-content-body-qr {
@@ -116,16 +117,21 @@
     display: none;
   }
   .history-page-list {
-    padding-bottom: 71px;
+    height: 100%;
 
     /* max-width: 100%; */
   }
   .history-page-content {
     /* max-width: 100%; */
     /* min-width: unset; */
+    padding-bottom: 48px;
     width: calc(100% - 96px);
-    height: calc(100% - 95px);
+    /* height: calc(100% - 95px); */
   }
+  .history-page-content-button {
+    padding: 12px 0;
+  }
+
   .history-page-content-button .large-button {
     width: 100%;
     align-items: center;

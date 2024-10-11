@@ -1,47 +1,37 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from "react";
 
-import './BalancesList.css';
-import { AuthContext, DataContext } from '../../../context/context';
-import BalanceItem from '../../../components/Balances/BalanceItem';
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
-import Spinner from '../../../components/Spinner';
+import "react-loading-skeleton/dist/skeleton.css";
+import BalanceItem from "../../../components/Balances/BalanceItem";
+import EmptyBalances from "../../../components/History/EmptyBalances";
+import Spinner from "../../../components/Spinner";
+import { ApiContext, AuthContext, DataContext } from "../../../context/context";
+import "./BalancesList.css";
 
 const BalancesList = () => {
-  const { balances, balancesLoading, getBalances } = useContext(DataContext);
+  const { balances } = useContext(DataContext);
 
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(25);
+  const { getBalances, getBalancesLoading } = useContext(ApiContext);
 
   useEffect(() => {
-    getBalances({ limit, page });
+    // getBalances({ variables: { user_id: 1 } });
+    // getBalances({ limit, page });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <>
       <div className={`balances-page-list`}>
-        {balancesLoading && !balances?.data?.length ? (
+        {getBalancesLoading && !balances?.data?.length ? (
           <div className="skeleton">
             {/* <Skeleton inline count={11} height={68} borderRadius={16} /> */}
             <Spinner />
           </div>
+        ) : balances?.length > 0 ? (
+          balances?.map((balance, index) => {
+            return <BalanceItem open={true} key={index} {...balance} />;
+          })
         ) : (
-          balances?.data?.map(
-            ({ id, title, amount, icon, code, sign }, index) => {
-              return (
-                <BalanceItem
-                  open={true}
-                  key={index}
-                  title={title}
-                  amount={amount}
-                  sign={sign}
-                  // icon={icon}
-                  code={code}
-                />
-              );
-            }
-          )
+          !getBalancesLoading && <EmptyBalances />
         )}
       </div>
     </>

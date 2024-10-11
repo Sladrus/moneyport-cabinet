@@ -1,30 +1,31 @@
-import React, { useContext } from 'react';
+import React, { useContext } from "react";
 
-import './CompanyTransfersPage.css';
-import LargeButton from '../../components/Buttons/LargeButton';
-import { openInNewTab } from '../../utils/window';
-import { DataContext } from '../../context/context';
-import QRCode from 'react-qr-code';
+import QRCode from "react-qr-code";
+import LargeButton from "../../components/Buttons/LargeButton";
+import { DataContext } from "../../context/context";
+import { openInNewTab } from "../../utils/window";
+import "./CompanyTransfersPage.css";
 
 const CompanyTransfersPage = () => {
   const { chat, order, setChatOrder } = useContext(DataContext);
 
   const handleClick = () => {
-    setChatOrder(order);
-    openInNewTab(chat?.chat_url, 'go_to_chat_perevod_ur');
+    // setChatOrder(order);
+    openInNewTab(chat?.group_url, "go_to_chat_perevod_ur");
   };
+
   return (
     <div className="company-page">
       <div className="company-page-content">
         <div className="company-page-content-body">
           <div
             style={{
-              width: '100%',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'flex-start',
-              gap: '16px',
-              alignSelf: 'stretch',
+              width: "100%",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start",
+              gap: "16px",
+              alignSelf: "stretch",
             }}
           >
             <div className="company-page-content-body-title">
@@ -33,11 +34,11 @@ const CompanyTransfersPage = () => {
             <div className="company-page-content-body-text">
               <div
                 style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'flex-start',
-                  gap: '12px',
-                  flex: '1 0 0',
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "flex-start",
+                  gap: "12px",
+                  flex: "1 0 0",
                 }}
               >
                 <span>
@@ -58,13 +59,13 @@ const CompanyTransfersPage = () => {
                 </span>
               </div>
               <div className="company-page-content-body-qr">
-                <QRCode value={chat?.chat_url || ''} size={153} />
+                <QRCode value={chat?.group_url || ""} size={153} />
               </div>
             </div>
           </div>
         </div>
         <div className="company-page-content-button">
-          <LargeButton text={'Перейти в чат-кассу'} onClick={handleClick} />
+          <LargeButton text={"Перейти в чат-кассу"} onClick={handleClick} />
         </div>
       </div>
     </div>

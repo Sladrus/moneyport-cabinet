@@ -6,7 +6,7 @@ import { ReactComponent as ArrowLeft } from "../../assets/icons/arrows/arrow-lef
 import { ReactComponent as Logo } from "../../assets/logo/logo.svg";
 import LargeButton from "../../components/Buttons/LargeButton";
 import TextInput from "../../components/TextInput";
-import { AuthContext } from "../../context/context";
+import { ApiContext, AuthContext } from "../../context/context";
 
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { AUTH_ROUTE } from "../../utils/consts";
@@ -18,7 +18,12 @@ const LinkChatPage = () => {
     onUpdatePassword,
     handleLinkChat,
     isPassEqual,
+    errors,
+    setErrors,
+    isComplete,
   } = useContext(AuthContext);
+
+  const { registrationFromChat } = useContext(ApiContext);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -31,8 +36,8 @@ const LinkChatPage = () => {
   const [password, setPassword] = useState("");
   const [finalPass, setFinalPass] = useState("");
 
-  const [errors, setErrors] = useState(null);
-  const [isComplete, setComplete] = useState(false);
+  // const [errors, setErrors] = useState(null);
+  // const [isComplete, setComplete] = useState(false);
 
   const getInputNumbersValue = (input) => {
     return input.value.replace(/\D/g, "");
@@ -48,16 +53,22 @@ const LinkChatPage = () => {
     window.ym(92731458, "getClientID", function (clientID) {
       ym_client_id = clientID;
     });
-    const { result, errors } = await handleLinkChat({
-      name,
-      phone: phone?.replace(/\D/g, ""),
-      token,
-      email,
-      password,
-      ym_client_id,
+    await registrationFromChat({
+      variables: {
+        input: {
+          name,
+          phone: phone?.replace(/\D/g, ""),
+          token,
+          email,
+          password,
+          source: {
+            ym_client_id,
+          },
+        },
+      },
     });
-    setErrors(errors);
-    if (!errors || errors?.token) setComplete(true);
+    // setErrors(errors);
+    // if (!errors || errors?.token) setComplete(true);
   };
 
   const onPhoneInput = (e) => {
@@ -127,14 +138,6 @@ const LinkChatPage = () => {
     }
   };
 
-  useEffect(() => {
-    // onCheckReset({ token }).then(({ result, errors }) => {
-    //   setErrors(errors);
-    //   setComplete(result);
-    // });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   return (
     <div className="recovery-page">
       <div className="recovery-page-header">
@@ -165,7 +168,7 @@ const LinkChatPage = () => {
             <div style={{ width: "100%" }}>
               <TextInput
                 value={name}
-                errors={errors?.name}
+                errors={errors && errors["input.name"]}
                 placeholder={"ФИО"}
                 type="text"
                 onClick={() => setErrors(null)}
@@ -174,7 +177,7 @@ const LinkChatPage = () => {
               />
               <TextInput
                 value={email}
-                errors={errors?.email}
+                errors={errors && errors["input.email"]}
                 placeholder={"E-mail"}
                 type="text"
                 onClick={() => setErrors(null)}
@@ -193,7 +196,7 @@ const LinkChatPage = () => {
               <TextInput
                 className="mask-phone"
                 value={phone}
-                errors={errors?.phone}
+                errors={errors && errors["input.phone"]}
                 onClick={() => setErrors(null)}
                 placeholder={"Мобильный телефон"}
                 type="text"
@@ -208,7 +211,7 @@ const LinkChatPage = () => {
               />
               <TextInput
                 value={password}
-                errors={errors?.password}
+                errors={errors && errors["input.password"]}
                 placeholder={"Пароль"}
                 type="password"
                 onClick={() => setErrors(null)}

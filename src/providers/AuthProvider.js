@@ -15,11 +15,18 @@ const AuthProvider = ({ children }) => {
 
   const [searchParams] = useSearchParams();
 
+  const [errors, setErrors] = useState();
+  const [isComplete, setIsComplete] = useState(false);
+
   useEffect(() => {
     setUtms();
-    handleCheckAuth();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // handleCheckAuth();
   }, []);
+
+  // useEffect(() => {
+  //   // handleCheckAuth();
+  //   if (!user) navigate(AUTH_ROUTE);
+  // }, [user]);
 
   const setUtmFromSearchParams = (utm) => {
     if (searchParams.get(utm)) localStorage.setItem(utm, searchParams.get(utm));
@@ -33,24 +40,12 @@ const AuthProvider = ({ children }) => {
     setUtmFromSearchParams("utm_term");
   };
 
-  const handleLogin = async ({ email, password, client_id }) => {
-    setLoading(true);
-    const data = await AuthApi.login({ email, password, client_id });
-    if (data?.errors || data?.error) {
-      setLoading(false);
-      return {
-        result: false,
-        errors: data?.errors || { error: [data?.error] },
-      };
+  const handleLogin = async (user, errors) => {
+    if (errors) {
+      return setErrors(errors);
     }
-
-    sessionStorage.setItem("token", data?.access_token);
-    sessionStorage.setItem("refresh", data?.refresh_token);
-
-    setUser(data?.user);
-    setLoading(false);
+    setUser(user);
     navigate({ pathname: HOME_ROUTE, search: location.search });
-    return { result: true, errors: null };
   };
 
   const isPassEqual = async (password, finalPass) => {
@@ -64,57 +59,13 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  const handleRegistration = async ({
-    name,
-    email,
-    phone,
-    password,
-    client_id,
-  }) => {
-    setLoading(true);
-    const utms = {
-      source:
-        searchParams.get("utm_source") ||
-        localStorage.getItem("utm_source") ||
-        "",
-      medium:
-        searchParams.get("utm_medium") ||
-        localStorage.getItem("utm_medium") ||
-        "",
-      campaign:
-        searchParams.get("utm_campaign") ||
-        localStorage.getItem("utm_campaign") ||
-        "",
-      content:
-        searchParams.get("utm_content") ||
-        localStorage.getItem("utm_content") ||
-        "",
-      term:
-        searchParams.get("utm_term") || localStorage.getItem("utm_term") || "",
-    };
-    const data = await AuthApi.register({
-      name,
-      email,
-      phone,
-      password,
-      client_id,
-      utms,
-    });
-    if (data?.errors || data?.error) {
-      setLoading(false);
-      return {
-        result: false,
-        errors: data?.errors || { error: [data?.error] },
-      };
+  const handleRegistration = async (user, errors) => {
+    if (errors) {
+      return setErrors(errors);
     }
-
-    sessionStorage.setItem("token", data?.access_token);
-
-    setUser(data?.user);
+    setUser(user);
     sendMetric("reachGoal", "firstreg");
-    setLoading(false);
     navigate({ pathname: HOME_ROUTE, search: location.search });
-    return { result: true, errors: null };
   };
 
   const handleLogout = async () => {
@@ -158,40 +109,12 @@ const AuthProvider = ({ children }) => {
       navigate({ pathname: HOME_ROUTE, search: location.search });
   };
 
-  const handleRecoveryPass = async ({ email }) => {
-    setLoading(true);
-    const data = await AuthApi.recoveryPass({ email });
-    if (data?.errors) {
-      setLoading(false);
-      return { result: false, errors: data?.errors };
+  const handleForgotPassword = async (errors) => {
+    console.log(errors);
+    if (errors) {
+      return setErrors(errors);
     }
-    setLoading(false);
-    return { result: true, errors: null };
-  };
-
-  const handleLinkChat = async ({
-    name,
-    email,
-    phone,
-    password,
-    ym_client_id,
-    token,
-  }) => {
-    setLoading(true);
-    const data = await AuthApi.updateUser({
-      email,
-      name,
-      phone,
-      password,
-      ym_client_id,
-      token,
-    });
-    if (data?.errors) {
-      setLoading(false);
-      return { result: false, errors: data?.errors };
-    }
-    setLoading(false);
-    return { result: true, errors: null };
+    setIsComplete(true);
   };
 
   const handleCheckResetToken = async ({ token }) => {
@@ -208,33 +131,62 @@ const AuthProvider = ({ children }) => {
     return { result: true, errors: null };
   };
 
-  const handleUpdatePassword = async ({ token, email, password }) => {
-    setLoading(true);
-    const data = await AuthApi.updatePassword({ token, email, password });
-    if (data?.errors || data?.error) {
-      setLoading(false);
-      return {
-        result: false,
-        errors: data?.errors || { error: [data?.error] },
-      };
+  const handleResetPassword = async (errors) => {
+    if (errors) {
+      return setErrors(errors);
     }
-    setLoading(false);
-    navigate({ pathname: AUTH_ROUTE, search: location.search });
-    return { result: true, errors: null };
+    setIsComplete(true);
+    // setLoading(true);
+    // const data = await AuthApi.updatePassword({ token, email, password });
+    // if (data?.errors || data?.error) {
+    //   setLoading(false);
+    //   return {
+    //     result: false,
+    //     errors: data?.errors || { error: [data?.error] },
+    //   };
+    // }
+    // setLoading(false);
+    // navigate({ pathname: AUTH_ROUTE, search: location.search });
+    // return { result: true, errors: null };
+  };
+
+  const handleRegistrationFromChat = async (errors) => {
+    if (errors) {
+      return setErrors(errors);
+    }
+    setIsComplete(true);
+    // setLoading(true);
+    // const data = await AuthApi.updatePassword({ token, email, password });
+    // if (data?.errors || data?.error) {
+    //   setLoading(false);
+    //   return {
+    //     result: false,
+    //     errors: data?.errors || { error: [data?.error] },
+    //   };
+    // }
+    // setLoading(false);
+    // navigate({ pathname: AUTH_ROUTE, search: location.search });
+    // return { result: true, errors: null };
   };
 
   const value = {
     user,
     loading,
-    onLogin: handleLogin,
+    handleLogin,
     onLogout: handleLogout,
-    onReg: handleRegistration,
+    handleRegistration,
     onCheck: handleCheckAuth,
-    onRecovery: handleRecoveryPass,
+    handleForgotPassword,
     onCheckReset: handleCheckResetToken,
-    handleLinkChat,
-    onUpdatePassword: handleUpdatePassword,
+    handleResetPassword,
+    handleRegistrationFromChat,
     isPassEqual,
+    errors,
+    setErrors,
+    isComplete,
+    setIsComplete,
+    searchParams,
+    
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

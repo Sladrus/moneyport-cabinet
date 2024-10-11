@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { ReactComponent as ErrorIcon } from "../../assets/icons/input/rejection.svg";
 import { ReactComponent as ClosedEyeIcon } from "../../assets/icons/input/closed-eye.svg";
 import { ReactComponent as OpenedEyeIcon } from "../../assets/icons/input/opened-eye.svg";
+import { ReactComponent as ErrorIcon } from "../../assets/icons/input/rejection.svg";
 
-import "./TextInput.css";
 import Badge from "../Badge";
+import "./TextInput.css";
 
 const TextInput = ({
   value,

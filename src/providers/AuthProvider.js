@@ -152,6 +152,7 @@ const AuthProvider = ({ children }) => {
 
   const handleRegistrationFromChat = async (errors) => {
     if (errors) {
+      if (errors["input.token"]) setIsComplete(true);
       return setErrors(errors);
     }
     setIsComplete(true);
@@ -186,7 +187,6 @@ const AuthProvider = ({ children }) => {
     isComplete,
     setIsComplete,
     searchParams,
-    
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

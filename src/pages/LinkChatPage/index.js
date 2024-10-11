@@ -153,6 +153,7 @@ const LinkChatPage = () => {
       </div>
       {/* {errors?.token} */}
       {isComplete && !errors && <span>Чат-касса привязана к {email}</span>}
+      {isComplete && errors && errors["input.name"]}
       {!isComplete ? (
         <form className="recovery-page-form">
           <span className="recovery-page-form-title">Привязка чат-кассы</span>
